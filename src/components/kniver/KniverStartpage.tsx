@@ -61,7 +61,9 @@ const KniverStartpage: React.FC<Props> = () => {
             <hr />
           </div>
           <div className="machine-container">
-            <ToolCard title="Kniver" img={fres2} antallImaskin="8" />
+            <ToolCard title="Kniv" img={fres2} antallImaskin="8" />
+            <ToolCard title="Motstål" img={noImage} antallImaskin="8" />
+            <BoltCard img={bolt} />
           </div>
         </div>
         <div>
@@ -71,6 +73,8 @@ const KniverStartpage: React.FC<Props> = () => {
           </div>
           <div className="machine-container">
             <ToolCard title="Kniver" img={fres3} antallImaskin="8" />
+            <ToolCard title="Motstål" img={noImage} antallImaskin="8" />
+            <BoltCard img={bolt} />
           </div>
         </div>
         <div>
@@ -80,6 +84,8 @@ const KniverStartpage: React.FC<Props> = () => {
           </div>
           <div className="machine-container">
             <ToolCard title="Kniver" img={bruks} antallImaskin="2" />
+            <ToolCard title="Motstål" img={noImage} antallImaskin="8" />
+            <BoltCard img={bolt} />
           </div>
         </div>
       </div>
