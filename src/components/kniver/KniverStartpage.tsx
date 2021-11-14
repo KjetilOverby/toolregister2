@@ -25,34 +25,52 @@ const KniverStartpage: React.FC<Props> = () => {
             <hr />
           </div>
           <div className="machine-container">
-            <ToolCard title="Kniver" img={red} antallImaskin="30" />
+            <ToolCard title="Kniver" img={red} antallImaskin="30" type="kniv" />
             <ToolCard
               title="Motstål (første rekke)"
               img={noImage}
               antallImaskin="30"
+              type="kniv"
             />
             <ToolCard
               title="Motstål (rekke 2 og 3)"
               img={noImage}
               antallImaskin="30"
+              type="kniv"
             />
             <BoltCard img={bolt} />
           </div>
         </div>
         <div>
           <div>
-            <h2 className="machine-header">Fres 1/4 (VPN34)</h2>
+            <h2 className="machine-header">Fres 1/4 (VP34)</h2>
             <hr />
           </div>
           <div className="machine-container">
-            <ToolCard title="Kniver" img={fres1} antallImaskin="48" />
-            <ToolCard title="Knivholder" img={noImage} antallImaskin="48" />
+            <ToolCard
+              title="Kniver"
+              img={fres1}
+              antallImaskin="48"
+              type="kniv"
+            />
+            <ToolCard
+              title="Knivholder"
+              img={noImage}
+              antallImaskin="48"
+              type="kniv"
+            />
             <ToolCard
               title="Motstål venstre"
               img={noImage}
               antallImaskin="48"
+              type="kniv"
             />
-            <ToolCard title="motstål høyre" img={noImage} antallImaskin="48" />
+            <ToolCard
+              title="motstål høyre"
+              img={noImage}
+              antallImaskin="48"
+              type="kniv"
+            />
           </div>
         </div>
         <div>
@@ -61,8 +79,13 @@ const KniverStartpage: React.FC<Props> = () => {
             <hr />
           </div>
           <div className="machine-container">
-            <ToolCard title="Kniv" img={fres2} antallImaskin="8" />
-            <ToolCard title="Motstål" img={noImage} antallImaskin="8" />
+            <ToolCard title="Kniv" img={fres2} antallImaskin="8" type="kniv" />
+            <ToolCard
+              title="Motstål"
+              img={noImage}
+              antallImaskin="8"
+              type="kniv"
+            />
             <BoltCard img={bolt} />
           </div>
         </div>
@@ -72,8 +95,18 @@ const KniverStartpage: React.FC<Props> = () => {
             <hr />
           </div>
           <div className="machine-container">
-            <ToolCard title="Kniver" img={fres3} antallImaskin="8" />
-            <ToolCard title="Motstål" img={noImage} antallImaskin="8" />
+            <ToolCard
+              title="Kniver"
+              img={fres3}
+              antallImaskin="8"
+              type="kniv"
+            />
+            <ToolCard
+              title="Motstål"
+              img={noImage}
+              antallImaskin="8"
+              type="kniv"
+            />
             <BoltCard img={bolt} />
           </div>
         </div>
@@ -83,8 +116,18 @@ const KniverStartpage: React.FC<Props> = () => {
             <hr />
           </div>
           <div className="machine-container">
-            <ToolCard title="Kniver" img={bruks} antallImaskin="2" />
-            <ToolCard title="Motstål" img={noImage} antallImaskin="8" />
+            <ToolCard
+              title="Kniver"
+              img={bruks}
+              antallImaskin="2"
+              type="kniv"
+            />
+            <ToolCard
+              title="Motstål"
+              img={noImage}
+              antallImaskin="8"
+              type="kniv"
+            />
             <BoltCard img={bolt} />
           </div>
         </div>

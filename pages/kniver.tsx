@@ -20,7 +20,7 @@ const kniver: React.FC<Props> = () => {
             margin: 2rem 35rem;
           }
           .header {
-            margin: 1rem 0;
+            margin: 2rem 0 6rem 0;
           }
           @media (max-width: 2100px) {
             .container {

@@ -24,6 +24,8 @@ const ButtonComponent: React.FC<Props> = ({ header, link }) => {
             font-weight: 100;
             transition: 0.5s;
             font-family: "Red Hat Mono", monospace;
+            border: 1px solid #aaaaaa;
+            border-radius: 10px;
           }
           .container:hover {
             cursor: pointer;

@@ -5,9 +5,10 @@ interface Props {
   title: string;
   img: StaticImageData;
   antallImaskin: string;
+  type: string;
 }
 
-const ToolCard: React.FC<Props> = ({ title, img, antallImaskin }) => {
+const ToolCard: React.FC<Props> = ({ title, img, antallImaskin, type }) => {
   return (
     <>
       <div className="container">
@@ -19,7 +20,7 @@ const ToolCard: React.FC<Props> = ({ title, img, antallImaskin }) => {
             </div>
             <div>
               <p>Antall totalt: 80</p>
-              <p>Type: </p>
+              <p>Type: {type}</p>
               <p>Antall i maskin: {antallImaskin}</p>
               <p>Antall vraket i år: 10</p>
               <p>Antall nye i år: 20</p>
