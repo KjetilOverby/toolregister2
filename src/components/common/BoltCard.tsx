@@ -3,9 +3,11 @@ import Image from "next/image";
 
 interface Props {
   img: StaticImageData;
+  type: string;
+  antallImaskin: string;
 }
 
-const BoltCard: React.FC<Props> = ({ img }) => {
+const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
   return (
     <>
       <div className="container">
@@ -17,12 +19,8 @@ const BoltCard: React.FC<Props> = ({ img }) => {
             </div>
             <div>
               <p>Antall totalt: 80</p>
-              <p>Type: M20 10mm</p>
-              <p>Antall i maskin: 10</p>
-              <p>Første rekke: 20.06.2021</p>
-              <p>Andre rekke: 20.06.2021</p>
-              <p>Tredje rekke: 20.06.2021</p>
-              <p>Fjerde rekke: 20.06.2021</p>
+              <p>Type: {type}</p>
+              <p>Antall i maskin: {antallImaskin}</p>
             </div>
           </div>
         </div>
@@ -40,7 +38,7 @@ const BoltCard: React.FC<Props> = ({ img }) => {
             font-size: 1.2rem;
           }
           .img-container {
-            width: 12rem;
+            width: 15rem;
             margin-right: 1rem;
           }
           .img-text-container {

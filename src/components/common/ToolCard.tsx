@@ -6,9 +6,20 @@ interface Props {
   img: StaticImageData;
   antallImaskin: string;
   type: string;
+  antallTenner: string;
+  maskin: string;
+  dim: string;
 }
 
-const ToolCard: React.FC<Props> = ({ title, img, antallImaskin, type }) => {
+const ToolCard: React.FC<Props> = ({
+  title,
+  img,
+  antallImaskin,
+  type,
+  antallTenner,
+  maskin,
+  dim,
+}) => {
   return (
     <>
       <div className="container">
@@ -19,11 +30,14 @@ const ToolCard: React.FC<Props> = ({ title, img, antallImaskin, type }) => {
               <Image src={img} />
             </div>
             <div>
-              <p>Antall totalt: 80</p>
+              <p className="antall">Antall totalt: 80</p>
               <p>Type: {type}</p>
+              <p>Dim: {dim}</p>
+              {antallTenner && <p>Antall tenner: {antallTenner}</p>}
               <p>Antall i maskin: {antallImaskin}</p>
-              <p>Antall vraket i år: 10</p>
-              <p>Antall nye i år: 20</p>
+              <p>Maskin: {maskin}</p>
+              <p className="vrak">Antall vraket i år: 10</p>
+              <p className="nye">Antall nye i år: 20</p>
             </div>
           </div>
         </div>
@@ -41,11 +55,20 @@ const ToolCard: React.FC<Props> = ({ title, img, antallImaskin, type }) => {
             font-size: 1.2rem;
           }
           .img-container {
-            width: 12rem;
+            width: 15rem;
             margin-right: 1rem;
           }
           .img-text-container {
             display: flex;
+          }
+          .antall {
+            color: #0a50a0;
+          }
+          .vrak {
+            color: red;
+          }
+          .nye {
+            color: #218d57;
           }
           @media screen and (max-width: 756px) {
             .img-text-container {
