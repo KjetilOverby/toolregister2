@@ -7,7 +7,7 @@ const segmenter = () => {
     <>
       <div className="container">
         <h1 className="header">Segmenter</h1>
-        <SegmenterStartPage img={img} />
+        <SegmenterStartPage img={img} antallTenner="" maskin="" dim="" />
       </div>
       <style jsx>
         {`

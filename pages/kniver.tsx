@@ -12,7 +12,14 @@ const kniver: React.FC<Props> = () => {
     <>
       <div className="container">
         <h1 className="header">Kniver og motstål</h1>
-        <KniverStartpage title="" img={red} antallImaskin="" />
+        <KniverStartpage
+          title=""
+          img={red}
+          antallImaskin=""
+          antallTenner=""
+          dim=""
+          maskin=""
+        />
       </div>
       <style jsx>
         {`

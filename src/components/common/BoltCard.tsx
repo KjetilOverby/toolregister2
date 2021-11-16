@@ -12,7 +12,7 @@ const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
     <>
       <div className="container">
         <div>
-          <h4 className="header">Bolt</h4>
+          <h4 className="header">Bolter/skruer</h4>
           <div className="img-text-container">
             <div className="img-container">
               <Image src={img} />

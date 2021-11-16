@@ -1,8 +1,6 @@
 import React from "react";
 import ToolCard from "../common/ToolCard";
 import BoltCard from "../common/BoltCard";
-import segmentBolt from "../../../assets/segmenter/bolt2.jpeg";
-import fres14segment from "../../../assets/segmenter/vpsegment.jpg";
 import v40segmentH from "../../../assets/segmenter/v40segmentH.jpg";
 import v40segmentV from "../../../assets/segmenter/v40segmentV.jpg";
 import v40segmenterBolt from "../../../assets/segmenter/v40segmenterBolt.jpg";
@@ -36,7 +34,7 @@ const SegmenterStartPage: React.FC<Props> = () => {
               img={v40segmentH}
               antallImaskin="5"
               antallTenner="14"
-              type="V40 segment"
+              type="V40-41-117-SV"
               dim="ø854,2/698-4,5/3,5"
               maskin="V40"
               title="Reduserer segment høyre"
@@ -45,7 +43,7 @@ const SegmenterStartPage: React.FC<Props> = () => {
               img={v40segmentV}
               antallImaskin="5"
               antallTenner="14"
-              type="V40 segment"
+              type="V40-41-118-SV"
               dim="ø854,2/698-4,5/3,5"
               maskin="V40"
               title="Reduserer segment venstre"
