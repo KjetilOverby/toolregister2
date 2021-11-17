@@ -17,8 +17,8 @@ const StartPage: React.FC<Props> = () => {
           <ButtonComponent link="/lincksawblades" header="Linck sagblad" />
           <ButtonComponent link="/segmenter" header="Segmenter" />
           <ButtonComponent link="/kniver" header="Kniver" />
-          <ButtonComponent link="/" header="Sagblad" />
-          <ButtonComponent link="/" header="Statistikk" />
+          <ButtonComponent link="/sagblad" header="Trimmerblad" />
+          {/* <ButtonComponent link="/" header="Statistikk" /> */}
         </div>
       </div>
       <style jsx>

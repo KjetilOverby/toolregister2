@@ -79,6 +79,7 @@ const ToolCard: React.FC<Props> = ({
             }
             .img-container {
               width: 100%;
+              height: 22rem;
             }
           }
         `}

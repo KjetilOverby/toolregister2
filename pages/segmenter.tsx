@@ -9,12 +9,6 @@ const segmenter = () => {
   return (
     <>
       <div className="container">
-        {/* <Link href="/">
-          <div className="backContainer">
-            <MdKeyboardArrowLeft />
-            <h5>Tilbake</h5>
-          </div>
-        </Link> */}
         <Header />
         <h1 className="header">Segmenter</h1>
         <SegmenterStartPage img={img} antallTenner="" maskin="" dim="" />

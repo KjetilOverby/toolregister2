@@ -53,6 +53,7 @@ const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
             }
             .img-container {
               width: 100%;
+              height: 22rem;
             }
           }
         `}

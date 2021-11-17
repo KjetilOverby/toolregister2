@@ -194,7 +194,7 @@ const KniverStartpage: React.FC<Props> = () => {
             <BoltCard
               img={vp34justSkrue}
               type="M6x30 unbraco"
-              antallImaskin="16"
+              antallImaskin="8"
             />
             <div style={{ width: "30rem" }}></div>
           </div>
@@ -223,11 +223,7 @@ const KniverStartpage: React.FC<Props> = () => {
               type="V-KM5105"
               maskin="Bruks 820 CS"
             />
-            <BoltCard
-              img={bruksJust}
-              type="M20x60 unbraco"
-              antallImaskin="16"
-            />
+            <BoltCard img={bruksJust} type="M10x80" antallImaskin="16" />
           </div>
         </div>
       </div>

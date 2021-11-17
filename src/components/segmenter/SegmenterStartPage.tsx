@@ -90,7 +90,7 @@ const SegmenterStartPage: React.FC<Props> = () => {
               antallTenner="8"
               type="VP34-08-056"
               dim="ø403/305-3,5/2,5/5,00"
-              title="Fres 2/3 horizontal segment høyre"
+              title="Fres 2/3 segment høyre"
               maskin="VP34"
             />
             <ToolCard
@@ -99,10 +99,10 @@ const SegmenterStartPage: React.FC<Props> = () => {
               antallTenner="8"
               type="VP34-08-055"
               dim="ø403/305-3,5/2,5/5,00"
-              title="Fres 2/3 horizontal segment venstre"
+              title="Fres 2/3 segment venstre"
               maskin="VP34"
             />
-            <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="36" />
+            <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>
         </div>
         <div>
@@ -117,7 +117,7 @@ const SegmenterStartPage: React.FC<Props> = () => {
               antallTenner="8"
               type="VP48-08-008"
               dim="ø412/ø296-4,0/3,0/5,0"
-              title="Fres 2/3 horizontal segment høyre"
+              title="Fres 2/3 segment høyre"
               maskin="VP48"
             />
             <ToolCard
@@ -126,10 +126,10 @@ const SegmenterStartPage: React.FC<Props> = () => {
               antallTenner="8"
               type="VP48-08-007"
               dim="ø412/ø296-4,0/3,0/5,0"
-              title="Fres 2/3 horizontal segment venstre"
+              title="Fres 2/3 segment venstre"
               maskin="VP48"
             />
-            <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="36" />
+            <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>
         </div>
       </div>
