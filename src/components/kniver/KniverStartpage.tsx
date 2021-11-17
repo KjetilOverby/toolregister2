@@ -1,6 +1,6 @@
 import React from "react";
-import fres2 from "../../../assets/kniver/fres1.jpeg";
-import fres3 from "../../../assets/kniver/fres3.jpeg";
+import fres2 from "../../../assets/kniver/vp34kniv.jpg";
+import fres3 from "../../../assets/kniver/vp48kniv.jpg";
 import noImage from "../../../assets/no_image.png";
 import ToolCard from "../common/ToolCard";
 import BoltCard from "../common/BoltCard";
@@ -21,6 +21,8 @@ import vp48motsH from "../../../assets/kniver/vp48motstH.jpg";
 import vp48motsV from "../../../assets/kniver/vp48motstV.jpg";
 import bruks from "../../../assets/kniver/bruks.jpg";
 import bruksJust from "../../../assets/kniver/bruksJust.jpg";
+import vp34bolt from "../../../assets/kniver/vp34bolt.jpg";
+import vp34justSkrue from "../../../assets/kniver/vp34justSkrue.jpg";
 
 interface Props {
   title: string;
@@ -147,9 +149,10 @@ const KniverStartpage: React.FC<Props> = () => {
               maskin="VP34"
               type=""
             />
+            <BoltCard img={vp34bolt} type="M16x45 unbraco" antallImaskin="16" />
             <BoltCard
-              img={vpp34Bolt}
-              type="M20x60 unbraco"
+              img={vp34justSkrue}
+              type="M6x30 unbraco"
               antallImaskin="16"
             />
           </div>
@@ -187,7 +190,13 @@ const KniverStartpage: React.FC<Props> = () => {
               dim="55x85x25x6mm"
               type="kniv"
             />
-            <BoltCard img={bolt} type="M20x60 unbraco" antallImaskin="16" />
+            <BoltCard img={vp34bolt} type="M16x45 unbraco" antallImaskin="8" />
+            <BoltCard
+              img={vp34justSkrue}
+              type="M6x30 unbraco"
+              antallImaskin="16"
+            />
+            <div style={{ width: "30rem" }}></div>
           </div>
         </div>
         <div>

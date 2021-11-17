@@ -40,6 +40,9 @@ const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
           .img-container {
             width: 15rem;
             margin-right: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 11rem;
           }
           .img-text-container {
             display: flex;

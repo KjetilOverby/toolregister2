@@ -1,7 +1,8 @@
 import React from "react";
-
+import Link from "next/link";
 import KniverStartpage from "../src/components/kniver/KniverStartpage";
 import red from "../assets/kniver/red.jpeg";
+import Header from "../src/components/common/Header";
 
 interface Props {
   img: StaticImageData;
@@ -11,6 +12,7 @@ const kniver: React.FC<Props> = () => {
   return (
     <>
       <div className="container">
+        <Header />
         <h1 className="header">Kniver og motstål</h1>
         <KniverStartpage
           title=""
@@ -24,10 +26,16 @@ const kniver: React.FC<Props> = () => {
       <style jsx>
         {`
           .container {
-            margin: 2rem 35rem;
+            margin: 2rem 30rem;
           }
           .header {
             margin: 2rem 0 6rem 0;
+          }
+          .backContainer {
+            display: flex;
+          }
+          .backContainer:hover {
+            cursor: pointer;
           }
           @media (max-width: 2100px) {
             .container {
