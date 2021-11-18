@@ -4,7 +4,6 @@ import fres3 from "../../../assets/kniver/vp48kniv.jpg";
 import noImage from "../../../assets/no_image.png";
 import ToolCard from "../common/ToolCard";
 import BoltCard from "../common/BoltCard";
-import bolt from "../../../assets/bolt.webp";
 import v40kniv from "../../../assets/kniver/v40kniv.jpg";
 import v40motst from "../../../assets/kniver/v40motsl.jpg";
 import v25motst from "../../../assets/kniver/v25motst.jpg";
@@ -23,6 +22,8 @@ import bruks from "../../../assets/kniver/bruks.jpg";
 import bruksJust from "../../../assets/kniver/bruksJust.jpg";
 import vp34bolt from "../../../assets/kniver/vp34bolt.jpg";
 import vp34justSkrue from "../../../assets/kniver/vp34justSkrue.jpg";
+import bruksMotst15 from "../../../assets/kniver/bruksmotst15.jpg";
+import bruksMotst44 from "../../../assets/kniver/bruksmotst44.jpg";
 
 interface Props {
   title: string;
@@ -216,10 +217,19 @@ const KniverStartpage: React.FC<Props> = () => {
             />
             <ToolCard
               title="Motstål"
-              img={noImage}
+              img={bruksMotst15}
               antallImaskin="8"
               antallTenner=""
               dim="580x59x15"
+              type="V-KM7100"
+              maskin="Bruks 820 CS"
+            />
+            <ToolCard
+              title="Motstål"
+              img={bruksMotst44}
+              antallImaskin="8"
+              antallTenner=""
+              dim="580x59x44"
               type="V-KM5105"
               maskin="Bruks 820 CS"
             />

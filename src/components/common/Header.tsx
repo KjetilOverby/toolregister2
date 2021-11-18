@@ -8,7 +8,7 @@ const Header = () => {
         <Link href="/">
           <div className="menuBtnContainer">
             <MdKeyboardArrowLeft />
-            <h5>MAIN MENU</h5>
+            <h5>STARTSIDEN</h5>
           </div>
         </Link>
         <Link href="/segmenter">
@@ -31,6 +31,7 @@ const Header = () => {
           }
           .menuBtnContainer {
             display: flex;
+            align-items: center;
           }
           .menuBtnContainer:hover {
             cursor: pointer;
