@@ -18,7 +18,10 @@ const Header = () => {
           <h5 className="menu-tabs">Kniver</h5>
         </Link>
         <Link href="/sagblad">
-          <h5 className="menu-tabs">Sagblad</h5>
+          <h5 className="menu-tabs">Trimmerblad</h5>
+        </Link>
+        <Link href="/lincksawblades">
+          <h5 className="menu-tabs">Linck sagblad</h5>
         </Link>
       </div>
       <style jsx>
