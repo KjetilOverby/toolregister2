@@ -22,7 +22,7 @@ const SagbladStartPage = () => {
               img={trimmerJusterverk}
               antallImaskin="21"
               maskin="-"
-              type="V-SH0985"
+              type="V-SH0985 SUPER Hi-MAX"
             />
             <ToolCard
               title="Eksaktkappe"

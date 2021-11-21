@@ -12,6 +12,7 @@ import vp32segmentH from "../../../assets/segmenter/vp32segmentH.jpg";
 import vp34segmentSkrue from "../../../assets/segmenter/vp34segmentskrue.jpg";
 import vp48segmentH from "../../../assets/segmenter/vp48segmentH.jpg";
 import vp48segmentV from "../../../assets/segmenter/vp48segmentV.jpg";
+import ModalComponent from "../common/ModalComponent";
 
 interface Props {
   img: StaticImageData;
@@ -23,6 +24,7 @@ interface Props {
 const SegmenterStartPage: React.FC<Props> = () => {
   return (
     <>
+      <ModalComponent />
       <div className="container">
         <div>
           <div>

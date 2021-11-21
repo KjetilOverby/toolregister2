@@ -21,7 +21,8 @@
     "**/*.tsx",
     "models/Linckblades.js",
     "pages/api/linck/linckblades.js",
-    "utils/dbConnect.js"
+    "utils/dbConnect.js",
+    "src/components/contexts/data.js"
   ],
   "exclude": ["node_modules"]
 }

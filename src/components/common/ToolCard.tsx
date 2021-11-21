@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 
 interface Props {
@@ -29,6 +29,7 @@ const ToolCard: React.FC<Props> = ({
             <div className="img-container">
               <Image src={img} />
             </div>
+
             <div>
               <p className="antall">Antall totalt: 80</p>
               <p>Type: {type}</p>
@@ -40,9 +41,11 @@ const ToolCard: React.FC<Props> = ({
               <p className="nye">Antall nye i år: 20</p>
             </div>
           </div>
+          <h5>REDIGER</h5>
         </div>
         <div></div>
       </div>
+
       <style jsx>
         {`
           .container {

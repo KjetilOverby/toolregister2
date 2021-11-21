@@ -28,7 +28,7 @@ const LinckBladesStartPage = () => {
               img={mkv36}
               antallImaskin=""
               antallTenner="30"
-              type="Kanefusa Timbermax"
+              type="Kanefusa Hi-MAX"
               dim="Ø445x2,2-3,6 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,2-3,6"
@@ -37,7 +37,7 @@ const LinckBladesStartPage = () => {
               img={mkv38}
               antallImaskin=""
               antallTenner="36"
-              type="Kanefusa Timbermax"
+              type="Kanefusa Hi-MAX"
               dim="Ø445x2,4-3,8 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,4-3,8"
@@ -46,7 +46,7 @@ const LinckBladesStartPage = () => {
               img={mkv40}
               antallImaskin=""
               antallTenner="36"
-              type="Kanefusa Timbermax"
+              type="Kanefusa TIMBERMAX"
               dim="Ø445x2,6-4,0 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,6-4,0"
@@ -55,7 +55,7 @@ const LinckBladesStartPage = () => {
               img={mkv42}
               antallImaskin=""
               antallTenner="36"
-              type="Kanefusa Timbermax"
+              type="Kanefusa TIMBERMAX"
               dim="Ø445x2,8-4,2 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,8-4,2"
@@ -64,7 +64,7 @@ const LinckBladesStartPage = () => {
               img={mkv44}
               antallImaskin=""
               antallTenner="36"
-              type="Kanefusa Timbermax"
+              type="Kanefusa Hi-MAX"
               dim="Ø445x3,0-4,4 ø150"
               maskin="MKV"
               title="Kanefusa MKV 3,0-4,4"
@@ -73,7 +73,7 @@ const LinckBladesStartPage = () => {
               img={mkv46}
               antallImaskin=""
               antallTenner="36"
-              type="Kanefusa Timbermax"
+              type="Kanefusa Hi-MAX"
               dim="Ø510x3,2-4,6 ø150"
               maskin="MKV"
               title="Kanefusa MKV 3,2-4,6"
@@ -108,7 +108,7 @@ const LinckBladesStartPage = () => {
               img={nBlad}
               antallImaskin="4"
               antallTenner="30"
-              type="Kanefusa HM Timbermax"
+              type="Kanefusa Hi-MAX"
               dim="Ø475x3,2/4,8 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 N-blad"
@@ -117,7 +117,7 @@ const LinckBladesStartPage = () => {
               img={vs66HF}
               antallImaskin="2"
               antallTenner="24"
-              type="Kanefusa HM Himax"
+              type="Kanefusa Hi-MAX"
               dim="Ø475x3,6/5,0/6,8 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 høyre flensblad"
@@ -126,7 +126,7 @@ const LinckBladesStartPage = () => {
               img={vs66VF}
               antallImaskin="2"
               antallTenner="24"
-              type="Kanefusa HM Himax"
+              type="Kanefusa Hi-MAX"
               dim="Ø475x3,6/5,0/6,8 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 venstre flensblad"
