@@ -2,17 +2,7 @@ import React, { useContext } from "react";
 import { MyContext } from "../../contexts/MyContext";
 import Image from "next/image";
 
-interface Props {
-  title: string;
-  img: StaticImageData;
-  antallImaskin: string;
-  type: string;
-  antallTenner: string;
-  maskin: string;
-  dim: string;
-}
-
-const ToolCard: React.FC<Props> = ({
+const ToolCard = ({
   title,
   img,
   antallImaskin,
@@ -20,8 +10,20 @@ const ToolCard: React.FC<Props> = ({
   antallTenner,
   maskin,
   dim,
+  totalt,
+  ID,
+  imgUrl,
+  toolType,
 }) => {
-  const { setOpenModal } = useContext(MyContext);
+  const { setOpenModal, setGetAntall, setGetImgUrl, setGetID, setType } =
+    useContext(MyContext);
+  const openModal = () => {
+    setGetID(ID);
+    setGetAntall(totalt);
+    setGetImgUrl(imgUrl);
+    setType(toolType);
+    setOpenModal(true);
+  };
   return (
     <>
       <div className="container">
@@ -33,17 +35,17 @@ const ToolCard: React.FC<Props> = ({
             </div>
 
             <div>
-              <p className="antall">Antall totalt: 80</p>
+              <p className="antall">Antall totalt: {totalt}</p>
               <p>Type: {type}</p>
               <p>Dim: {dim}</p>
               {antallTenner && <p>Antall tenner: {antallTenner}</p>}
               <p>Antall i maskin: {antallImaskin}</p>
               <p>Maskin: {maskin}</p>
-              <p className="vrak">Antall vraket i år: 10</p>
-              <p className="nye">Antall nye i år: 20</p>
+              {/* <p className="vrak">Antall vraket i år: 10</p>
+              <p className="nye">Antall nye i år: 20</p> */}
             </div>
           </div>
-          <h5 className="btn" onClick={() => setOpenModal(true)}>
+          <h5 className="btn" onClick={openModal}>
             REDIGER
           </h5>
         </div>

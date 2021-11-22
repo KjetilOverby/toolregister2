@@ -1,27 +1,29 @@
-import React from "react";
-import Link from "next/link";
-import KniverStartpage from "../src/components/kniver/KniverStartpage";
-import red from "../assets/kniver/red.jpeg";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import LinckBladesStartPage from "../src/components/lincksawblades/LinckBladesStartPage";
 import Header from "../src/components/common/Header";
+const api = axios.create({
+  baseURL: process.env.api,
+});
 
-interface Props {
-  img: StaticImageData;
-}
+const lincksawblades = () => {
+  // const [linckBlades, setLinckBlades] = useState<any>("");
+  // useEffect(() => {
+  //   try {
+  //     api.get(`/api/linck/linckblades`).then((res) => {
+  //       setLinckBlades(res.data.data);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
-const kniver: React.FC<Props> = () => {
   return (
     <>
       <div className="container">
         <Header />
-        <h1 className="header">Kniver og motstål</h1>
-        <KniverStartpage
-          title=""
-          img={red}
-          antallImaskin=""
-          antallTenner=""
-          dim=""
-          maskin=""
-        />
+        <h1 className="header">Sagblad Linck</h1>
+        <LinckBladesStartPage />
       </div>
       <style jsx>
         {`
@@ -53,4 +55,4 @@ const kniver: React.FC<Props> = () => {
   );
 };
 
-export default kniver;
+export default lincksawblades;

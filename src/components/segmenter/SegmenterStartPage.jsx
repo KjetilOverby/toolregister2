@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MyContext } from "../../contexts/MyContext";
 import ToolCard from "../common/ToolCard";
 import BoltCard from "../common/BoltCard";
@@ -16,7 +16,8 @@ import vp48segmentV from "../../../assets/segmenter/vp48segmentV.jpg";
 import ModalComponent from "../common/ModalComponent";
 
 const SegmenterStartPage = () => {
-  const { openModal } = useContext(MyContext);
+  const { openModal, tools, setGetID, setGetImgUrl } = useContext(MyContext);
+
   return (
     <>
       {openModal && <ModalComponent />}
@@ -24,26 +25,35 @@ const SegmenterStartPage = () => {
         <div>
           <div>
             <h2>Reduserer segment (ZD1/ZD2)</h2>
+
             <hr />
           </div>
           <div className="machine-container">
             <ToolCard
               img={v40segmentH}
+              totalt={tools && tools[0].antall}
               antallImaskin="5"
               antallTenner="14"
               type="V40-41-117-SV"
               dim="ø854,2/698-4,5/3,5"
               maskin="V40"
               title="Reduserer segment høyre"
+              ID={tools && tools[0]._id}
+              imgUrl={tools && tools[0].img}
+              toolType={tools && tools[0].type}
             />
             <ToolCard
               img={v40segmentV}
+              totalt={tools && tools[1].antall}
               antallImaskin="5"
               antallTenner="14"
               type="V40-41-118-SV"
               dim="ø854,2/698-4,5/3,5"
               maskin="V40"
               title="Reduserer segment venstre"
+              ID={tools && tools[1]._id}
+              imgUrl={tools && tools[1].img}
+              toolType={tools && tools[1].type}
             />
             <BoltCard img={v40segmenterBolt} type="M12x30" antallImaskin="15" />
           </div>
@@ -62,6 +72,10 @@ const SegmenterStartPage = () => {
               dim="ø401/200,4-3,5/2,5/8,00"
               title="Fres 1/4 segment høyre"
               maskin="VP34/VPP34"
+              totalt={tools && tools[2].antall}
+              ID={tools && tools[2]._id}
+              imgUrl={tools && tools[2].img}
+              toolType={tools && tools[2].type}
             />
             <ToolCard
               img={vpp32segmentV}
@@ -71,6 +85,10 @@ const SegmenterStartPage = () => {
               dim="ø401/200,4-3,5/2,5/8,00"
               title="Fres 1/4 segment venstre"
               maskin="VP34/VPP34"
+              totalt={tools && tools[3].antall}
+              ID={tools && tools[3]._id}
+              imgUrl={tools && tools[3].img}
+              toolType={tools && tools[3].type}
             />
             <BoltCard img={vpp32Bolt} type="M10x20" antallImaskin="36" />
           </div>
@@ -89,6 +107,10 @@ const SegmenterStartPage = () => {
               dim="ø403/305-3,5/2,5/5,00"
               title="Fres 2/3 segment høyre"
               maskin="VP34"
+              totalt={tools && tools[4].antall}
+              ID={tools && tools[4]._id}
+              imgUrl={tools && tools[4].img}
+              toolType={tools && tools[4].type}
             />
             <ToolCard
               img={vp32segmentV}
@@ -98,6 +120,10 @@ const SegmenterStartPage = () => {
               dim="ø403/305-3,5/2,5/5,00"
               title="Fres 2/3 segment venstre"
               maskin="VP34"
+              totalt={tools && tools[5].antall}
+              ID={tools && tools[5]._id}
+              imgUrl={tools && tools[5].img}
+              toolType={tools && tools[5].type}
             />
             <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>
@@ -116,6 +142,10 @@ const SegmenterStartPage = () => {
               dim="ø412/ø296-4,0/3,0/5,0"
               title="Fres 2/3 segment høyre"
               maskin="VP48"
+              totalt={tools && tools[6].antall}
+              ID={tools && tools[6]._id}
+              imgUrl={tools && tools[6].img}
+              toolType={tools && tools[6].type}
             />
             <ToolCard
               img={vp48segmentV}
@@ -125,6 +155,10 @@ const SegmenterStartPage = () => {
               dim="ø412/ø296-4,0/3,0/5,0"
               title="Fres 2/3 segment venstre"
               maskin="VP48"
+              totalt={tools && tools[7].antall}
+              ID={tools && tools[7]._id}
+              imgUrl={tools && tools[7].img}
+              toolType={tools && tools[7].type}
             />
             <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>

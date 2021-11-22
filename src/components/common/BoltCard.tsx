@@ -18,7 +18,6 @@ const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
               <Image src={img} />
             </div>
             <div>
-              <p>Antall totalt: 80</p>
               <p>Type: {type}</p>
               <p>Antall i maskin: {antallImaskin}</p>
             </div>

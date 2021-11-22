@@ -1,11 +1,47 @@
 import "../styles/globals.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MyContext } from "../src/contexts/MyContext";
+const axios = require("axios");
 
 function MyApp({ Component, pageProps }) {
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [getID, setGetID] = useState();
+  const [getAntall, setGetAntall] = useState();
+  const [getImgUrl, setGetImgUrl] = useState();
+  const [tools, setTools] = useState();
+  const [type, setType] = useState();
+  console.log(getImgUrl);
+  useEffect(() => {
+    axios
+      .get("/api/tool/getToolregist")
+      .then(function (response) {
+        setTools(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+
   return (
-    <MyContext.Provider value={{ openModal, setOpenModal }}>
+    <MyContext.Provider
+      value={{
+        openModal,
+        setOpenModal,
+        tools,
+        getID,
+        setGetID,
+        setGetAntall,
+        getAntall,
+        setGetImgUrl,
+        getImgUrl,
+        setType,
+        type,
+      }}
+    >
       <Component {...pageProps} />
     </MyContext.Provider>
   );

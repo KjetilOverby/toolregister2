@@ -7,6 +7,9 @@ const ToolRegistSchema = new mongoose.Schema({
   antall: {
     type: Number,
   },
+  img: {
+    type: String,
+  },
   date: {
     type: Date,
   },
