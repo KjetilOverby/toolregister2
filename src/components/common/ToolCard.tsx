@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { MyContext } from "../../contexts/MyContext";
 import Image from "next/image";
 
 interface Props {
@@ -20,6 +21,7 @@ const ToolCard: React.FC<Props> = ({
   maskin,
   dim,
 }) => {
+  const { setOpenModal } = useContext(MyContext);
   return (
     <>
       <div className="container">
@@ -41,7 +43,9 @@ const ToolCard: React.FC<Props> = ({
               <p className="nye">Antall nye i år: 20</p>
             </div>
           </div>
-          <h5>REDIGER</h5>
+          <h5 className="btn" onClick={() => setOpenModal(true)}>
+            REDIGER
+          </h5>
         </div>
         <div></div>
       </div>
@@ -52,6 +56,9 @@ const ToolCard: React.FC<Props> = ({
             display: flex;
             margin-bottom: 4rem;
             min-width: 30rem;
+          }
+          .btn:hover {
+            cursor: pointer;
           }
           .header {
             margin: 1rem 0;

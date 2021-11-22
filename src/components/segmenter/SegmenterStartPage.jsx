@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyContext } from "../../contexts/MyContext";
 import ToolCard from "../common/ToolCard";
 import BoltCard from "../common/BoltCard";
 import v40segmentH from "../../../assets/segmenter/v40segmentH.jpg";
@@ -14,17 +15,11 @@ import vp48segmentH from "../../../assets/segmenter/vp48segmentH.jpg";
 import vp48segmentV from "../../../assets/segmenter/vp48segmentV.jpg";
 import ModalComponent from "../common/ModalComponent";
 
-interface Props {
-  img: StaticImageData;
-  antallTenner: String;
-  maskin: string;
-  dim: string;
-}
-
-const SegmenterStartPage: React.FC<Props> = () => {
+const SegmenterStartPage = () => {
+  const { openModal } = useContext(MyContext);
   return (
     <>
-      <ModalComponent />
+      {openModal && <ModalComponent />}
       <div className="container">
         <div>
           <div>

@@ -1,12 +1,7 @@
 import React from "react";
 import ButtonComponent from "./ButtonComponent";
 
-interface Props {
-  header: string;
-  link: string;
-}
-
-const StartPage: React.FC<Props> = () => {
+const StartPage = () => {
   return (
     <>
       <div className="container">

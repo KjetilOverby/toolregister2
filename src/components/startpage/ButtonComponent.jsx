@@ -1,12 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-interface Props {
-  header: string;
-  link: string;
-}
-
-const ButtonComponent: React.FC<Props> = ({ header, link }) => {
+const ButtonComponent = ({ header, link }) => {
   return (
     <>
       <Link href={`${link}`}>

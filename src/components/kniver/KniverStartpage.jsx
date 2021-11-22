@@ -25,16 +25,7 @@ import vp34justSkrue from "../../../assets/kniver/vp34justSkrue.jpg";
 import bruksMotst15 from "../../../assets/kniver/bruksmotst15.jpg";
 import bruksMotst44 from "../../../assets/kniver/bruksmotst44.jpg";
 
-interface Props {
-  title: string;
-  img: StaticImageData;
-  antallImaskin: string;
-  dim: string;
-  maskin: string;
-  antallTenner: string;
-}
-
-const KniverStartpage: React.FC<Props> = () => {
+const KniverStartpage = () => {
   return (
     <>
       <div className="container">

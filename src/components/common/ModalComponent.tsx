@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
+import { MyContext } from "../../contexts/MyContext";
 
 const ModalComponent = () => {
+  const { setOpenModal } = useContext(MyContext);
   return (
     <>
       <div className="container">
-        <div className="modal"></div>
+        <div className="modal">
+          <button onClick={() => setOpenModal(false)}>LUKK</button>
+        </div>
       </div>
 
       <style jsx>

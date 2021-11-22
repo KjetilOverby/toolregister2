@@ -5,11 +5,7 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import Link from "next/link";
 import Header from "../src/components/common/Header";
 
-interface Props {
-  openModal: string;
-}
-
-const segmenter: React.FC<Props> = () => {
+const segmenter = () => {
   return (
     <>
       <div className="container">
