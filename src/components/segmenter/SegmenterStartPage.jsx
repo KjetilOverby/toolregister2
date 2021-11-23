@@ -16,7 +16,8 @@ import vp48segmentV from "../../../assets/segmenter/vp48segmentV.jpg";
 import ModalComponent from "../common/ModalComponent";
 
 const SegmenterStartPage = () => {
-  const { openModal, tools, setGetID, setGetImgUrl } = useContext(MyContext);
+  const { openModal, tools, setGetID, setGetImgUrl, toolCardBtnTitle } =
+    useContext(MyContext);
 
   return (
     <>
@@ -41,6 +42,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[0]._id}
               imgUrl={tools && tools[0].img}
               toolType={tools && tools[0].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               img={v40segmentV}
@@ -54,6 +56,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[1]._id}
               imgUrl={tools && tools[1].img}
               toolType={tools && tools[1].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={v40segmenterBolt} type="M12x30" antallImaskin="15" />
           </div>
@@ -76,6 +79,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[2]._id}
               imgUrl={tools && tools[2].img}
               toolType={tools && tools[2].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               img={vpp32segmentV}
@@ -89,6 +93,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[3]._id}
               imgUrl={tools && tools[3].img}
               toolType={tools && tools[3].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={vpp32Bolt} type="M10x20" antallImaskin="36" />
           </div>
@@ -111,6 +116,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[4]._id}
               imgUrl={tools && tools[4].img}
               toolType={tools && tools[4].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               img={vp32segmentV}
@@ -124,6 +130,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[5]._id}
               imgUrl={tools && tools[5].img}
               toolType={tools && tools[5].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>
@@ -146,6 +153,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[6]._id}
               imgUrl={tools && tools[6].img}
               toolType={tools && tools[6].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               img={vp48segmentV}
@@ -159,6 +167,7 @@ const SegmenterStartPage = () => {
               ID={tools && tools[7]._id}
               imgUrl={tools && tools[7].img}
               toolType={tools && tools[7].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>

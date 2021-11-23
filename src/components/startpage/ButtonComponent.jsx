@@ -17,7 +17,7 @@ const ButtonComponent = ({ header, link }) => {
             color: #fff;
             font-size: 1.5rem;
             font-weight: 100;
-            transition: 0.5s;
+            transition: background 0.5s;
             font-family: "Titillium Web", sans-serif;
             border: 1px solid #aaaaaa;
             border-radius: 10px;

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { MyContext } from "../../contexts/MyContext";
 
-const ModalComponent = () => {
+const ModalComponent = ({ linck }) => {
   const { setOpenModal, getID, getImgUrl, type, getAntall } =
     useContext(MyContext);
   return (
@@ -11,11 +11,13 @@ const ModalComponent = () => {
           <img className="img" src={getImgUrl} />
           <h1>{type}</h1>
           <p>Antall: {getAntall}</p>
-          <div>
-            <button>-</button>
-            <input className="input" />
-            <button>+</button>
-          </div>
+          {!linck && (
+            <div>
+              <button>-</button>
+              <input className="input" />
+              <button>+</button>
+            </div>
+          )}
 
           <button onClick={() => setOpenModal(false)}>LUKK</button>
         </div>

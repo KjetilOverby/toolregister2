@@ -8,7 +8,8 @@ import endekapp from "../../../assets/sagblad/endekapp.jpg";
 import ModalComponent from "../common/ModalComponent";
 
 const SagbladStartPage = () => {
-  const { openModal, tools } = useContext(MyContext);
+  const { openModal, tools, toolCardBtnTitle } = useContext(MyContext);
+
   return (
     <>
       {openModal && <ModalComponent />}
@@ -31,6 +32,7 @@ const SagbladStartPage = () => {
               ID={tools && tools[23]._id}
               imgUrl={tools && tools[23].img}
               toolType={tools && tools[23].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Eksaktkappe"
@@ -44,6 +46,7 @@ const SagbladStartPage = () => {
               ID={tools && tools[24]._id}
               imgUrl={tools && tools[24].img}
               toolType={tools && tools[24].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Endekapp"
@@ -57,6 +60,7 @@ const SagbladStartPage = () => {
               ID={tools && tools[25]._id}
               imgUrl={tools && tools[25].img}
               toolType={tools && tools[25].type}
+              btnTitle={toolCardBtnTitle}
             />
           </div>
         </div>
@@ -78,6 +82,7 @@ const SagbladStartPage = () => {
               ID={tools && tools[26]._id}
               imgUrl={tools && tools[26].img}
               toolType={tools && tools[26].type}
+              btnTitle={toolCardBtnTitle}
             />
           </div>
         </div>

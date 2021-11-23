@@ -10,7 +10,8 @@ function MyApp({ Component, pageProps }) {
   const [getImgUrl, setGetImgUrl] = useState();
   const [tools, setTools] = useState();
   const [type, setType] = useState();
-  console.log(getImgUrl);
+  const toolCardBtnTitle = "REDIGER";
+
   useEffect(() => {
     axios
       .get("/api/tool/getToolregist")
@@ -40,6 +41,7 @@ function MyApp({ Component, pageProps }) {
         getImgUrl,
         setType,
         type,
+        toolCardBtnTitle,
       }}
     >
       <Component {...pageProps} />

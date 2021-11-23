@@ -28,7 +28,7 @@ import { MyContext } from "../../contexts/MyContext";
 import ModalComponent from "../common/ModalComponent";
 
 const KniverStartpage = () => {
-  const { openModal, tools } = useContext(MyContext);
+  const { openModal, tools, toolCardBtnTitle } = useContext(MyContext);
   return (
     <>
       {openModal && <ModalComponent />}
@@ -51,6 +51,7 @@ const KniverStartpage = () => {
               ID={tools && tools[8]._id}
               imgUrl={tools && tools[8].img}
               toolType={tools && tools[8].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål (første rekke)"
@@ -64,6 +65,7 @@ const KniverStartpage = () => {
               ID={tools && tools[9]._id}
               imgUrl={tools && tools[9].img}
               toolType={tools && tools[9].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål (rekke 2 og 3)"
@@ -77,6 +79,7 @@ const KniverStartpage = () => {
               ID={tools && tools[10]._id}
               imgUrl={tools && tools[10].img}
               toolType={tools && tools[10].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={v40Bolt} type="M20x45" antallImaskin="30" />
             <BoltCard img={v40justSkruer} type="M6x40" antallImaskin="60" />
@@ -101,6 +104,7 @@ const KniverStartpage = () => {
               ID={tools && tools[11]._id}
               imgUrl={tools && tools[11].img}
               toolType={tools && tools[11].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Knivholder"
@@ -114,6 +118,7 @@ const KniverStartpage = () => {
               ID={tools && tools[12]._id}
               imgUrl={tools && tools[12].img}
               toolType={tools && tools[12].type}
+              btnTitle={toolCardBtnTitle}
             />
 
             <ToolCard
@@ -128,6 +133,7 @@ const KniverStartpage = () => {
               ID={tools && tools[13]._id}
               imgUrl={tools && tools[13].img}
               toolType={tools && tools[13].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål venstre"
@@ -141,6 +147,7 @@ const KniverStartpage = () => {
               ID={tools && tools[14]._id}
               imgUrl={tools && tools[14].img}
               toolType={tools && tools[14].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard
               img={vpp34Bolt}
@@ -168,6 +175,7 @@ const KniverStartpage = () => {
               ID={tools && tools[15]._id}
               imgUrl={tools && tools[15].img}
               toolType={tools && tools[15].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål"
@@ -181,6 +189,7 @@ const KniverStartpage = () => {
               ID={tools && tools[16]._id}
               imgUrl={tools && tools[16].img}
               toolType={tools && tools[16].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={vp34bolt} type="M16x45 unbraco" antallImaskin="16" />
             <BoltCard
@@ -208,6 +217,7 @@ const KniverStartpage = () => {
               ID={tools && tools[17]._id}
               imgUrl={tools && tools[17].img}
               toolType={tools && tools[17].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål høyre"
@@ -221,6 +231,7 @@ const KniverStartpage = () => {
               ID={tools && tools[18]._id}
               imgUrl={tools && tools[18].img}
               toolType={tools && tools[18].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål venstre"
@@ -234,6 +245,7 @@ const KniverStartpage = () => {
               ID={tools && tools[19]._id}
               imgUrl={tools && tools[19].img}
               toolType={tools && tools[19].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={vp34bolt} type="M16x45 unbraco" antallImaskin="8" />
             <BoltCard
@@ -262,6 +274,7 @@ const KniverStartpage = () => {
               ID={tools && tools[20]._id}
               imgUrl={tools && tools[20].img}
               toolType={tools && tools[20].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål"
@@ -275,6 +288,7 @@ const KniverStartpage = () => {
               ID={tools && tools[21]._id}
               imgUrl={tools && tools[21].img}
               toolType={tools && tools[21].type}
+              btnTitle={toolCardBtnTitle}
             />
             <ToolCard
               title="Motstål"
@@ -288,6 +302,7 @@ const KniverStartpage = () => {
               ID={tools && tools[22]._id}
               imgUrl={tools && tools[22].img}
               toolType={tools && tools[22].type}
+              btnTitle={toolCardBtnTitle}
             />
             <BoltCard img={bruksJust} type="M10x80" antallImaskin="16" />
           </div>

@@ -1,27 +1,28 @@
 import React, { useContext } from "react";
-import ToolCard from "../common/ToolCard";
 import mkv36 from "../../../assets/linckblad/mkv3.6.jpg";
 import mkv38 from "../../../assets/linckblad/mkv3.8.jpg";
 import mkv40 from "../../../assets/linckblad/mkv4.0.jpg";
 import mkv42 from "../../../assets/linckblad/mkv4.2.jpg";
 import mkv44 from "../../../assets/linckblad/mkv4.4.jpg";
 import mkv46 from "../../../assets/linckblad/mkv4.6.jpg";
-
-import vs66H from "../../../assets/linckblad/vs66H.jpg";
-import vs66V from "../../../assets/linckblad/vs66V.jpg";
-import vs66HF from "../../../assets/linckblad/vs66FlensH.jpg";
-import vs66VF from "../../../assets/linckblad/vs66FlensV.jpg";
 import nBlad from "../../../assets/linckblad/nBlad.jpg";
 import nessjoH from "../../../assets/linckblad/nessjoH.jpg";
 import nessjoV from "../../../assets/linckblad/nessjoV.jpg";
+import vs66HF from "../../../assets/linckblad/vs66FlensH.jpg";
+import vs66VF from "../../../assets/linckblad/vs66FlensV.jpg";
+import vs66H from "../../../assets/linckblad/vs66H.jpg";
+import vs66V from "../../../assets/linckblad/vs66V.jpg";
 import { MyContext } from "../../contexts/MyContext";
 import ModalComponent from "../common/ModalComponent";
+import ToolCard from "../common/ToolCard";
 
 const LinckBladesStartPage = () => {
+  const toolCardLinckBtnTitle = "VIS";
   const { openModal, tools } = useContext(MyContext);
+
   return (
     <>
-      {openModal && <ModalComponent />}
+      {openModal && <ModalComponent linck={true} />}
       <div className="container">
         <div>
           <div>
@@ -40,6 +41,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[27]._id}
               imgUrl={tools && tools[27].img}
               toolType={tools && tools[27].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={mkv38}
@@ -52,6 +54,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[28]._id}
               imgUrl={tools && tools[28].img}
               toolType={tools && tools[28].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={mkv40}
@@ -64,6 +67,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[29]._id}
               imgUrl={tools && tools[29].img}
               toolType={tools && tools[29].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={mkv42}
@@ -76,6 +80,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[30]._id}
               imgUrl={tools && tools[30].img}
               toolType={tools && tools[30].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={mkv44}
@@ -88,6 +93,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[31]._id}
               imgUrl={tools && tools[31].img}
               toolType={tools && tools[31].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={mkv46}
@@ -100,6 +106,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[32]._id}
               imgUrl={tools && tools[32].img}
               toolType={tools && tools[32].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
           </div>
         </div>
@@ -120,6 +127,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[33]._id}
               imgUrl={tools && tools[33].img}
               toolType={tools && tools[33].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={vs66V}
@@ -132,6 +140,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[34]._id}
               imgUrl={tools && tools[34].img}
               toolType={tools && tools[34].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={nBlad}
@@ -144,6 +153,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[35]._id}
               imgUrl={tools && tools[35].img}
               toolType={tools && tools[35].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={vs66HF}
@@ -156,6 +166,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[36]._id}
               imgUrl={tools && tools[36].img}
               toolType={tools && tools[36].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={vs66VF}
@@ -168,6 +179,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[37]._id}
               imgUrl={tools && tools[37].img}
               toolType={tools && tools[37].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={nessjoH}
@@ -180,6 +192,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[38]._id}
               imgUrl={tools && tools[38].img}
               toolType={tools && tools[38].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
             <ToolCard
               img={nessjoV}
@@ -192,6 +205,7 @@ const LinckBladesStartPage = () => {
               ID={tools && tools[39]._id}
               imgUrl={tools && tools[39].img}
               toolType={tools && tools[39].type}
+              btnTitle={toolCardLinckBtnTitle}
             />
           </div>
         </div>

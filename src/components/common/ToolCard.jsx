@@ -14,6 +14,7 @@ const ToolCard = ({
   ID,
   imgUrl,
   toolType,
+  btnTitle,
 }) => {
   const { setOpenModal, setGetAntall, setGetImgUrl, setGetID, setType } =
     useContext(MyContext);
@@ -46,7 +47,7 @@ const ToolCard = ({
             </div>
           </div>
           <h5 className="btn" onClick={openModal}>
-            REDIGER
+            {btnTitle}
           </h5>
         </div>
         <div></div>
@@ -58,6 +59,9 @@ const ToolCard = ({
             display: flex;
             margin-bottom: 4rem;
             min-width: 30rem;
+          }
+          .btn {
+            margin-top: 0.5rem;
           }
           .btn:hover {
             cursor: pointer;
