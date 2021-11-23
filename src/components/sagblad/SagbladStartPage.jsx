@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MyContext } from "../../contexts/MyContext";
 import ToolCard from "../common/ToolCard";
 import trimmerBord from "../../../assets/sagblad/trimmerBord.jpg";
 import trimmerJusterverk from "../../../assets/sagblad/trimmerJusterverk.jpg";
 import eksaktKappe from "../../../assets/sagblad/eksaktKappe.jpg";
 import endekapp from "../../../assets/sagblad/endekapp.jpg";
+import ModalComponent from "../common/ModalComponent";
 
 const SagbladStartPage = () => {
+  const { openModal, tools } = useContext(MyContext);
   return (
     <>
+      {openModal && <ModalComponent />}
       <div className="container">
         <div>
           <div>
@@ -23,6 +27,10 @@ const SagbladStartPage = () => {
               antallImaskin="21"
               maskin="-"
               type="V-SH0985 SUPER Hi-MAX"
+              totalt={tools && tools[23].antall}
+              ID={tools && tools[23]._id}
+              imgUrl={tools && tools[23].img}
+              toolType={tools && tools[23].type}
             />
             <ToolCard
               title="Eksaktkappe"
@@ -32,6 +40,10 @@ const SagbladStartPage = () => {
               antallImaskin="1"
               maskin="Eksaktkappe"
               type="V-SH1003"
+              totalt={tools && tools[24].antall}
+              ID={tools && tools[24]._id}
+              imgUrl={tools && tools[24].img}
+              toolType={tools && tools[24].type}
             />
             <ToolCard
               title="Endekapp"
@@ -41,6 +53,10 @@ const SagbladStartPage = () => {
               antallTenner="96"
               maskin=""
               type="V-SH0675"
+              totalt={tools && tools[25].antall}
+              ID={tools && tools[25]._id}
+              imgUrl={tools && tools[25].img}
+              toolType={tools && tools[25].type}
             />
           </div>
         </div>
@@ -58,6 +74,10 @@ const SagbladStartPage = () => {
               antallTenner="72"
               maskin=""
               type="V-SH1008"
+              totalt={tools && tools[26].antall}
+              ID={tools && tools[26]._id}
+              imgUrl={tools && tools[26].img}
+              toolType={tools && tools[26].type}
             />
           </div>
         </div>

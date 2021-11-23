@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ToolCard from "../common/ToolCard";
 import mkv36 from "../../../assets/linckblad/mkv3.6.jpg";
 import mkv38 from "../../../assets/linckblad/mkv3.8.jpg";
@@ -13,10 +13,15 @@ import vs66HF from "../../../assets/linckblad/vs66FlensH.jpg";
 import vs66VF from "../../../assets/linckblad/vs66FlensV.jpg";
 import nBlad from "../../../assets/linckblad/nBlad.jpg";
 import nessjoH from "../../../assets/linckblad/nessjoH.jpg";
+import nessjoV from "../../../assets/linckblad/nessjoV.jpg";
+import { MyContext } from "../../contexts/MyContext";
+import ModalComponent from "../common/ModalComponent";
 
 const LinckBladesStartPage = () => {
+  const { openModal, tools } = useContext(MyContext);
   return (
     <>
+      {openModal && <ModalComponent />}
       <div className="container">
         <div>
           <div>
@@ -32,6 +37,9 @@ const LinckBladesStartPage = () => {
               dim="Ø445x2,2-3,6 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,2-3,6"
+              ID={tools && tools[27]._id}
+              imgUrl={tools && tools[27].img}
+              toolType={tools && tools[27].type}
             />
             <ToolCard
               img={mkv38}
@@ -41,6 +49,9 @@ const LinckBladesStartPage = () => {
               dim="Ø445x2,4-3,8 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,4-3,8"
+              ID={tools && tools[28]._id}
+              imgUrl={tools && tools[28].img}
+              toolType={tools && tools[28].type}
             />
             <ToolCard
               img={mkv40}
@@ -50,6 +61,9 @@ const LinckBladesStartPage = () => {
               dim="Ø445x2,6-4,0 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,6-4,0"
+              ID={tools && tools[29]._id}
+              imgUrl={tools && tools[29].img}
+              toolType={tools && tools[29].type}
             />
             <ToolCard
               img={mkv42}
@@ -59,6 +73,9 @@ const LinckBladesStartPage = () => {
               dim="Ø445x2,8-4,2 ø150"
               maskin="MKV"
               title="Kanefusa MKV 2,8-4,2"
+              ID={tools && tools[30]._id}
+              imgUrl={tools && tools[30].img}
+              toolType={tools && tools[30].type}
             />
             <ToolCard
               img={mkv44}
@@ -68,6 +85,9 @@ const LinckBladesStartPage = () => {
               dim="Ø445x3,0-4,4 ø150"
               maskin="MKV"
               title="Kanefusa MKV 3,0-4,4"
+              ID={tools && tools[31]._id}
+              imgUrl={tools && tools[31].img}
+              toolType={tools && tools[31].type}
             />
             <ToolCard
               img={mkv46}
@@ -77,6 +97,9 @@ const LinckBladesStartPage = () => {
               dim="Ø510x3,2-4,6 ø150"
               maskin="MKV"
               title="Kanefusa MKV 3,2-4,6"
+              ID={tools && tools[32]._id}
+              imgUrl={tools && tools[32].img}
+              toolType={tools && tools[32].type}
             />
           </div>
         </div>
@@ -94,6 +117,9 @@ const LinckBladesStartPage = () => {
               dim="Ø475x3,6/5,0 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 høyre"
+              ID={tools && tools[33]._id}
+              imgUrl={tools && tools[33].img}
+              toolType={tools && tools[33].type}
             />
             <ToolCard
               img={vs66V}
@@ -103,6 +129,9 @@ const LinckBladesStartPage = () => {
               dim="Ø475x3,6/5,0 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 venstre"
+              ID={tools && tools[34]._id}
+              imgUrl={tools && tools[34].img}
+              toolType={tools && tools[34].type}
             />
             <ToolCard
               img={nBlad}
@@ -112,6 +141,9 @@ const LinckBladesStartPage = () => {
               dim="Ø475x3,2/4,8 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 N-blad"
+              ID={tools && tools[35]._id}
+              imgUrl={tools && tools[35].img}
+              toolType={tools && tools[35].type}
             />
             <ToolCard
               img={vs66HF}
@@ -121,6 +153,9 @@ const LinckBladesStartPage = () => {
               dim="Ø475x3,6/5,0/6,8 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 høyre flensblad"
+              ID={tools && tools[36]._id}
+              imgUrl={tools && tools[36].img}
+              toolType={tools && tools[36].type}
             />
             <ToolCard
               img={vs66VF}
@@ -130,15 +165,9 @@ const LinckBladesStartPage = () => {
               dim="Ø475x3,6/5,0/6,8 ø120"
               maskin="VS-66"
               title="Kanefusa VS-66 venstre flensblad"
-            />
-            <ToolCard
-              img={nessjoH}
-              antallImaskin="2"
-              antallTenner="27"
-              type=""
-              dim="Ø475x3,6/5,0 ø120"
-              maskin="VS-66"
-              title="Nässjö VS-66 venstre"
+              ID={tools && tools[37]._id}
+              imgUrl={tools && tools[37].img}
+              toolType={tools && tools[37].type}
             />
             <ToolCard
               img={nessjoH}
@@ -148,6 +177,21 @@ const LinckBladesStartPage = () => {
               dim="Ø475x3,6/5,0 ø120"
               maskin="VS-66"
               title="Nässjö VS-66 høyre"
+              ID={tools && tools[38]._id}
+              imgUrl={tools && tools[38].img}
+              toolType={tools && tools[38].type}
+            />
+            <ToolCard
+              img={nessjoV}
+              antallImaskin="2"
+              antallTenner="27"
+              type=""
+              dim="Ø475x3,6/5,0 ø120"
+              maskin="VS-66"
+              title="Nässjö VS-66 venstre"
+              ID={tools && tools[39]._id}
+              imgUrl={tools && tools[39].img}
+              toolType={tools && tools[39].type}
             />
           </div>
         </div>

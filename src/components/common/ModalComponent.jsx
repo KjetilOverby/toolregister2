@@ -17,7 +17,7 @@ const ModalComponent = () => {
             <button>+</button>
           </div>
 
-          <button onClick={() => setOpenModal(false)}>AVBRYT</button>
+          <button onClick={() => setOpenModal(false)}>LUKK</button>
         </div>
       </div>
 
