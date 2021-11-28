@@ -147,7 +147,7 @@ const SegmenterStartPage = () => {
               antallTenner="8"
               type="VP48-08-008"
               dim="ø412/ø296-4,0/3,0/5,0"
-              title="Fres 2/3 segment høyre"
+              title="Fres 3 segment høyre"
               maskin="VP48"
               totalt={tools && tools[6].antall}
               ID={tools && tools[6]._id}
@@ -161,7 +161,7 @@ const SegmenterStartPage = () => {
               antallTenner="8"
               type="VP48-08-007"
               dim="ø412/ø296-4,0/3,0/5,0"
-              title="Fres 2/3 segment venstre"
+              title="Fres 3 segment venstre"
               maskin="VP48"
               totalt={tools && tools[7].antall}
               ID={tools && tools[7]._id}
