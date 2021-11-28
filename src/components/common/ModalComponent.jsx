@@ -1,9 +1,68 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../contexts/MyContext";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: process.env.api,
+});
 
 const ModalComponent = ({ linck }) => {
-  const { setOpenModal, getID, getImgUrl, type, getAntall } =
+  const [editMode, setEditMode] = useState(false);
+  const [antallInputCalc, setAntallInputCalc] = useState(0);
+  const [antallSum, setAntallSum] = useState();
+  const [antallOnID, setAntallOnID] = useState();
+  const { setOpenModal, getID, getImgUrl, type, getAntall, tools } =
     useContext(MyContext);
+
+  const getToolWithID = tools.filter((item) => item._id === getID);
+
+  const IdAntall = getToolWithID.map((item) => item.antall);
+
+  const getInputValue = (e) => {
+    if (e.target.innerHTML === "-") {
+      setAntallInputCalc(antallInputCalc - 1);
+    } else if (e.target.innerHTML === "+") {
+      setAntallInputCalc(antallInputCalc + 1);
+    } else if (e.target.innerHTML === "5") {
+      setAntallInputCalc(antallInputCalc + 5);
+    } else if (e.target.innerHTML === "10") {
+      setAntallInputCalc(antallInputCalc + 10);
+    } else if (e.target.innerHTML === "12") {
+      setAntallInputCalc(antallInputCalc + 12);
+    } else if (e.target.innerHTML === "0") {
+      setAntallInputCalc(0);
+    } else if (e.target.innerHTML === "-5") {
+      setAntallInputCalc(antallInputCalc - 5);
+    } else if (e.target.innerHTML === "-10") {
+      setAntallInputCalc(antallInputCalc - 10);
+    } else if (e.target.innerHTML === "-12") {
+      setAntallInputCalc(antallInputCalc - 12);
+    }
+  };
+
+  useEffect(() => {
+    if (antallInputCalc >= 0) {
+      setEditMode(true);
+    } else {
+      setEditMode(false);
+    }
+  }, [getInputValue]);
+
+  useEffect(() => {}, [getInputValue]);
+
+  const updateAntall = () => {
+    api
+      .patch(`/api/tool/editTool?ids=${getID}`, { antallSum: antallSum })
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
+  useEffect(() => {
+    setAntallSum(IdAntall - antallInputCalc);
+  }, [getID, getInputValue]);
+  console.log(antallSum);
+
   return (
     <>
       <div className="container">
@@ -12,19 +71,96 @@ const ModalComponent = ({ linck }) => {
           <h1>{type}</h1>
           <p>Antall: {getAntall}</p>
           {!linck && (
-            <div>
-              <button>-</button>
-              <input className="input" />
-              <button>+</button>
+            <div className="edit-container">
+              <div>
+                <button onClick={() => setEditMode(!editMode)}>
+                  {editMode ? "Gå til trekk fra" : "Gå til legg til"}
+                </button>
+              </div>
+              <div>
+                <div className="btn-container">
+                  {editMode ? (
+                    <>
+                      <button className="btn" onClick={getInputValue}>
+                        -
+                      </button>
+                      <button className="btn" onClick={getInputValue}>
+                        +
+                      </button>
+                      <button className="btn" onClick={getInputValue}>
+                        5
+                      </button>
+                      <button className="btn" onClick={getInputValue}>
+                        10
+                      </button>
+                      <button className="btn" onClick={getInputValue}>
+                        12
+                      </button>
+                      <button className="btn" onClick={getInputValue}>
+                        0
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button className="btn2" onClick={getInputValue}>
+                        -
+                      </button>
+                      <button className="btn2" onClick={getInputValue}>
+                        +
+                      </button>
+                      <button className="btn2" onClick={getInputValue}>
+                        -5
+                      </button>
+                      <button className="btn2" onClick={getInputValue}>
+                        -10
+                      </button>
+                      <button className="btn2" onClick={getInputValue}>
+                        -12
+                      </button>
+                      <button className="btn2" onClick={getInputValue}>
+                        0
+                      </button>
+                    </>
+                  )}
+                </div>
+                <div className="calc-container">
+                  <h3>Antall lagt inn: {antallInputCalc}</h3>
+                </div>
+              </div>
             </div>
           )}
 
           <button onClick={() => setOpenModal(false)}>LUKK</button>
+          <button onClick={updateAntall}>OPPDATER</button>
         </div>
       </div>
 
       <style jsx>
         {`
+          .btn {
+            height: 3rem;
+            width: 3rem;
+            border-radius: 2rem;
+            border: none;
+            background-color: #35aab9;
+            font-size: 1.5rem;
+            color: white;
+          }
+          .btn2 {
+            height: 3rem;
+            width: 3rem;
+            border-radius: 2rem;
+            border: none;
+            background-color: #b94435;
+            font-size: 1.5rem;
+            color: white;
+          }
+          .btn-container {
+            display: flex;
+            justify-content: space-between;
+            width: 20rem;
+            margin: 1rem 0;
+          }
           .container {
             position: fixed;
             background: #383838ea;
@@ -36,6 +172,9 @@ const ModalComponent = ({ linck }) => {
             place-items: center;
             z-index: 10;
           }
+          .edit-container {
+            margin-top: 2rem;
+          }
           .modal {
             width: 55rem;
             background: #fff;
@@ -46,6 +185,8 @@ const ModalComponent = ({ linck }) => {
           }
           .input {
             width: 3rem;
+            height: 3rem;
+            margin: 0 1rem;
           }
           .img {
             width: 100%;

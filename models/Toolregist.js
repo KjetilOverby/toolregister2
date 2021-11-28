@@ -16,4 +16,4 @@ const ToolRegistSchema = new mongoose.Schema({
 });
 
 module.exports =
-  mongoose.models.Toolregist || mongoose.model("Tools", ToolRegistSchema);
+  mongoose.models.Tool || mongoose.model("Tool", ToolRegistSchema);

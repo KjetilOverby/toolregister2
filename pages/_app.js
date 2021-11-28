@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import { MyContext } from "../src/contexts/MyContext";
 const axios = require("axios");
 
+const api = axios.create({
+  baseURL: process.env.api,
+});
+
 function MyApp({ Component, pageProps }) {
   const [openModal, setOpenModal] = useState(false);
   const [getID, setGetID] = useState();
@@ -13,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   const toolCardBtnTitle = "REDIGER";
 
   useEffect(() => {
-    axios
+    api
       .get("/api/tool/getToolregist")
       .then(function (response) {
         setTools(response.data.data);
