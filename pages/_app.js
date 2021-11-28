@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
   const [getImgUrl, setGetImgUrl] = useState();
   const [tools, setTools] = useState();
   const [type, setType] = useState();
+  const [update, setUpdate] = useState();
   const toolCardBtnTitle = "REDIGER";
 
   useEffect(() => {
@@ -29,7 +30,7 @@ function MyApp({ Component, pageProps }) {
       .then(function () {
         // always executed
       });
-  }, []);
+  }, [update]);
 
   return (
     <MyContext.Provider
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps }) {
         setType,
         type,
         toolCardBtnTitle,
+        setUpdate,
       }}
     >
       <Component {...pageProps} />

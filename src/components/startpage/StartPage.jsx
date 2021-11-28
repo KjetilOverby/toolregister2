@@ -33,7 +33,7 @@ const StartPage = () => {
           .btn-container {
             display: flex;
             flex-direction: column;
-            width: 40%;
+            width: 50rem;
           }
           .header {
             color: #e9cf97;

@@ -11,7 +11,7 @@ const ModalComponent = ({ linck }) => {
   const [antallInputCalc, setAntallInputCalc] = useState(0);
   const [antallSum, setAntallSum] = useState();
   const [antallOnID, setAntallOnID] = useState();
-  const { setOpenModal, getID, getImgUrl, type, getAntall, tools } =
+  const { setOpenModal, getID, getImgUrl, type, getAntall, tools, setUpdate } =
     useContext(MyContext);
 
   const getToolWithID = tools.filter((item) => item._id === getID);
@@ -54,14 +54,16 @@ const ModalComponent = ({ linck }) => {
     api
       .patch(`/api/tool/editTool?ids=${getID}`, { antallSum: antallSum })
       .then((res) => {
-        console.log(res);
+        if (res.status === 200) {
+          setUpdate(Math.random());
+          setOpenModal(false);
+        }
       });
   };
 
   useEffect(() => {
-    setAntallSum(IdAntall - antallInputCalc);
+    setAntallSum(Number(IdAntall) + Number(antallInputCalc));
   }, [getID, getInputValue]);
-  console.log(antallSum);
 
   return (
     <>
@@ -125,6 +127,7 @@ const ModalComponent = ({ linck }) => {
                 </div>
                 <div className="calc-container">
                   <h3>Antall lagt inn: {antallInputCalc}</h3>
+                  <h3>Nytt antall: {antallSum}</h3>
                 </div>
               </div>
             </div>
@@ -232,6 +235,18 @@ const ModalComponent = ({ linck }) => {
             100% {
               -webkit-transform: translate3d(0, 0, 0);
               transform: translate3d(0, 0, 0);
+            }
+          }
+          @media (max-width: 1778px) {
+            .modal {
+              height: 40rem;
+              width: 30rem;
+            }
+          }
+          @media (max-width: 1310px) {
+            .modal {
+              height: 40rem;
+              width: 22rem;
             }
           }
         `}
