@@ -91,7 +91,6 @@ const HeaderComponent = () => {
           padding: 0 5rem;
           width: 100%;
           z-index: 1000;
-          grid-area: header;
         }
 
         .sidebar-container {
@@ -152,22 +151,23 @@ const HeaderComponent = () => {
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          background: blue;
         }
         @media screen and (max-width: 1000px) {
           .container {
             padding: 0 1rem;
+
+            width: 100vw;
           }
           .tabContainer {
             justify-content: flex-end;
           }
           .tabContainer {
-            width: 42rem;
+            width: 30rem;
           }
         }
         @media screen and (max-width: 650px) {
           .logoContainer {
-            width: 40rem;
+            width: 20rem;
           }
         }
       `}</style>

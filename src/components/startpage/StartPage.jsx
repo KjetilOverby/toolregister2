@@ -31,9 +31,11 @@ const StartPage = () => {
       <style jsx>
         {`
           .container {
-            display: grid;
-            place-items: center;
             padding-top: 2rem;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
           }
           .btn-container {
             display: flex;
@@ -61,6 +63,11 @@ const StartPage = () => {
           }
           .tab:hover {
             cursor: pointer;
+          }
+          @media (max-width: 1000px) {
+            .menu-header {
+              width: 100%;
+            }
           }
           @media (max-width: 850px) {
             .btn-container {
