@@ -1,4 +1,6 @@
 import React from "react";
+import LoginButton from "../auth/LoginButton";
+import LogoutButton from '../auth/LogoutButton'
 import ButtonComponent from "./ButtonComponent";
 
 const StartPage = () => {
@@ -10,7 +12,8 @@ const StartPage = () => {
           <p className="tab">Oversikt</p>
           <p className="tab">Datosøk</p>
           <p className="tab">Omlodding</p>
-          <p className="tab">Login</p>
+          <LoginButton className="tab">Login</LoginButton>
+          <LogoutButton className='tab'>Logout</LogoutButton>
         </div>
         <div className="header-container">
           <h1 className="header">Verktøyregister</h1>
@@ -53,6 +56,9 @@ const StartPage = () => {
           .tab {
             color: #fff;
             text-transform: uppercase;
+          }
+          .tab:hover {
+            cursor: pointer
           }
           @media (max-width: 768px) {
             .btn-container {

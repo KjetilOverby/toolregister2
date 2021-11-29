@@ -2,8 +2,18 @@ import Head from "next/head";
 import Image from "next/image";
 import StartPage from "../src/components/startpage/StartPage";
 import styles from "../styles/Home.module.css";
+import {useContext, useEffect} from 'react'
+
+import { MyContext } from "../src/contexts/MyContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
+  const { setUserID} =
+    useContext(MyContext);
+  const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    setUserID(user)
+  })
   return (
     <div className={styles.container}>
       <Head>

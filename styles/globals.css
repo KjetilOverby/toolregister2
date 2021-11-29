@@ -27,3 +27,10 @@ p {
 * {
   box-sizing: border-box;
 }
+.tab {
+  color: #fff;
+  text-transform: uppercase;
+}
+.tab:hover {
+  cursor: pointer;
+}
