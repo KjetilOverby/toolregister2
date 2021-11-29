@@ -1,19 +1,21 @@
 import React from "react";
 import LoginButton from "../auth/LoginButton";
-import LogoutButton from '../auth/LogoutButton'
+import LogoutButton from "../auth/LogoutButton";
 import ButtonComponent from "./ButtonComponent";
+import HeaderStartPage from "../../components/common/HeaderStartPage";
 
 const StartPage = () => {
   return (
     <>
       <div className="container">
         <div className="menu-header">
-          <p className="tab">Søk i Linckblad</p>
+          {/* <p className="tab">Søk i Linckblad</p>
           <p className="tab">Oversikt</p>
           <p className="tab">Datosøk</p>
           <p className="tab">Omlodding</p>
           <LoginButton className="tab">Login</LoginButton>
-          <LogoutButton className='tab'>Logout</LogoutButton>
+          <LogoutButton className="tab">Logout</LogoutButton> */}
+          <HeaderStartPage />
         </div>
         <div className="header-container">
           <h1 className="header">Verktøyregister</h1>
@@ -58,9 +60,9 @@ const StartPage = () => {
             text-transform: uppercase;
           }
           .tab:hover {
-            cursor: pointer
+            cursor: pointer;
           }
-          @media (max-width: 768px) {
+          @media (max-width: 850px) {
             .btn-container {
               width: 95%;
             }
