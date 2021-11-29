@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../src/components/common/Header";
+import HeaderTool from "../src/components/common/HeaderTool";
 import SagbladStartPage from "../src/components/sagblad/SagbladStartPage";
 
 const sagblad = () => {
   return (
     <>
       <div className="container">
-        <Header />
+        <HeaderTool />
         <h1 className="header">Trimmerblad</h1>
         <SagbladStartPage />
       </div>
@@ -32,6 +32,7 @@ const sagblad = () => {
           @media (max-width: 756px) {
             .container {
               margin: 2rem 0rem;
+              padding: 0 0.5rem;
             }
           }
         `}

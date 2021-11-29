@@ -23,7 +23,7 @@ const HeaderComponent = () => {
               <IoMenuSharp
                 onClick={openSidebarHandler}
                 className="drawerIcon"
-                style={{ fontSize: "2rem", color: "white" }}
+                style={{ fontSize: "2rem", color: "black" }}
               />
               {hideSidebar && (
                 <div
@@ -32,16 +32,19 @@ const HeaderComponent = () => {
                   }`}
                 >
                   <Link href="/">
-                    <p className="tabs-mobile">Søk i linckblad</p>
+                    <p className="tabs-mobile">Startsiden</p>
                   </Link>
-                  <Link href="/prosjekter">
-                    <p className="tabs-mobile">Oversikt</p>
+                  <Link href="/segmenter">
+                    <p className="tabs-mobile">Segmenter</p>
                   </Link>
-                  <Link href="/cv">
-                    <p className="tabs-mobile">Datosøk</p>
+                  <Link href="/kniver">
+                    <p className="tabs-mobile">Kniver</p>
                   </Link>
-                  <Link href="/kurs">
-                    <p className="tabs-mobile">Omlodding</p>
+                  <Link href="/sagblad">
+                    <p className="tabs-mobile">TRIMMERBLAD</p>
+                  </Link>
+                  <Link href="/lincksawblades">
+                    <p className="tabs-mobile">LINCK SAGBLAD</p>
                   </Link>
                   <LoginButton />
                 </div>
@@ -63,17 +66,20 @@ const HeaderComponent = () => {
           ) : (
             <>
               <Link href="/">
-                <p className="tabs">Søk i linckblad</p>
+                <p className="tabs">Startsiden</p>
               </Link>
-              <Link href="/prosjekter">
-                <p className="tabs">Oversikt</p>
+              <Link href="/segmenter">
+                <p className="tabs">Segmenter</p>
               </Link>
-              <Link href="/cv">
-                <p className="tabs">Datosøk</p>
+              <Link href="/kniver">
+                <p className="tabs">Kniver</p>
               </Link>
 
-              <Link href="/kurs">
-                <p className="tabs">Omlodding</p>
+              <Link href="/sagblad">
+                <p className="tabs">TRIMMERBLAD</p>
+              </Link>
+              <Link href="/lincksawblades">
+                <p className="tabs">LINCK SAGBLAD</p>
               </Link>
               <LoginButton />
               <LogoutButton />
@@ -88,14 +94,13 @@ const HeaderComponent = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 5rem;
           width: 100%;
           z-index: 1000;
         }
 
         .sidebar-container {
           position: absolute;
-          background-color: #353535;
+          background-color: #b3b3b3;
           left: 0;
           width: 13rem;
           height: 100vh;
@@ -130,14 +135,14 @@ const HeaderComponent = () => {
         .tabs {
           text-transform: uppercase;
           transition: 0.5s;
-          color: white;
+          color: black;
           font-size: 1rem;
           font-weight: 100;
         }
         .tabs-mobile {
           text-transform: uppercase;
           margin-bottom: 1rem;
-          color: white;
+          color: black;
           font-size: 1rem;
           font-weight: 100;
         }

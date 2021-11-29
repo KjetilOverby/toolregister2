@@ -95,7 +95,7 @@ const ToolCard = ({
             }
             .img-container {
               width: 100%;
-              height: 22rem;
+              height: 26rem;
             }
           }
         `}

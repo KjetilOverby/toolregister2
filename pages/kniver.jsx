@@ -2,22 +2,15 @@ import React from "react";
 import Link from "next/link";
 import KniverStartpage from "../src/components/kniver/KniverStartpage";
 import red from "../assets/kniver/red.jpeg";
-import Header from "../src/components/common/Header";
+import HeaderTool from "../src/components/common/HeaderTool";
 
 const kniver = () => {
   return (
     <>
       <div className="container">
-        <Header />
+        <HeaderTool />
         <h1 className="header">Kniver og motstål</h1>
-        <KniverStartpage
-          title=""
-          img={red}
-          antallImaskin=""
-          antallTenner=""
-          dim=""
-          maskin=""
-        />
+        <KniverStartpage img={red} />
       </div>
       <style jsx>
         {`
@@ -41,6 +34,7 @@ const kniver = () => {
           @media (max-width: 756px) {
             .container {
               margin: 2rem 0rem;
+              padding: 0 0.5rem;
             }
           }
         `}

@@ -26,6 +26,11 @@ const ButtonComponent = ({ header, link }) => {
             cursor: pointer;
             background: rgba(112, 112, 112, 0.4);
           }
+          @media (max-width: 1000px) {
+            .container {
+              padding: 1rem;
+            }
+          }
         `}
       </style>
     </>

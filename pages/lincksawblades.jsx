@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LinckBladesStartPage from "../src/components/lincksawblades/LinckBladesStartPage";
-import Header from "../src/components/common/Header";
+import HeaderTool from "../src/components/common/HeaderTool";
 const api = axios.create({
   baseURL: process.env.api,
 });
@@ -21,7 +21,7 @@ const lincksawblades = () => {
   return (
     <>
       <div className="container">
-        <Header />
+        <HeaderTool />
         <h1 className="header">Sagblad Linck</h1>
         <LinckBladesStartPage />
       </div>
@@ -47,6 +47,7 @@ const lincksawblades = () => {
           @media (max-width: 756px) {
             .container {
               margin: 2rem 0rem;
+              padding: 0 0.5rem;
             }
           }
         `}

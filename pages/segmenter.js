@@ -1,6 +1,7 @@
 import React from "react";
 import SegmenterStartPage from "../src/components/segmenter/SegmenterStartPage";
 import img from "../assets/segmenter/bolt2.jpeg";
+import HeaderTool from "../src/components/common/HeaderTool";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Link from "next/link";
 import Header from "../src/components/common/Header";
@@ -9,7 +10,7 @@ const segmenter = () => {
   return (
     <>
       <div className="container">
-        <Header />
+        <HeaderTool />
         <h1 className="header">Segmenter</h1>
         <SegmenterStartPage img={img} antallTenner="" maskin="" dim="" />
       </div>
@@ -35,6 +36,7 @@ const segmenter = () => {
           @media (max-width: 756px) {
             .container {
               margin: 2rem 0.5rem;
+              padding: 0 0.5rem;
             }
           }
         `}
