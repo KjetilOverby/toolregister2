@@ -237,6 +237,12 @@ const ModalComponent = ({ linck }) => {
               transform: translate3d(0, 0, 0);
             }
           }
+          @media (max-width: 2100px) {
+            .modal {
+              height: 50rem;
+              width: 40rem;
+            }
+          }
           @media (max-width: 1778px) {
             .modal {
               height: 40rem;
