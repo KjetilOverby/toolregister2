@@ -152,6 +152,7 @@ const HeaderComponent = () => {
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
+          background: blue;
         }
         @media screen and (max-width: 1000px) {
           .container {
@@ -159,6 +160,9 @@ const HeaderComponent = () => {
           }
           .tabContainer {
             justify-content: flex-end;
+          }
+          .tabContainer {
+            width: 42rem;
           }
         }
         @media screen and (max-width: 650px) {

@@ -64,7 +64,10 @@ const StartPage = () => {
           }
           @media (max-width: 850px) {
             .btn-container {
-              width: 95%;
+              width: 85%;
+            }
+            .header {
+              font-size: 2rem;
             }
           }
         `}
