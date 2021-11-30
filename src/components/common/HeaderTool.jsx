@@ -23,7 +23,7 @@ const HeaderComponent = () => {
               <IoMenuSharp
                 onClick={openSidebarHandler}
                 className="drawerIcon"
-                style={{ fontSize: "2rem", color: "black" }}
+                style={{ fontSize: "2.5rem", color: "black" }}
               />
               {hideSidebar && (
                 <div
@@ -169,11 +169,6 @@ const HeaderComponent = () => {
           }
           .tabContainer {
             width: 30rem;
-          }
-        }
-        @media screen and (max-width: 650px) {
-          .logoContainer {
-            width: 20rem;
           }
         }
       `}</style>

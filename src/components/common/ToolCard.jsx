@@ -58,7 +58,7 @@ const ToolCard = ({
           .container {
             display: flex;
             margin-bottom: 4rem;
-            min-width: 30rem;
+            min-width: 10rem;
           }
           .btn {
             margin-top: 0.5rem;
@@ -95,7 +95,7 @@ const ToolCard = ({
             }
             .img-container {
               width: 100%;
-              height: 26rem;
+              height: auto;
             }
           }
         `}

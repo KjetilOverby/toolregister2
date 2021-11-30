@@ -133,8 +133,12 @@ const ModalComponent = ({ linck }) => {
             </div>
           )}
 
-          <button onClick={() => setOpenModal(false)}>LUKK</button>
-          <button onClick={updateAntall}>OPPDATER</button>
+          <button className="btn-action" onClick={() => setOpenModal(false)}>
+            LUKK
+          </button>
+          <button className="btn-action" onClick={updateAntall}>
+            OPPDATER
+          </button>
         </div>
       </div>
 
@@ -163,6 +167,11 @@ const ModalComponent = ({ linck }) => {
             justify-content: space-between;
             width: 20rem;
             margin: 1rem 0;
+          }
+          .btn-action {
+            padding: 0.5rem;
+            margin-right: 1rem;
+            margin-top: 1rem;
           }
           .container {
             position: fixed;
@@ -253,6 +262,16 @@ const ModalComponent = ({ linck }) => {
             .modal {
               height: 40rem;
               width: 22rem;
+            }
+            @media screen and (max-width: 800px) {
+              .modal {
+                width: 100%;
+                height: 50rem;
+              }
+              .container {
+                width: 100%;
+                height: 100%;
+              }
             }
           }
         `}

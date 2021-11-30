@@ -18,6 +18,7 @@ const segmenter = () => {
         {`
           .container {
             margin: 2rem 30rem;
+            width: 100vw;
           }
           .header {
             margin: 2rem 0 6rem 0;
@@ -37,6 +38,9 @@ const segmenter = () => {
             .container {
               margin: 2rem 0.5rem;
               padding: 0 0.5rem;
+            }
+            .header {
+              margin: 0 0 1rem 0;
             }
           }
         `}
