@@ -248,7 +248,6 @@ const ModalComponent = ({ linck }) => {
           }
           @media (max-width: 2100px) {
             .modal {
-              height: 50rem;
               width: 40rem;
             }
           }
