@@ -8,11 +8,21 @@ const api = axios.create({
 
 const ModalComponent = ({ linck }) => {
   const [editMode, setEditMode] = useState(false);
-  const [antallInputCalc, setAntallInputCalc] = useState(0);
+
   const [antallSum, setAntallSum] = useState();
   const [antallOnID, setAntallOnID] = useState();
-  const { setOpenModal, getID, getImgUrl, type, getAntall, tools, setUpdate } =
-    useContext(MyContext);
+  const {
+    setOpenModal,
+    getID,
+    getImgUrl,
+    type,
+    getAntall,
+    tools,
+    setUpdate,
+    createDeletedData,
+    antallInputCalc,
+    setAntallInputCalc,
+  } = useContext(MyContext);
 
   const getToolWithID = tools.filter((item) => item._id === getID);
 
@@ -57,6 +67,7 @@ const ModalComponent = ({ linck }) => {
         if (res.status === 200) {
           setUpdate(Math.random());
           setOpenModal(false);
+          createDeletedData();
         }
       });
   };

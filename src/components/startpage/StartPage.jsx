@@ -9,12 +9,6 @@ const StartPage = () => {
     <>
       <div className="container">
         <div className="menu-header">
-          {/* <p className="tab">Søk i Linckblad</p>
-          <p className="tab">Oversikt</p>
-          <p className="tab">Datosøk</p>
-          <p className="tab">Omlodding</p>
-          <LoginButton className="tab">Login</LoginButton>
-          <LogoutButton className="tab">Logout</LogoutButton> */}
           <HeaderStartPage />
         </div>
         <div className="header-container">
@@ -25,7 +19,6 @@ const StartPage = () => {
           <ButtonComponent link="/segmenter" header="Segmenter" />
           <ButtonComponent link="/kniver" header="Kniver" />
           <ButtonComponent link="/sagblad" header="Trimmerblad" />
-          {/* <ButtonComponent link="/" header="Statistikk" /> */}
         </div>
       </div>
       <style jsx>

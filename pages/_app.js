@@ -22,11 +22,68 @@ function MyApp({ Component, pageProps }) {
   const [update, setUpdate] = useState();
   const toolCardBtnTitle = "REDIGER";
 
+  const [toolwasteData, setToolwasteData] = useState();
+  const [toolCreateData, setToolCreateData] = useState();
+
+  const [antallInputCalc, setAntallInputCalc] = useState(0);
+
   useEffect(() => {
     api
       .get("/api/tool/getToolregist")
       .then(function (response) {
         setTools(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, [update]);
+
+  const createDeletedData = () => {
+    if (antallInputCalc === 0) {
+      alert("Du må sette en verdi");
+    } else if (antallInputCalc < 0) {
+      api.post("/api/tool/wastecreate", {
+        type: type,
+        antall: getAntall,
+        input: antallInputCalc,
+        img: getImgUrl,
+        date: new Date(),
+      });
+    } else if (antallInputCalc > 0) {
+      api.post("/api/tool/newToolCreate", {
+        type: type,
+        antall: getAntall,
+        input: antallInputCalc,
+        img: getImgUrl,
+        date: new Date(),
+      });
+    }
+  };
+
+  // Tool Edit Data
+  useEffect(() => {
+    api
+      .get("/api/tool/getToolWaste")
+      .then(function (response) {
+        setToolwasteData(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, [update]);
+  useEffect(() => {
+    api
+      .get("/api/tool/getToolNew")
+      .then(function (response) {
+        setToolCreateData(response.data.data);
       })
       .catch(function (error) {
         // handle error
@@ -59,6 +116,11 @@ function MyApp({ Component, pageProps }) {
           toolCardBtnTitle,
           setUpdate,
           setUserID,
+          createDeletedData,
+          antallInputCalc,
+          setAntallInputCalc,
+          toolwasteData,
+          toolCreateData,
         }}
       >
         <Component {...pageProps} />

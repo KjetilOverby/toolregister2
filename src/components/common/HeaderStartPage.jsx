@@ -34,7 +34,7 @@ const HeaderComponent = () => {
                   <Link href="/">
                     <p className="tabs-mobile">Søk i linckblad</p>
                   </Link>
-                  <Link href="/prosjekter">
+                  <Link href="/oversikt/startpage">
                     <p className="tabs-mobile">Oversikt</p>
                   </Link>
                   <Link href="/cv">
@@ -65,7 +65,7 @@ const HeaderComponent = () => {
               <Link href="/">
                 <p className="tabs">Søk i linckblad</p>
               </Link>
-              <Link href="/prosjekter">
+              <Link href="/oversikt/startpage">
                 <p className="tabs">Oversikt</p>
               </Link>
               <Link href="/cv">
