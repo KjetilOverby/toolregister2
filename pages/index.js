@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 
 import { MyContext } from "../src/contexts/MyContext";
 import { useAuth0 } from "@auth0/auth0-react";
+import LoginText from "../src/components/common/LoginText";
 
 const Home = () => {
   const { setUserID } = useContext(MyContext);
@@ -22,6 +23,7 @@ const Home = () => {
       </Head>
 
       <StartPage />
+      {user && user.sub === process.env.USER_SUB && <LoginText />}
     </div>
   );
 };

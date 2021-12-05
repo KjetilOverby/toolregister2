@@ -9,7 +9,7 @@ const StartPage = () => {
     <>
       <div className="container">
         <div className="menu-header">
-          <HeaderStartPage />
+          <HeaderStartPage color="white" />
         </div>
         <div className="header-container">
           <h1 className="header">Verktøyregister</h1>

@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }) {
     if (antallInputCalc === 0) {
       alert("Du må sette en verdi");
     } else if (antallInputCalc < 0) {
-      api.post("/api/tool/wastecreate", {
+      api.post(`/api/tool/wastecreate?user=${userID.sub}`, {
         type: type,
         antall: getAntall,
         input: antallInputCalc,
@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }) {
         date: new Date(),
       });
     } else if (antallInputCalc > 0) {
-      api.post("/api/tool/newToolCreate", {
+      api.post(`/api/tool/newToolCreate?user=${userID.sub}`, {
         type: type,
         antall: getAntall,
         input: antallInputCalc,
@@ -116,6 +116,7 @@ function MyApp({ Component, pageProps }) {
           toolCardBtnTitle,
           setUpdate,
           setUserID,
+          userID,
           createDeletedData,
           antallInputCalc,
           setAntallInputCalc,

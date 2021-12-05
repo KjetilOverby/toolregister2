@@ -37,3 +37,6 @@ p {
 .tab:hover {
   cursor: pointer;
 }
+hr {
+  color: rgba(221, 221, 221, 0.507);
+}

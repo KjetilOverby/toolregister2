@@ -22,6 +22,7 @@ const ModalComponent = ({ linck }) => {
     createDeletedData,
     antallInputCalc,
     setAntallInputCalc,
+    userID,
   } = useContext(MyContext);
 
   const getToolWithID = tools.filter((item) => item._id === getID);
@@ -62,7 +63,9 @@ const ModalComponent = ({ linck }) => {
 
   const updateAntall = () => {
     api
-      .patch(`/api/tool/editTool?ids=${getID}`, { antallSum: antallSum })
+      .patch(`/api/tool/editTool?ids=${getID}&user=${userID && userID.sub}`, {
+        antallSum: antallSum,
+      })
       .then((res) => {
         if (res.status === 200) {
           setUpdate(Math.random());
@@ -71,7 +74,7 @@ const ModalComponent = ({ linck }) => {
         }
       });
   };
-
+  console.log(userID && userID.sub);
   useEffect(() => {
     setAntallSum(Number(IdAntall) + Number(antallInputCalc));
   }, [getID, getInputValue]);
@@ -83,72 +86,78 @@ const ModalComponent = ({ linck }) => {
           <img className="img" src={getImgUrl} />
           <h1>{type}</h1>
           <p>Antall: {getAntall}</p>
-          {!linck && (
-            <div className="edit-container">
-              <div>
-                <button onClick={() => setEditMode(!editMode)}>
-                  {editMode ? "Gå til trekk fra" : "Gå til legg til"}
-                </button>
-              </div>
-              <div>
-                <div className="btn-container">
-                  {editMode ? (
-                    <>
-                      <button className="btn" onClick={getInputValue}>
-                        -
-                      </button>
-                      <button className="btn" onClick={getInputValue}>
-                        +
-                      </button>
-                      <button className="btn" onClick={getInputValue}>
-                        5
-                      </button>
-                      <button className="btn" onClick={getInputValue}>
-                        10
-                      </button>
-                      <button className="btn" onClick={getInputValue}>
-                        12
-                      </button>
-                      <button className="btn" onClick={getInputValue}>
-                        0
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button className="btn2" onClick={getInputValue}>
-                        -
-                      </button>
-                      <button className="btn2" onClick={getInputValue}>
-                        +
-                      </button>
-                      <button className="btn2" onClick={getInputValue}>
-                        -5
-                      </button>
-                      <button className="btn2" onClick={getInputValue}>
-                        -10
-                      </button>
-                      <button className="btn2" onClick={getInputValue}>
-                        -12
-                      </button>
-                      <button className="btn2" onClick={getInputValue}>
-                        0
-                      </button>
-                    </>
-                  )}
+          {userID && userID.sub === process.env.USER_SUB && (
+            <div>
+              {!linck && (
+                <div className="edit-container">
+                  <div>
+                    <button onClick={() => setEditMode(!editMode)}>
+                      {editMode ? "Gå til trekk fra" : "Gå til legg til"}
+                    </button>
+                  </div>
+                  <div>
+                    <div className="btn-container">
+                      {editMode ? (
+                        <>
+                          <button className="btn" onClick={getInputValue}>
+                            -
+                          </button>
+                          <button className="btn" onClick={getInputValue}>
+                            +
+                          </button>
+                          <button className="btn" onClick={getInputValue}>
+                            5
+                          </button>
+                          <button className="btn" onClick={getInputValue}>
+                            10
+                          </button>
+                          <button className="btn" onClick={getInputValue}>
+                            12
+                          </button>
+                          <button className="btn" onClick={getInputValue}>
+                            0
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button className="btn2" onClick={getInputValue}>
+                            -
+                          </button>
+                          <button className="btn2" onClick={getInputValue}>
+                            +
+                          </button>
+                          <button className="btn2" onClick={getInputValue}>
+                            -5
+                          </button>
+                          <button className="btn2" onClick={getInputValue}>
+                            -10
+                          </button>
+                          <button className="btn2" onClick={getInputValue}>
+                            -12
+                          </button>
+                          <button className="btn2" onClick={getInputValue}>
+                            0
+                          </button>
+                        </>
+                      )}
+                    </div>
+                    <div className="calc-container">
+                      <h3>Antall lagt inn: {antallInputCalc}</h3>
+                      <h3>Nytt antall: {antallSum}</h3>
+                    </div>
+                  </div>
                 </div>
-                <div className="calc-container">
-                  <h3>Antall lagt inn: {antallInputCalc}</h3>
-                  <h3>Nytt antall: {antallSum}</h3>
-                </div>
-              </div>
+              )}
             </div>
+          )}
+          {userID && userID.sub === process.env.USER_SUB && (
+            <button className="btn-action" onClick={updateAntall}>
+              OPPDATER
+            </button>
           )}
 
           <button className="btn-action" onClick={() => setOpenModal(false)}>
             LUKK
-          </button>
-          <button className="btn-action" onClick={updateAntall}>
-            OPPDATER
           </button>
         </div>
       </div>

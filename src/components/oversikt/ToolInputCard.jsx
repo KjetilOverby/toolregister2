@@ -28,7 +28,7 @@ const InputOverview = ({
       <style jsx>
         {`
           .container {
-            border: 1px solid grey;
+            border: 1px solid #dddddd;
             padding: 1rem;
             width: 30rem;
             background-image: ${color};
@@ -36,6 +36,7 @@ const InputOverview = ({
             display: flex;
             justify-content: space-between;
             margin: 1rem 0;
+            box-shadow: 5px 5px 20px #c2c2c296;
           }
 
           img {

@@ -6,7 +6,7 @@ import Link from "next/link";
 import LoginButton from "../auth/LoginButton";
 import LogoutButton from "../auth/LogoutButton";
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ color }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [hideSidebar, setHideSidebar] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 1000px)` });
@@ -23,7 +23,7 @@ const HeaderComponent = () => {
               <IoMenuSharp
                 onClick={openSidebarHandler}
                 className="drawerIcon"
-                style={{ fontSize: "2rem", color: "white" }}
+                style={{ fontSize: "2rem", color: "grey" }}
               />
               {hideSidebar && (
                 <div
@@ -31,6 +31,9 @@ const HeaderComponent = () => {
                     openSidebar ? "sidebar-open" : "sidebar-close"
                   }`}
                 >
+                  <Link href="/">
+                    <p className="tabs-mobile">Hjem</p>
+                  </Link>
                   <Link href="/">
                     <p className="tabs-mobile">Søk i linckblad</p>
                   </Link>
@@ -62,6 +65,9 @@ const HeaderComponent = () => {
             </>
           ) : (
             <>
+              <Link href="/">
+                <p className="tabs">Hjem</p>
+              </Link>
               <Link href="/">
                 <p className="tabs">Søk i linckblad</p>
               </Link>
@@ -130,7 +136,7 @@ const HeaderComponent = () => {
         .tabs {
           text-transform: uppercase;
           transition: 0.5s;
-          color: white;
+          color: ${color};
           font-size: 1rem;
           font-weight: 100;
         }
