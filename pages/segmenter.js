@@ -12,7 +12,7 @@ const segmenter = () => {
       <div className="container">
         <HeaderTool />
         <h1 className="header">Segmenter</h1>
-        <SegmenterStartPage img={img} antallTenner="" maskin="" dim="" />
+        <SegmenterStartPage />
       </div>
       <style jsx>
         {`

@@ -15,6 +15,7 @@ const ToolCard = ({
   imgUrl,
   toolType,
   btnTitle,
+  vrak,
 }) => {
   const { setOpenModal, setGetAntall, setGetImgUrl, setGetID, setType } =
     useContext(MyContext);
@@ -42,8 +43,8 @@ const ToolCard = ({
               {antallTenner && <p>Antall tenner: {antallTenner}</p>}
               <p>Antall i maskin: {antallImaskin}</p>
               <p>Maskin: {maskin}</p>
-              {/* <p className="vrak">Antall vraket i år: 10</p>
-              <p className="nye">Antall nye i år: 20</p> */}
+              {vrak && <p className="vrak">Antall vraket i år: {vrak}</p>}
+              {/* <p className="nye">Antall nye i år: 20</p> */}
             </div>
           </div>
           <h5 className="btn" onClick={openModal}>

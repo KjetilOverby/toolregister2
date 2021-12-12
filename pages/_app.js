@@ -27,6 +27,11 @@ function MyApp({ Component, pageProps }) {
 
   const [antallInputCalc, setAntallInputCalc] = useState(0);
 
+  // toolcount
+  const [redSegmentH, setRedSegmentH] = useState();
+  const [redSegmentV, setRedSegmentV] = useState();
+  console.log();
+
   useEffect(() => {
     api
       .get("/api/tool/getToolregist")
@@ -79,6 +84,7 @@ function MyApp({ Component, pageProps }) {
         // always executed
       });
   }, [update]);
+
   useEffect(() => {
     api
       .get("/api/tool/getToolNew")
@@ -115,6 +121,7 @@ function MyApp({ Component, pageProps }) {
           type,
           toolCardBtnTitle,
           setUpdate,
+          update,
           setUserID,
           userID,
           createDeletedData,
@@ -122,6 +129,10 @@ function MyApp({ Component, pageProps }) {
           setAntallInputCalc,
           toolwasteData,
           toolCreateData,
+          setRedSegmentH,
+          setRedSegmentV,
+          redSegmentH,
+          redSegmentV,
         }}
       >
         <Component {...pageProps} />

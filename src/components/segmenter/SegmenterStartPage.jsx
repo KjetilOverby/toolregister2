@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MyContext } from "../../contexts/MyContext";
 import ToolCard from "../common/ToolCard";
 import BoltCard from "../common/BoltCard";
@@ -16,8 +16,16 @@ import vp48segmentV from "../../../assets/segmenter/vp48segmentV.jpg";
 import ModalComponent from "../common/ModalComponent";
 
 const SegmenterStartPage = () => {
-  const { openModal, tools, setGetID, setGetImgUrl, toolCardBtnTitle } =
-    useContext(MyContext);
+  const {
+    openModal,
+    tools,
+    setGetID,
+    setGetImgUrl,
+    toolCardBtnTitle,
+    redSegmentH,
+    redSegmentV,
+    setUpdate,
+  } = useContext(MyContext);
 
   return (
     <>
@@ -43,6 +51,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[0].img}
               toolType={tools && tools[0].type}
               btnTitle={toolCardBtnTitle}
+              vrak={redSegmentH}
             />
             <ToolCard
               img={v40segmentV}
@@ -57,6 +66,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[1].img}
               toolType={tools && tools[1].type}
               btnTitle={toolCardBtnTitle}
+              vrak={redSegmentV}
             />
             <BoltCard img={v40segmenterBolt} type="M12x30" antallImaskin="15" />
           </div>
