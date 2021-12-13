@@ -16,6 +16,11 @@ const ToolWasteCount = () => {
     setVp34SegV,
     setVp48segH,
     setVp48segV,
+    setReduserKniv,
+    setMotstV40,
+    setMotstV25,
+    setVpp34Kniv,
+    setVpp32Knivholder,
   } = useContext(MyContext);
   const [getRedSegmentH, setGetRedSegmentH] = useState();
   const [getRedSegmentV, setGetRedSegmentV] = useState();
@@ -25,6 +30,11 @@ const ToolWasteCount = () => {
   const [getVp34SegV, setGetVp34SegV] = useState();
   const [getVp48SegH, setGetVp48SegH] = useState();
   const [getVp48SegV, setGetVp48SegV] = useState();
+  const [getReduserKniv, setgetReduserKniv] = useState();
+  const [getMotstV40, setGetMotstV40] = useState();
+  const [getMotstV25, setGetMotstV25] = useState();
+  const [getVpp34Kniv, setGetVpp34Kniv] = useState();
+  const [getVpp34Knivholder, setGetVpp34Knivholder] = useState();
   const [getTrimmerJust, setGetTrimmerJust] = useState();
   const [getEksaktKapp, setGetEksaktKapp] = useState();
 
@@ -63,6 +73,25 @@ const ToolWasteCount = () => {
         toolwasteData.filter(
           (item) => item.type === "Fres 3 segment venstre vertical"
         )
+      );
+      setgetReduserKniv(
+        toolwasteData.filter((item) => item.type === "Reduserer kniv")
+      );
+      setGetMotstV40(
+        toolwasteData.filter(
+          (item) => item.type === "Reduserer motstål rekke 1"
+        )
+      );
+      setGetMotstV25(
+        toolwasteData.filter(
+          (item) => item.type === "Reduserer motstål rekke 2 og 3"
+        )
+      );
+      setGetVpp34Kniv(
+        toolwasteData.filter((item) => item.type === "Fres 1/4 kniv")
+      );
+      setGetVpp34Knivholder(
+        toolwasteData.filter((item) => item.type === "Fres 1/4 knivholder")
       );
       setGetTrimmerJust(
         toolwasteData.filter((item) => item.type === "Trimmer justerverk")
@@ -111,6 +140,31 @@ const ToolWasteCount = () => {
       );
       setVp48segV(
         getVp48SegV.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setReduserKniv(
+        getReduserKniv.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setMotstV40(
+        getMotstV40.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setMotstV25(
+        getMotstV25.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVpp34Kniv(
+        getVpp34Kniv.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVpp32Knivholder(
+        getVpp34Knivholder.reduce(function (a, b) {
           return a + b.input;
         }, 0)
       );

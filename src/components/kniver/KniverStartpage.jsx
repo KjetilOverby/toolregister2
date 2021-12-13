@@ -26,11 +26,22 @@ import bruksMotst15 from "../../../assets/kniver/bruksmotst15.jpg";
 import bruksMotst44 from "../../../assets/kniver/bruksmotst44.jpg";
 import { MyContext } from "../../contexts/MyContext";
 import ModalComponent from "../common/ModalComponent";
+import ToolWasteCount from "../oversikt/ToolWasteCount";
 
 const KniverStartpage = () => {
-  const { openModal, tools, toolCardBtnTitle } = useContext(MyContext);
+  const {
+    openModal,
+    tools,
+    toolCardBtnTitle,
+    reduserKniv,
+    motstV25,
+    motstV40,
+    vpp34Kniv,
+    vpp32Knivholder,
+  } = useContext(MyContext);
   return (
     <>
+      <ToolWasteCount />
       {openModal && <ModalComponent />}
       <div className="container">
         <div>
@@ -52,6 +63,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[8].img}
               toolType={tools && tools[8].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(reduserKniv)}
             />
             <ToolCard
               title="Motstål (første rekke)"
@@ -66,6 +78,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[9].img}
               toolType={tools && tools[9].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(motstV40)}
             />
             <ToolCard
               title="Motstål (rekke 2 og 3)"
@@ -80,6 +93,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[10].img}
               toolType={tools && tools[10].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(motstV25)}
             />
             <BoltCard img={v40Bolt} type="M20x45" antallImaskin="30" />
             <BoltCard img={v40justSkruer} type="M6x40" antallImaskin="60" />
@@ -105,6 +119,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[11].img}
               toolType={tools && tools[11].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vpp34Kniv)}
             />
             <ToolCard
               title="Knivholder"
@@ -119,6 +134,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[12].img}
               toolType={tools && tools[12].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vpp32Knivholder)}
             />
 
             <ToolCard

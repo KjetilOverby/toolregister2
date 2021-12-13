@@ -36,9 +36,14 @@ function MyApp({ Component, pageProps }) {
   const [vp34SegV, setVp34SegV] = useState();
   const [vp48segH, setVp48segH] = useState();
   const [vp48segV, setVp48segV] = useState();
+  const [reduserKniv, setReduserKniv] = useState();
+  const [motstV40, setMotstV40] = useState();
+  const [motstV25, setMotstV25] = useState();
+  const [vpp34Kniv, setVpp34Kniv] = useState();
   const [trimmerJust, setTrimmerJust] = useState();
   const [eksaktKapp, setEksaktKapp] = useState();
-  console.log(vp48segV);
+  const [vpp32Knivholder, setVpp32Knivholder] = useState();
+  console.log(vpp32Knivholder);
   useEffect(() => {
     api
       .get("/api/tool/getToolregist")
@@ -157,6 +162,16 @@ function MyApp({ Component, pageProps }) {
           setVp48segH,
           vp48segV,
           setVp48segV,
+          reduserKniv,
+          setReduserKniv,
+          motstV40,
+          setMotstV40,
+          motstV25,
+          setMotstV25,
+          vpp34Kniv,
+          setVpp34Kniv,
+          vpp32Knivholder,
+          setVpp32Knivholder,
         }}
       >
         <Component {...pageProps} />
