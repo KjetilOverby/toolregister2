@@ -21,6 +21,8 @@ const ToolWasteCount = () => {
     setMotstV25,
     setVpp34Kniv,
     setVpp32Knivholder,
+    setVpp34motstH,
+    setVpp34motstV,
   } = useContext(MyContext);
   const [getRedSegmentH, setGetRedSegmentH] = useState();
   const [getRedSegmentV, setGetRedSegmentV] = useState();
@@ -35,6 +37,8 @@ const ToolWasteCount = () => {
   const [getMotstV25, setGetMotstV25] = useState();
   const [getVpp34Kniv, setGetVpp34Kniv] = useState();
   const [getVpp34Knivholder, setGetVpp34Knivholder] = useState();
+  const [getVpp34motstH, setGetVpp34motstH] = useState();
+  const [getVpp34motstV, setGetVpp34motstV] = useState();
   const [getTrimmerJust, setGetTrimmerJust] = useState();
   const [getEksaktKapp, setGetEksaktKapp] = useState();
 
@@ -92,6 +96,12 @@ const ToolWasteCount = () => {
       );
       setGetVpp34Knivholder(
         toolwasteData.filter((item) => item.type === "Fres 1/4 knivholder")
+      );
+      setGetVpp34motstH(
+        toolwasteData.filter((item) => item.type === "Fres 1/4 motstål høyre")
+      );
+      setGetVpp34motstV(
+        toolwasteData.filter((item) => item.type === "Fres 1/4 motstål venstre")
       );
       setGetTrimmerJust(
         toolwasteData.filter((item) => item.type === "Trimmer justerverk")
@@ -165,6 +175,16 @@ const ToolWasteCount = () => {
       );
       setVpp32Knivholder(
         getVpp34Knivholder.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVpp34motstH(
+        getVpp34motstH.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVpp34motstV(
+        getVpp34motstV.reduce(function (a, b) {
           return a + b.input;
         }, 0)
       );

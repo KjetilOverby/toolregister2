@@ -79,8 +79,8 @@ const Toolinputedit = () => {
                 );
               })
             : optionValue === "a" &&
-              toolwasteData &&
-              toolwasteData.map((item) => {
+              toolCreateData &&
+              toolCreateData.map((item) => {
                 return (
                   <ToolInputCard
                     type={item.type}

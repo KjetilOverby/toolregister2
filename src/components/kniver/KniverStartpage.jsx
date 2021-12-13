@@ -11,8 +11,8 @@ import v40Bolt from "../../../assets/kniver/v40Bolt.jpg";
 import v40justSkruer from "../../../assets/kniver/v40justskruer.jpg";
 import vpp34kniv from "../../../assets/kniver/vpp34kniv.jpg";
 import vpp34holder from "../../../assets/kniver/vpp34holder.jpg";
-import vpp34motstH from "../../../assets/kniver/vpp34motstH.jpg";
-import vpp34motstV from "../../../assets/kniver/vpp34motstV.jpg";
+import vpp34motstHImg from "../../../assets/kniver/vpp34motstH.jpg";
+import vpp34motstVImg from "../../../assets/kniver/vpp34motstV.jpg";
 import vpp34Bolt from "../../../assets/kniver/vpp34Bolt.jpg";
 import vpp34justSkrue from "../../../assets/kniver/vpp34justSkrue.jpg";
 import vp34motst from "../../../assets/kniver/vp34motst.jpg";
@@ -38,6 +38,8 @@ const KniverStartpage = () => {
     motstV40,
     vpp34Kniv,
     vpp32Knivholder,
+    vpp34motstH,
+    vpp34motstV,
   } = useContext(MyContext);
   return (
     <>
@@ -139,7 +141,7 @@ const KniverStartpage = () => {
 
             <ToolCard
               title="motstål høyre"
-              img={vpp34motstV}
+              img={vpp34motstVImg}
               antallImaskin="24"
               antallTenner=""
               dim="41x88,5x27,5mm"
@@ -150,10 +152,11 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[13].img}
               toolType={tools && tools[13].type}
               btnTitle={toolCardBtnTitle}
+              vrak={vpp34motstH}
             />
             <ToolCard
               title="Motstål venstre"
-              img={vpp34motstH}
+              img={vpp34motstHImg}
               antallImaskin="24"
               dim="41x88,5x27,5mm"
               antallTenner=""
@@ -164,6 +167,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[14].img}
               toolType={tools && tools[14].type}
               btnTitle={toolCardBtnTitle}
+              vrak={vpp34motstV}
             />
             <BoltCard
               img={vpp34Bolt}
