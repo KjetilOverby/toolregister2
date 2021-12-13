@@ -30,8 +30,15 @@ function MyApp({ Component, pageProps }) {
   // toolcount
   const [redSegmentH, setRedSegmentH] = useState();
   const [redSegmentV, setRedSegmentV] = useState();
-  console.log();
-
+  const [vpp34SegH, setVpp34SegH] = useState();
+  const [vpp34SegV, setVpp34SegV] = useState();
+  const [vp34SegH, setVp34SegH] = useState();
+  const [vp34SegV, setVp34SegV] = useState();
+  const [vp48segH, setVp48segH] = useState();
+  const [vp48segV, setVp48segV] = useState();
+  const [trimmerJust, setTrimmerJust] = useState();
+  const [eksaktKapp, setEksaktKapp] = useState();
+  console.log(vp48segV);
   useEffect(() => {
     api
       .get("/api/tool/getToolregist")
@@ -67,6 +74,7 @@ function MyApp({ Component, pageProps }) {
         date: new Date(),
       });
     }
+    setUpdate(Math.random());
   };
 
   // Tool Edit Data
@@ -133,6 +141,22 @@ function MyApp({ Component, pageProps }) {
           setRedSegmentV,
           redSegmentH,
           redSegmentV,
+          setTrimmerJust,
+          trimmerJust,
+          eksaktKapp,
+          setEksaktKapp,
+          vpp34SegH,
+          setVpp34SegH,
+          vpp34SegV,
+          setVpp34SegV,
+          vp34SegH,
+          setVp34SegH,
+          vp34SegV,
+          setVp34SegV,
+          vp48segH,
+          setVp48segH,
+          vp48segV,
+          setVp48segV,
         }}
       >
         <Component {...pageProps} />

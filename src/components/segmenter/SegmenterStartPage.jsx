@@ -14,6 +14,7 @@ import vp34segmentSkrue from "../../../assets/segmenter/vp34segmentskrue.jpg";
 import vp48segmentH from "../../../assets/segmenter/vp48segmentH.jpg";
 import vp48segmentV from "../../../assets/segmenter/vp48segmentV.jpg";
 import ModalComponent from "../common/ModalComponent";
+import ToolWasteCount from "../oversikt/ToolWasteCount";
 
 const SegmenterStartPage = () => {
   const {
@@ -24,11 +25,19 @@ const SegmenterStartPage = () => {
     toolCardBtnTitle,
     redSegmentH,
     redSegmentV,
+    vpp34SegH,
+    vpp34SegV,
+    vp34SegH,
+    vp34SegV,
+    vp48segH,
+    vp48segV,
+
     setUpdate,
   } = useContext(MyContext);
 
   return (
     <>
+      <ToolWasteCount />
       {openModal && <ModalComponent />}
       <div className="container">
         <div>
@@ -51,7 +60,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[0].img}
               toolType={tools && tools[0].type}
               btnTitle={toolCardBtnTitle}
-              vrak={redSegmentH}
+              vrak={Math.abs(redSegmentH)}
             />
             <ToolCard
               img={v40segmentV}
@@ -66,7 +75,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[1].img}
               toolType={tools && tools[1].type}
               btnTitle={toolCardBtnTitle}
-              vrak={redSegmentV}
+              vrak={Math.abs(redSegmentV)}
             />
             <BoltCard img={v40segmenterBolt} type="M12x30" antallImaskin="15" />
           </div>
@@ -90,6 +99,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[2].img}
               toolType={tools && tools[2].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vpp34SegH)}
             />
             <ToolCard
               img={vpp32segmentV}
@@ -104,6 +114,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[3].img}
               toolType={tools && tools[3].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vpp34SegV)}
             />
             <BoltCard img={vpp32Bolt} type="M10x20" antallImaskin="36" />
           </div>
@@ -127,6 +138,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[4].img}
               toolType={tools && tools[4].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vp34SegH)}
             />
             <ToolCard
               img={vp32segmentV}
@@ -141,6 +153,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[5].img}
               toolType={tools && tools[5].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vp34SegV)}
             />
             <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>
@@ -164,6 +177,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[6].img}
               toolType={tools && tools[6].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vp48segH)}
             />
             <ToolCard
               img={vp48segmentV}
@@ -178,6 +192,7 @@ const SegmenterStartPage = () => {
               imgUrl={tools && tools[7].img}
               toolType={tools && tools[7].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(vp48segV)}
             />
             <BoltCard img={vp34segmentSkrue} type="M10x20" antallImaskin="32" />
           </div>

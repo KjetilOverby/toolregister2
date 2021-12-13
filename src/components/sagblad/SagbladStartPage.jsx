@@ -6,12 +6,15 @@ import trimmerJusterverk from "../../../assets/sagblad/trimmerJusterverk.jpg";
 import eksaktKappe from "../../../assets/sagblad/eksaktKappe.jpg";
 import endekapp from "../../../assets/sagblad/endekapp.jpg";
 import ModalComponent from "../common/ModalComponent";
+import ToolWasteCount from "../oversikt/ToolWasteCount";
 
 const SagbladStartPage = () => {
-  const { openModal, tools, toolCardBtnTitle } = useContext(MyContext);
+  const { openModal, tools, toolCardBtnTitle, trimmerJust, eksaktKapp } =
+    useContext(MyContext);
 
   return (
     <>
+      <ToolWasteCount />
       {openModal && <ModalComponent />}
       <div className="container">
         <div>
@@ -33,6 +36,7 @@ const SagbladStartPage = () => {
               imgUrl={tools && tools[23].img}
               toolType={tools && tools[23].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(trimmerJust)}
             />
             <ToolCard
               title="Eksaktkappe"
@@ -47,6 +51,7 @@ const SagbladStartPage = () => {
               imgUrl={tools && tools[24].img}
               toolType={tools && tools[24].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(eksaktKapp)}
             />
             <ToolCard
               title="Endekapp"
