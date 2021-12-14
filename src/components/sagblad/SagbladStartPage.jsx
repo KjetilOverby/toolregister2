@@ -1,17 +1,24 @@
 import React, { useContext } from "react";
 import { MyContext } from "../../contexts/MyContext";
 import ToolCard from "../common/ToolCard";
-import trimmerBord from "../../../assets/sagblad/trimmerBord.jpg";
+import trimmerBordImg from "../../../assets/sagblad/trimmerBord.jpg";
 import trimmerJusterverk from "../../../assets/sagblad/trimmerJusterverk.jpg";
 import eksaktKappe from "../../../assets/sagblad/eksaktKappe.jpg";
-import endekapp from "../../../assets/sagblad/endekapp.jpg";
+import endekappImg from "../../../assets/sagblad/endekapp.jpg";
 import ModalComponent from "../common/ModalComponent";
 import ToolWasteCount from "../oversikt/ToolWasteCount";
 
 const SagbladStartPage = () => {
-  const { openModal, tools, toolCardBtnTitle, trimmerJust, eksaktKapp } =
-    useContext(MyContext);
-
+  const {
+    openModal,
+    tools,
+    toolCardBtnTitle,
+    trimmerJust,
+    eksaktKapp,
+    endekapp,
+    trimmerBord,
+  } = useContext(MyContext);
+  console.log(endekapp);
   return (
     <>
       <ToolWasteCount />
@@ -55,7 +62,7 @@ const SagbladStartPage = () => {
             />
             <ToolCard
               title="Endekapp"
-              img={endekapp}
+              img={endekappImg}
               dim="ø610x4,4/3,3-ø30 10˚"
               antallImaskin="30"
               antallTenner="96"
@@ -66,6 +73,7 @@ const SagbladStartPage = () => {
               imgUrl={tools && tools[25].img}
               toolType={tools && tools[25].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(endekapp)}
             />
           </div>
         </div>
@@ -77,7 +85,7 @@ const SagbladStartPage = () => {
           <div className="machine-container">
             <ToolCard
               title="Trimmer bordsortering"
-              img={trimmerBord}
+              img={trimmerBordImg}
               dim="ø450x4,0/2,8 ø30"
               antallImaskin="6"
               antallTenner="72"
@@ -88,6 +96,7 @@ const SagbladStartPage = () => {
               imgUrl={tools && tools[26].img}
               toolType={tools && tools[26].type}
               btnTitle={toolCardBtnTitle}
+              vrak={Math.abs(trimmerBord)}
             />
           </div>
         </div>

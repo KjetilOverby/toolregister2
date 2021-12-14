@@ -23,6 +23,14 @@ const ToolWasteCount = () => {
     setVpp32Knivholder,
     setVpp34motstH,
     setVpp34motstV,
+    setVp34Kniv,
+    setVp34motst,
+    setVp48Kniv,
+    setVp48motstH,
+    setVp48motstV,
+    setBruksKniv,
+    setEndekapp,
+    setTrimmerBord,
   } = useContext(MyContext);
   const [getRedSegmentH, setGetRedSegmentH] = useState();
   const [getRedSegmentV, setGetRedSegmentV] = useState();
@@ -39,8 +47,16 @@ const ToolWasteCount = () => {
   const [getVpp34Knivholder, setGetVpp34Knivholder] = useState();
   const [getVpp34motstH, setGetVpp34motstH] = useState();
   const [getVpp34motstV, setGetVpp34motstV] = useState();
+  const [getVp34Kniv, setGetVp34Kniv] = useState();
+  const [getVp34motst, setGetVp34motst] = useState();
+  const [getVp48Kniv, setGetVp48Kniv] = useState();
+  const [getVp48motstH, setGetVp48motstH] = useState();
+  const [getVp48motstV, setGetVp48motstV] = useState();
+  const [getBruksKniv, setGetBruksKniv] = useState();
   const [getTrimmerJust, setGetTrimmerJust] = useState();
   const [getEksaktKapp, setGetEksaktKapp] = useState();
+  const [getEndekapp, setGetEndekapp] = useState();
+  const [getTrimmerBord, setGetTrimmerBord] = useState();
 
   useEffect(() => {
     if (toolwasteData) {
@@ -103,11 +119,45 @@ const ToolWasteCount = () => {
       setGetVpp34motstV(
         toolwasteData.filter((item) => item.type === "Fres 1/4 motstål venstre")
       );
+      setGetVp34Kniv(
+        toolwasteData.filter(
+          (item) => item.type === "Fres 2/3 kniv (horizontal)"
+        )
+      );
+      setGetVp34motst(
+        toolwasteData.filter(
+          (item) => item.type === "Fres 2/3 motstål (horizontal)"
+        )
+      );
+      setGetVp48Kniv(
+        toolwasteData.filter((item) => item.type === "Fres 3 kniv (vertical)")
+      );
+      setGetVp48motstH(
+        toolwasteData.filter(
+          (item) => item.type === "Fres 3 motstål høyre (vertical)"
+        )
+      );
+      setGetVp48motstV(
+        toolwasteData.filter(
+          (item) => item.type === "Fres 3 motstål venstre (vertical)"
+        )
+      );
+      setGetBruksKniv(
+        toolwasteData.filter(
+          (item) => item.type === "Råsortering/stikkhugger (Bruks)"
+        )
+      );
       setGetTrimmerJust(
         toolwasteData.filter((item) => item.type === "Trimmer justerverk")
       );
       setGetEksaktKapp(
         toolwasteData.filter((item) => item.type === "Eksaktkappe justerverk")
+      );
+      setGetEndekapp(
+        toolwasteData.filter((item) => item.type === "Endekapp justerverk")
+      );
+      setGetTrimmerBord(
+        toolwasteData.filter((item) => item.type === "Trimmer bordsortering")
       );
     }
   }, [toolwasteData, update]);
@@ -188,6 +238,36 @@ const ToolWasteCount = () => {
           return a + b.input;
         }, 0)
       );
+      setVp34Kniv(
+        getVp34Kniv.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVp34motst(
+        getVp34motst.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVp48Kniv(
+        getVp48Kniv.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVp48motstH(
+        getVp48motstH.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setVp48motstV(
+        getVp48motstV.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setBruksKniv(
+        getBruksKniv.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
       setTrimmerJust(
         getTrimmerJust.reduce(function (a, b) {
           return a + b.input;
@@ -195,6 +275,16 @@ const ToolWasteCount = () => {
       );
       setEksaktKapp(
         getEksaktKapp.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setEndekapp(
+        getEndekapp.reduce(function (a, b) {
+          return a + b.input;
+        }, 0)
+      );
+      setTrimmerBord(
+        getTrimmerBord.reduce(function (a, b) {
           return a + b.input;
         }, 0)
       );

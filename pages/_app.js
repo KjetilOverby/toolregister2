@@ -40,11 +40,19 @@ function MyApp({ Component, pageProps }) {
   const [motstV40, setMotstV40] = useState();
   const [motstV25, setMotstV25] = useState();
   const [vpp34Kniv, setVpp34Kniv] = useState();
-  const [trimmerJust, setTrimmerJust] = useState();
-  const [eksaktKapp, setEksaktKapp] = useState();
   const [vpp32Knivholder, setVpp32Knivholder] = useState();
   const [vpp34motstH, setVpp34motstH] = useState();
   const [vpp34motstV, setVpp34motstV] = useState();
+  const [vp34Kniv, setVp34Kniv] = useState();
+  const [vp34motst, setVp34motst] = useState();
+  const [vp48Kniv, setVp48Kniv] = useState();
+  const [vp48motstH, setVp48motstH] = useState();
+  const [vp48motstV, setVp48motstV] = useState();
+  const [bruksKniv, setBruksKniv] = useState();
+  const [trimmerJust, setTrimmerJust] = useState();
+  const [eksaktKapp, setEksaktKapp] = useState();
+  const [endekapp, setEndekapp] = useState();
+  const [trimmerBord, setTrimmerBord] = useState();
 
   useEffect(() => {
     api
@@ -178,6 +186,22 @@ function MyApp({ Component, pageProps }) {
           setVpp34motstH,
           vpp34motstV,
           setVpp34motstV,
+          vp34Kniv,
+          setVp34Kniv,
+          vp34motst,
+          setVp34motst,
+          vp48Kniv,
+          setVp48Kniv,
+          vp48motstH,
+          setVp48motstH,
+          vp48motstV,
+          setVp48motstV,
+          bruksKniv,
+          setBruksKniv,
+          endekapp,
+          setEndekapp,
+          trimmerBord,
+          setTrimmerBord,
         }}
       >
         <Component {...pageProps} />

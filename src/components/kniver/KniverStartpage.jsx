@@ -15,7 +15,7 @@ import vpp34motstHImg from "../../../assets/kniver/vpp34motstH.jpg";
 import vpp34motstVImg from "../../../assets/kniver/vpp34motstV.jpg";
 import vpp34Bolt from "../../../assets/kniver/vpp34Bolt.jpg";
 import vpp34justSkrue from "../../../assets/kniver/vpp34justSkrue.jpg";
-import vp34motst from "../../../assets/kniver/vp34motst.jpg";
+import vp34motstImg from "../../../assets/kniver/vp34motst.jpg";
 import vp48motsH from "../../../assets/kniver/vp48motstH.jpg";
 import vp48motsV from "../../../assets/kniver/vp48motstV.jpg";
 import bruks from "../../../assets/kniver/bruks.jpg";
@@ -40,6 +40,12 @@ const KniverStartpage = () => {
     vpp32Knivholder,
     vpp34motstH,
     vpp34motstV,
+    vp34Kniv,
+    vp34motst,
+    vp48Kniv,
+    vp48motstH,
+    vp48motstV,
+    bruksKniv,
   } = useContext(MyContext);
   return (
     <>
@@ -167,7 +173,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[14].img}
               toolType={tools && tools[14].type}
               btnTitle={toolCardBtnTitle}
-              vrak={vpp34motstV}
+              vrak={Math.abs(vpp34motstV)}
             />
             <BoltCard
               img={vpp34Bolt}
@@ -196,10 +202,11 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[15].img}
               toolType={tools && tools[15].type}
               btnTitle={toolCardBtnTitle}
+              vrak={vp34Kniv}
             />
             <ToolCard
               title="Motstål"
-              img={vp34motst}
+              img={vp34motstImg}
               dim=""
               antallImaskin="8"
               antallTenner=""
@@ -210,6 +217,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[16].img}
               toolType={tools && tools[16].type}
               btnTitle={toolCardBtnTitle}
+              vrak={vp34motst}
             />
             <BoltCard img={vp34bolt} type="M16x45 unbraco" antallImaskin="16" />
             <BoltCard
@@ -238,6 +246,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[17].img}
               toolType={tools && tools[17].type}
               btnTitle={toolCardBtnTitle}
+              vrak={vp48Kniv}
             />
             <ToolCard
               title="Motstål høyre"
@@ -252,6 +261,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[18].img}
               toolType={tools && tools[18].type}
               btnTitle={toolCardBtnTitle}
+              vrak={vp48motstH}
             />
             <ToolCard
               title="Motstål venstre"
@@ -266,6 +276,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[19].img}
               toolType={tools && tools[19].type}
               btnTitle={toolCardBtnTitle}
+              vrak={vp48motstV}
             />
             <BoltCard img={vp34bolt} type="M16x45 unbraco" antallImaskin="8" />
             <BoltCard
@@ -295,6 +306,7 @@ const KniverStartpage = () => {
               imgUrl={tools && tools[20].img}
               toolType={tools && tools[20].type}
               btnTitle={toolCardBtnTitle}
+              vrak={bruksKniv}
             />
             <ToolCard
               title="Motstål"
