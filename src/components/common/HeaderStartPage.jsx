@@ -34,7 +34,7 @@ const HeaderComponent = ({ color }) => {
                   <Link href="/">
                     <p className="tabs-mobile">Hjem</p>
                   </Link>
-                  <Link href="/">
+                  <Link href="/lincksearch">
                     <p className="tabs-mobile">Søk i linckblad</p>
                   </Link>
                   <Link href="/oversikt/startpage">
@@ -68,7 +68,7 @@ const HeaderComponent = ({ color }) => {
               <Link href="/">
                 <p className="tabs">Hjem</p>
               </Link>
-              <Link href="/">
+              <Link href="/lincksearch">
                 <p className="tabs">Søk i linckblad</p>
               </Link>
               <Link href="/oversikt/startpage">
@@ -95,7 +95,7 @@ const HeaderComponent = ({ color }) => {
           align-items: center;
           justify-content: space-between;
           padding: 0 5rem;
-          width: 100%;
+          width: 55rem;
           z-index: 1000;
         }
 

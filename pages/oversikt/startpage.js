@@ -5,40 +5,19 @@ import { MyContext } from "../../src/contexts/MyContext";
 import ToolWasteCount from "../../src/components/oversikt/ToolWasteCount";
 
 const oversikt = () => {
-  // const { toolwasteData, toolCreateData } = useContext(MyContext);
-
-  // const [redSegmentH, setRedSegmentH] = useState();
-  // const [test, setTest] = useState();
-
-  // // console.log(toolwasteData);
-  // useEffect(() => {
-  //   if (toolwasteData) {
-  //     setRedSegmentH(
-  //       toolwasteData.filter((item) => item.type === "Reduserer segment høyre")
-  //     );
-  //   }
-  // }, [toolwasteData]);
-  // useEffect(() => {
-  //   if (redSegmentH) {
-  //     setTest(
-  //       redSegmentH.reduce(function (a, b) {
-  //         return a.input + b.input; // returns object with property x
-  //       })
-  //     );
-  //   }
-  // }, [redSegmentH, toolwasteData]);
-  // console.log(test);
   return (
     <>
       <div className="container">
         <HeaderStartPage color="black" />
 
+        <div className="image-container">
+          <h1 className="header">Oversikt over vektøy</h1>
+        </div>
         <div className="page-container">
           <Link href="/oversikt/toolinputedit">
             <p>Til input Edit</p>
           </Link>
           <div>
-            <h1>Oversikt over vektøy</h1>
             <ToolWasteCount />
           </div>
         </div>
@@ -47,8 +26,22 @@ const oversikt = () => {
         {`
           .container {
           }
+          .header {
+            color: white;
+            font-size: 4rem;
+          }
           .page-container {
             margin: 2rem 5rem;
+          }
+          .image-container {
+            height: 20rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url("https://images.unsplash.com/photo-1493515694075-fff2d464227d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: grid;
+            place-items: center;
           }
           p {
             text-transform: uppercase;
