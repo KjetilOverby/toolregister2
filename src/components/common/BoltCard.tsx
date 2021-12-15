@@ -30,7 +30,7 @@ const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
           .container {
             display: flex;
             margin-bottom: 4rem;
-            width: 30rem;
+            min-width: 30rem;
           }
           .header {
             margin: 1rem 0;
@@ -47,6 +47,9 @@ const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
             display: flex;
           }
           @media screen and (max-width: 756px) {
+            .container {
+              min-width: 10rem;
+            }
             .img-text-container {
               flex-direction: column;
             }

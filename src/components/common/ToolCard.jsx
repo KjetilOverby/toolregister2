@@ -59,7 +59,7 @@ const ToolCard = ({
           .container {
             display: flex;
             margin-bottom: 4rem;
-            min-width: 10rem;
+            min-width: 30rem;
           }
           .btn {
             margin-top: 0.5rem;
@@ -91,6 +91,9 @@ const ToolCard = ({
             color: #218d57;
           }
           @media screen and (max-width: 756px) {
+            .container {
+              min-width: 10rem;
+            }
             .img-text-container {
               flex-direction: column;
             }
