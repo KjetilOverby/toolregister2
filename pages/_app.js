@@ -27,6 +27,9 @@ function MyApp({ Component, pageProps }) {
 
   const [antallInputCalc, setAntallInputCalc] = useState(0);
 
+  // Linckblades
+  const [linckBlades, setLinckBlades] = useState();
+
   // toolcount
   const [redSegmentH, setRedSegmentH] = useState();
   const [redSegmentV, setRedSegmentV] = useState();
@@ -53,6 +56,24 @@ function MyApp({ Component, pageProps }) {
   const [eksaktKapp, setEksaktKapp] = useState();
   const [endekapp, setEndekapp] = useState();
   const [trimmerBord, setTrimmerBord] = useState();
+
+  //Linckblades
+  useEffect(() => {
+    api
+      .get("/api/linck/linckblades")
+      .then(function (response) {
+        setLinckBlades(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+
+  // Tools
 
   useEffect(() => {
     api
@@ -150,6 +171,7 @@ function MyApp({ Component, pageProps }) {
           createDeletedData,
           antallInputCalc,
           setAntallInputCalc,
+          //Tools
           toolwasteData,
           toolCreateData,
           setRedSegmentH,
@@ -202,6 +224,8 @@ function MyApp({ Component, pageProps }) {
           setEndekapp,
           trimmerBord,
           setTrimmerBord,
+          //Linckblades
+          linckBlades,
         }}
       >
         <Component {...pageProps} />
