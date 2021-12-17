@@ -2,13 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import HeaderStartPage from "../src/components/common/HeaderStartPage";
 import LinckCards from "../src/components/LinckSearch/LinckCards";
 import { MyContext } from "../src/contexts/MyContext";
-import sawblades2 from "../assets/lincksearch/sawblades2.jpg";
+import search from "../assets/lincksearch/kikkert.jpg";
 import Image from "next/image";
+import ModalComponentEdit from "../src/components/common/ModalComponentEdit";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const Lincksearch = () => {
   const { linckBlades } = useContext(MyContext);
   const [filteredBlades, setFilteredBlades] = useState();
   const [searchInput, setSearchInput] = useState();
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   useEffect(() => {
     if (linckBlades) {
@@ -19,6 +22,13 @@ const Lincksearch = () => {
   }, [searchInput]);
   return (
     <>
+      {openDeleteModal && (
+        <ModalComponentEdit
+          title="Slett"
+          cancel={setOpenDeleteModal}
+          icon={<RiDeleteBin6Line />}
+        />
+      )}
       <div className="container">
         <div className="header-container">
           <HeaderStartPage />
@@ -43,6 +53,7 @@ const Lincksearch = () => {
                       regDate={blade.registDate}
                       performer={blade.performer}
                       date={blade.date}
+                      setOpenDeleteModal={setOpenDeleteModal}
                     />
                   </div>
                 );
@@ -52,7 +63,7 @@ const Lincksearch = () => {
           <div className="img-text-container">
             <h1 className="blades-header">Ingen søk eller treff</h1>
             <div className="bladesImg-container">
-              <Image src={sawblades2} />
+              <Image src={search} />
             </div>
           </div>
         )}
@@ -94,7 +105,7 @@ const Lincksearch = () => {
           }
           .img-text-container {
             display: flex;
-            margin-top: 5rem;
+            margin-top: 2rem;
             flex-direction: column;
             width: 100%;
             justify-content: center;
