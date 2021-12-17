@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FaComments } from "react-icons/fa";
@@ -12,10 +12,27 @@ const LinckCards = ({
   date,
   setOpenDeleteModal,
 }) => {
+  const [color, setColor] = useState("green");
+  const [innerColor, setInnerColor] = useState("blue");
+  useEffect(() => {
+    if (performer.length <= 1) {
+      setColor("#52b149");
+      setInnerColor("#52b14960");
+    } else if (performer.length === 2) {
+      setColor("#b4ab27");
+      setInnerColor("#b1a74986");
+    } else {
+      setColor("#d14242");
+      setInnerColor("#b149495f");
+    }
+  }, [performer]);
   return (
     <>
       <div key={keyID} className="container">
         <div className="top-container">
+          <div className="outer-ring">
+            <div className="indicator">{performer.length}</div>
+          </div>
           <h4 className="serial">{serial}</h4>
           <p className="type">{type}</p>
         </div>
@@ -84,6 +101,28 @@ const LinckCards = ({
             justify-content: space-between;
             grid-area: button;
           }
+          .indicator {
+            height: 1.5rem;
+            width: 1.5rem;
+            background: ${color};
+            border-radius: 50%;
+            margin-right: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+          }
+          .outer-ring {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 1px solid ${color};
+            background: ${innerColor};
+            display: grid;
+            place-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+          }
           .delete-container {
             border: 1px solid red;
             transition: 0.5s;
@@ -140,13 +179,28 @@ const LinckCards = ({
             font-style: italic;
           }
           .regist {
-            margin-top: -0.8rem;
             color: grey;
             font-style: italic;
           }
           .top-container {
             display: flex;
             grid-area: top;
+            align-items: center;
+          }
+          @media (max-width: 800px) {
+            .container {
+              grid-template-columns: 20rem 15rem;
+              grid-template-rows: 2rem 2rem auto 1fr;
+              grid-template-areas:
+                "top . "
+                "middle  ."
+                "bottom ."
+                ". ."
+                "button button";
+            }
+            .icon-btn-container {
+              margin-top: 1rem;
+            }
           }
         `}
       </style>
