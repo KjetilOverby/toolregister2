@@ -7,17 +7,6 @@ const api = axios.create({
 });
 
 const lincksawblades = () => {
-  // const [linckBlades, setLinckBlades] = useState<any>("");
-  // useEffect(() => {
-  //   try {
-  //     api.get(`/api/linck/linckblades`).then((res) => {
-  //       setLinckBlades(res.data.data);
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
-
   return (
     <>
       <div className="container">

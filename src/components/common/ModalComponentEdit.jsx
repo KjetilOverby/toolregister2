@@ -9,6 +9,8 @@ const ModalComponentEdit = ({
   actionBtnTxt,
   description,
   actionHover,
+  getSerial,
+  actionBtn,
 }) => {
   return (
     <>
@@ -17,10 +19,13 @@ const ModalComponentEdit = ({
           <div className={styles.iconContainer}>{icon}</div>
           <div className={styles.modal}>
             <h1 className={styles.header}>
-              {title} <span style={{ color: "orangered" }}>Serial</span>?
+              {title} <span style={{ color: "orangered" }}>{getSerial}</span>?
             </h1>
+
             <p className={styles.description}>{description}</p>
-            <button className="btn1">{actionBtnTxt}</button>
+            <button className="btn1" onClick={actionBtn}>
+              {actionBtnTxt}
+            </button>
             <button className="btn2" onClick={() => cancel(false)}>
               Avbryt
             </button>

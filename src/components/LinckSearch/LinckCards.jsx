@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FaComments } from "react-icons/fa";
+import { MyContext } from "../../contexts/MyContext";
 import dateFormat, { masks } from "dateformat";
 
 const LinckCards = ({
@@ -14,9 +15,15 @@ const LinckCards = ({
   date,
   setOpenDeleteModal,
   setOpenRetipModal,
+  setGetSerial,
+  setLinckID,
+  setGetType,
+  setGetNumberOfRetip,
 }) => {
   const [color, setColor] = useState("green");
   const [innerColor, setInnerColor] = useState("blue");
+  const { userID } = useContext(MyContext);
+
   useEffect(() => {
     if (performer.length <= 1) {
       setColor("#52b149");
@@ -29,6 +36,15 @@ const LinckCards = ({
       setInnerColor("#b149495f");
     }
   }, [performer]);
+
+  const openDeleteModalHandler = () => {
+    setOpenDeleteModal(true);
+    setLinckID(keyID);
+    setGetSerial(serial);
+    setGetType(type);
+    setGetNumberOfRetip(performer.length);
+  };
+
   return (
     <>
       <div key={keyID} className="container">
@@ -63,23 +79,25 @@ const LinckCards = ({
             ))}
           </div>
         </div>
-        <div className="icon-btn-container">
-          <div className="icon-container comment-container">
-            <FaComments />
+        {userID && userID.sub === process.env.USER_SUB && (
+          <div className="icon-btn-container">
+            <div className="icon-container comment-container">
+              <FaComments />
+            </div>
+            <div
+              onClick={() => setOpenRetipModal(true)}
+              className="icon-container retip-btn-container"
+            >
+              <BsArrowRepeat />
+            </div>
+            <div
+              onClick={openDeleteModalHandler}
+              className="icon-container delete-container"
+            >
+              <RiDeleteBin6Line />
+            </div>
           </div>
-          <div
-            onClick={() => setOpenRetipModal(true)}
-            className="icon-container retip-btn-container"
-          >
-            <BsArrowRepeat />
-          </div>
-          <div
-            onClick={() => setOpenDeleteModal(true)}
-            className="icon-container delete-container"
-          >
-            <RiDeleteBin6Line />
-          </div>
-        </div>
+        )}
       </div>
       <style jsx>
         {`

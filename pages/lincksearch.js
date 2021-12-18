@@ -7,14 +7,91 @@ import Image from "next/image";
 import ModalComponentEdit from "../src/components/common/ModalComponentEdit";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { GiRapidshareArrow } from "react-icons/gi";
+import dateFormat, { masks } from "dateformat";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
+const axios = require("axios");
+
+const api = axios.create({
+  baseURL: process.env.api,
+});
 
 const Lincksearch = () => {
-  const { linckBlades } = useContext(MyContext);
+  const {
+    linckBlades,
+    userID,
+    setLinckUpdate,
+    linckUpdate,
+    getType,
+    setGetType,
+    getNumberOfRetip,
+    setGetNumberOfRetip,
+  } = useContext(MyContext);
   const [filteredBlades, setFilteredBlades] = useState();
   const [searchInput, setSearchInput] = useState();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openRetipModal, setOpenRetipModal] = useState(false);
+  const [getSerial, setGetSerial] = useState();
+  const [linckID, setLinckID] = useState();
+  const [deletedBlades, setDeletedBlades] = useState();
+  const [wasteMonth, setWasteMonth] = useState(new Date().getMonth() + 1);
+  const [namedMonth, setNamedMonth] = useState();
+  const [wasteUpdate, setWasteUpdate] = useState(false);
+  const currentYear = new Date().getFullYear();
 
+  useEffect(() => {
+    switch (wasteMonth) {
+      case 1:
+        setNamedMonth("januar");
+        break;
+      case 2:
+        setNamedMonth("februar");
+        break;
+      case 3:
+        setNamedMonth("mars");
+        break;
+      case 4:
+        setNamedMonth("april");
+        break;
+      case 5:
+        setNamedMonth("mai");
+        break;
+      case 6:
+        setNamedMonth("juni");
+        break;
+      case 7:
+        setNamedMonth("juli");
+        break;
+      case 8:
+        setNamedMonth("august");
+        break;
+      case 9:
+        setNamedMonth("september");
+        break;
+      case 10:
+        setNamedMonth("oktober");
+        break;
+      case 11:
+        setNamedMonth("november");
+        break;
+      case 12:
+        setNamedMonth("desember");
+        break;
+    }
+  }, [wasteMonth]);
+  const monthCountDownHandler = () => {
+    setWasteMonth(wasteMonth - 1);
+    if (wasteMonth < 2) {
+      setWasteMonth(12);
+    }
+  };
+  const monthCountUpHandler = () => {
+    setWasteMonth(wasteMonth + 1);
+    if (wasteMonth >= 12) {
+      setWasteMonth(1);
+    }
+  };
+  console.log(wasteMonth);
   useEffect(() => {
     if (linckBlades) {
       setFilteredBlades(
@@ -22,17 +99,63 @@ const Lincksearch = () => {
       );
     }
   }, [searchInput]);
+
+  useEffect(() => {
+    api
+      .get(`/api/linck/deletedBlades?month=${wasteMonth}`)
+      .then(function (response) {
+        setDeletedBlades(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, [wasteMonth, wasteUpdate]);
+  const createDeletedBladeHandler = () => {
+    api
+      .post(`/api/linck/createDeletedBlade/?user=${userID.sub}`, {
+        type: getType,
+        serial: getSerial,
+        wasteNumberOfRetip: getNumberOfRetip,
+        wasteDate: new Date(),
+      })
+      .then(function (response) {});
+  };
+
+  const deleteBladeHandler = () => {
+    createDeletedBladeHandler();
+    try {
+      api
+        .delete(`/api/linck/deleteBlade/?del=${linckID}&user=${userID.sub}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setOpenDeleteModal(false);
+            setLinckUpdate(!linckUpdate);
+            setSearchInput("");
+            setWasteUpdate(!wasteUpdate);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {openDeleteModal && (
         <ModalComponentEdit
-          title="Slett"
+          title="Slette"
           cancel={setOpenDeleteModal}
           icon={<RiDeleteBin6Line style={{ color: "red", fontSize: "2rem" }} />}
           btnBorder="red"
           actionBtnTxt="SLETT"
           description="Slettingen er permanent og kan ikke reverseres."
           actionHover="#a34a4a60"
+          getSerial={getSerial}
+          actionBtn={deleteBladeHandler}
         />
       )}
       {openRetipModal && (
@@ -59,6 +182,7 @@ const Lincksearch = () => {
             onChange={(e) => setSearchInput(e.target.value)}
             className="input"
             placeholder="Search"
+            value={searchInput}
           />
         </div>
         {searchInput && searchInput.length >= 2 && filteredBlades.length > 0 ? (
@@ -77,6 +201,10 @@ const Lincksearch = () => {
                       date={blade.date}
                       setOpenDeleteModal={setOpenDeleteModal}
                       setOpenRetipModal={setOpenRetipModal}
+                      setGetSerial={setGetSerial}
+                      setLinckID={setLinckID}
+                      setGetType={setGetType}
+                      setGetNumberOfRetip={setGetNumberOfRetip}
                     />
                   </div>
                 );
@@ -87,6 +215,28 @@ const Lincksearch = () => {
             <h1 className="blades-header">Ingen søk eller treff</h1>
             <div className="bladesImg-container">
               <Image src={search} />
+            </div>
+            <div className="waste-container">
+              <h5>
+                Vrakede blad {namedMonth} {currentYear}
+              </h5>
+              <MdKeyboardArrowLeft onClick={monthCountDownHandler} />
+              <MdKeyboardArrowRight onClick={monthCountUpHandler} />
+              <p className="waste-list">
+                Antall: {deletedBlades && deletedBlades.length}
+              </p>
+              {deletedBlades &&
+                deletedBlades.map((item) => {
+                  return (
+                    <>
+                      <p className="waste-list">
+                        {item.serial}, {item.type}, Omloddinger:{" "}
+                        {item.wasteNumberOfRetip}, dato:{" "}
+                        {dateFormat(item.wasteDate, "dd.mm.yyyy HH:MM")}
+                      </p>
+                    </>
+                  );
+                })}
             </div>
           </div>
         )}
@@ -128,11 +278,12 @@ const Lincksearch = () => {
           }
           .img-text-container {
             display: flex;
-            margin-top: 2rem;
             flex-direction: column;
-            width: 100%;
+            width: auto;
             justify-content: center;
             align-items: center;
+            position: relative;
+            margin: 1rem;
           }
           .header-container {
             width: 100%;
@@ -149,6 +300,16 @@ const Lincksearch = () => {
             padding: 0.5rem;
             font-weight: 100;
             outline: none;
+          }
+          .waste-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+          .waste-list {
+            color: grey;
+            font-style: italic;
+            font-size: 0.8rem;
           }
           @media (max-width: 850px) {
             .bladesImg-container {

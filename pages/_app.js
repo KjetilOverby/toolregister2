@@ -19,9 +19,12 @@ function MyApp({ Component, pageProps }) {
   const [getImgUrl, setGetImgUrl] = useState();
   const [tools, setTools] = useState();
   const [type, setType] = useState();
+  const [getType, setGetType] = useState();
+  const [getNumberOfRetip, setGetNumberOfRetip] = useState();
   const [update, setUpdate] = useState();
+  const [linckUpdate, setLinckUpdate] = useState(false);
   const toolCardBtnTitle = "REDIGER";
-
+  console.log(getNumberOfRetip);
   const [toolwasteData, setToolwasteData] = useState();
   const [toolCreateData, setToolCreateData] = useState();
 
@@ -71,7 +74,7 @@ function MyApp({ Component, pageProps }) {
       .then(function () {
         // always executed
       });
-  }, []);
+  }, [linckUpdate]);
 
   // Tools
 
@@ -166,6 +169,8 @@ function MyApp({ Component, pageProps }) {
           toolCardBtnTitle,
           setUpdate,
           update,
+          setLinckUpdate,
+          linckUpdate,
           setUserID,
           userID,
           createDeletedData,
@@ -226,6 +231,10 @@ function MyApp({ Component, pageProps }) {
           setTrimmerBord,
           //Linckblades
           linckBlades,
+          getType,
+          setGetType,
+          getNumberOfRetip,
+          setGetNumberOfRetip,
         }}
       >
         <Component {...pageProps} />
