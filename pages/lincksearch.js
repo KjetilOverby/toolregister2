@@ -6,12 +6,14 @@ import search from "../assets/lincksearch/kikkert.jpg";
 import Image from "next/image";
 import ModalComponentEdit from "../src/components/common/ModalComponentEdit";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { GiRapidshareArrow } from "react-icons/gi";
 
 const Lincksearch = () => {
   const { linckBlades } = useContext(MyContext);
   const [filteredBlades, setFilteredBlades] = useState();
   const [searchInput, setSearchInput] = useState();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openRetipModal, setOpenRetipModal] = useState(false);
 
   useEffect(() => {
     if (linckBlades) {
@@ -26,7 +28,26 @@ const Lincksearch = () => {
         <ModalComponentEdit
           title="Slett"
           cancel={setOpenDeleteModal}
-          icon={<RiDeleteBin6Line />}
+          icon={<RiDeleteBin6Line style={{ color: "red", fontSize: "2rem" }} />}
+          btnBorder="red"
+          actionBtnTxt="SLETT"
+          description="Slettingen er permanent og kan ikke reverseres."
+          actionHover="#a34a4a60"
+        />
+      )}
+      {openRetipModal && (
+        <ModalComponentEdit
+          title="Omlodding"
+          cancel={setOpenRetipModal}
+          icon={
+            <GiRapidshareArrow
+              style={{ color: "cornflowerblue", fontSize: "2.5rem" }}
+            />
+          }
+          btnBorder="cornflowerblue"
+          actionBtnTxt="OPPDATER"
+          description="Legg til omlodding fra Stridsbergs med dagens dato."
+          actionHover="#a34a4a60"
         />
       )}
       <div className="container">
@@ -51,9 +72,11 @@ const Lincksearch = () => {
                       serial={blade.serial}
                       type={blade.type}
                       regDate={blade.registDate}
+                      updated={blade.updated}
                       performer={blade.performer}
                       date={blade.date}
                       setOpenDeleteModal={setOpenDeleteModal}
+                      setOpenRetipModal={setOpenRetipModal}
                     />
                   </div>
                 );

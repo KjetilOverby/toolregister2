@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsArrowRepeat } from "react-icons/bs";
 import { FaComments } from "react-icons/fa";
+import dateFormat, { masks } from "dateformat";
 
 const LinckCards = ({
   keyID,
   serial,
   type,
   regDate,
+  updated,
   performer,
   date,
   setOpenDeleteModal,
+  setOpenRetipModal,
 }) => {
   const [color, setColor] = useState("green");
   const [innerColor, setInnerColor] = useState("blue");
@@ -37,7 +40,10 @@ const LinckCards = ({
           <p className="type">{type}</p>
         </div>
         <div className="regist-container">
-          <p className="regist">Registreringsdato: {regDate}</p>
+          <p className="regist">
+            Registreringsdato:{" "}
+            {regDate || dateFormat(updated, "dd.mm.yyyy HH:MM")}
+          </p>
         </div>
         <div className="retip-container">
           <div className="performer-container">
@@ -61,7 +67,10 @@ const LinckCards = ({
           <div className="icon-container comment-container">
             <FaComments />
           </div>
-          <div className="icon-container retip-btn-container">
+          <div
+            onClick={() => setOpenRetipModal(true)}
+            className="icon-container retip-btn-container"
+          >
             <BsArrowRepeat />
           </div>
           <div
@@ -79,6 +88,7 @@ const LinckCards = ({
             border: 0.5px solid grey;
             margin: 0.5rem;
             display: grid;
+            border-radius: 5px;
             grid-template-columns: 20rem 15rem 1fr;
             grid-template-rows: 2rem 2rem 1fr;
             grid-template-areas:
