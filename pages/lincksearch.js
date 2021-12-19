@@ -144,6 +144,42 @@ const Lincksearch = () => {
     }
   };
 
+  // SERVICE
+
+  const createServiceBladeHandler = () => {
+    api
+      .post(`/api/linck/service/createserviceBlade/?user=${userID.sub}`, {
+        type: getType,
+        serial: getSerial,
+
+        serviceDate: new Date(),
+      })
+      .then(function (response) {});
+  };
+
+  const retipUpdateHandler = () => {
+    api
+      .post(
+        `/api/linck/service/updateretip/?ids=${linckID}&user=${userID.sub}`,
+        {
+          performer: "Stridsbergs",
+          date: dateFormat(new Date(), "dd.mm.yyyy HH:MM"),
+        }
+      )
+      .then(function (res) {
+        if (res.status === 200) {
+          setOpenRetipModal(false);
+          setLinckUpdate(!linckUpdate);
+          setTimeout(() => {
+            setSearchInput("");
+            setSearchInput(getSerial);
+            setWasteUpdate(!wasteUpdate);
+          }, 500);
+          createServiceBladeHandler();
+        }
+      });
+  };
+
   return (
     <>
       {openDeleteModal && (
@@ -171,7 +207,9 @@ const Lincksearch = () => {
           btnBorder="cornflowerblue"
           actionBtnTxt="OPPDATER"
           description="Legg til omlodding fra Stridsbergs med dagens dato."
+          getSerial={getSerial}
           actionHover="#a34a4a60"
+          actionBtn={retipUpdateHandler}
         />
       )}
       <div className="container">
@@ -206,6 +244,7 @@ const Lincksearch = () => {
                       setLinckID={setLinckID}
                       setGetType={setGetType}
                       setGetNumberOfRetip={setGetNumberOfRetip}
+                      wasteUpdate={wasteUpdate}
                     />
                   </div>
                 );

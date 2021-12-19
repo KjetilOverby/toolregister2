@@ -19,6 +19,7 @@ const LinckCards = ({
   setLinckID,
   setGetType,
   setGetNumberOfRetip,
+  wasteUpdate,
 }) => {
   const [color, setColor] = useState("green");
   const [innerColor, setInnerColor] = useState("blue");
@@ -35,7 +36,7 @@ const LinckCards = ({
       setColor("#d14242");
       setInnerColor("#b149495f");
     }
-  }, [performer]);
+  }, [performer, wasteUpdate]);
 
   const openDeleteModalHandler = () => {
     setOpenDeleteModal(true);
@@ -43,6 +44,11 @@ const LinckCards = ({
     setGetSerial(serial);
     setGetType(type);
     setGetNumberOfRetip(performer.length);
+  };
+  const openRetipModalHandler = () => {
+    setOpenRetipModal(true);
+    setGetSerial(serial);
+    setLinckID(keyID);
   };
 
   return (
@@ -69,7 +75,7 @@ const LinckCards = ({
               </div>
             ))}
           </div>
-          <div className="performer-container">
+          <div className="date-container">
             {date.map((item) => (
               <div key={Math.random()}>
                 <p key={Math.random()} className="retip-text">
@@ -85,7 +91,7 @@ const LinckCards = ({
               <FaComments />
             </div>
             <div
-              onClick={() => setOpenRetipModal(true)}
+              onClick={openRetipModalHandler}
               className="icon-container retip-btn-container"
             >
               <BsArrowRepeat />
@@ -150,6 +156,9 @@ const LinckCards = ({
             place-items: center;
             justify-content: center;
             margin-right: 0.5rem;
+          }
+          .date-container {
+            width: 9rem;
           }
           .delete-container {
             border: 1px solid red;
