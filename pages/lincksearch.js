@@ -145,6 +145,21 @@ const Lincksearch = () => {
   };
 
   // SERVICE
+  const [retipBlades, setRetipBlades] = useState();
+  useEffect(() => {
+    api
+      .get(`/api/linck/service/serviceblades?month=${wasteMonth}`)
+      .then(function (response) {
+        setRetipBlades(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, [wasteMonth, wasteUpdate]);
 
   const createServiceBladeHandler = () => {
     api
@@ -174,7 +189,7 @@ const Lincksearch = () => {
             setSearchInput("");
             setSearchInput(getSerial);
             setWasteUpdate(!wasteUpdate);
-          }, 500);
+          }, 1600);
           createServiceBladeHandler();
         }
       });
@@ -273,6 +288,23 @@ const Lincksearch = () => {
                         {item.serial}, {item.type}, Omloddinger:{" "}
                         {item.wasteNumberOfRetip}, dato:{" "}
                         {dateFormat(item.wasteDate, "dd.mm.yyyy HH:MM")}
+                      </p>
+                    </>
+                  );
+                })}
+              <h5 style={{ margin: "1rem 0" }}>
+                Omloddede blad {namedMonth} {currentYear}
+              </h5>
+              <p className="waste-list">
+                Antall: {retipBlades && retipBlades.length}
+              </p>
+              {retipBlades &&
+                retipBlades.map((item) => {
+                  return (
+                    <>
+                      <p key={item._id} className="waste-list">
+                        {item.serial}, {item.type},{" "}
+                        {dateFormat(item.serviceDate, "dd.mm.yyyy HH:MM")}
                       </p>
                     </>
                   );
