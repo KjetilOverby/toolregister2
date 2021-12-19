@@ -10,6 +10,7 @@ import { GiRapidshareArrow } from "react-icons/gi";
 import dateFormat, { masks } from "dateformat";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { FaComments } from "react-icons/fa";
 const axios = require("axios");
 
 const api = axios.create({
@@ -31,6 +32,7 @@ const Lincksearch = () => {
   const [searchInput, setSearchInput] = useState();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openRetipModal, setOpenRetipModal] = useState(false);
+  const [openCommentModal, setOpenCommentModal] = useState(false);
   const [getSerial, setGetSerial] = useState();
   const [linckID, setLinckID] = useState();
   const [deletedBlades, setDeletedBlades] = useState();
@@ -196,6 +198,28 @@ const Lincksearch = () => {
       });
   };
 
+  // COMMENT
+  const [getCommentInput, setGetCommentInput] = useState();
+
+  const commentUpdateHandler = () => {
+    api
+      .post(`/api/linck/comment/?ids=${linckID}&user=${userID.sub}`, {
+        comment: getCommentInput,
+        commentDate: dateFormat(new Date(), "dd.mm.yyyy HH:MM"),
+      })
+      .then(function (res) {
+        if (res.status === 200) {
+          setOpenCommentModal(false);
+          setLinckUpdate(!linckUpdate);
+          setTimeout(() => {
+            setSearchInput("");
+            setSearchInput(getSerial);
+            setWasteUpdate(!wasteUpdate);
+          }, 1600);
+        }
+      });
+  };
+
   return (
     <>
       {openDeleteModal && (
@@ -224,8 +248,22 @@ const Lincksearch = () => {
           actionBtnTxt="OPPDATER"
           description="Legg til omlodding fra Stridsbergs med dagens dato."
           getSerial={getSerial}
-          actionHover="#a34a4a60"
+          actionHover="blue"
           actionBtn={retipUpdateHandler}
+        />
+      )}
+      {openCommentModal && (
+        <ModalComponentEdit
+          title="Legg til kommentar"
+          actionBtnTxt="LEGG TIL"
+          icon={
+            <FaComments style={{ color: "seagreen", fontSize: "2.5rem" }} />
+          }
+          actionHover="green"
+          commentInput={true}
+          cancel={() => setOpenCommentModal(false)}
+          setGetCommentInput={setGetCommentInput}
+          actionBtn={commentUpdateHandler}
         />
       )}
       <div className="container">
@@ -256,11 +294,14 @@ const Lincksearch = () => {
                       date={blade.date}
                       setOpenDeleteModal={setOpenDeleteModal}
                       setOpenRetipModal={setOpenRetipModal}
+                      setOpenCommentModal={setOpenCommentModal}
                       setGetSerial={setGetSerial}
                       setLinckID={setLinckID}
                       setGetType={setGetType}
                       setGetNumberOfRetip={setGetNumberOfRetip}
                       wasteUpdate={wasteUpdate}
+                      comment={blade.comment}
+                      commentDate={blade.commentDate}
                     />
                   </div>
                 );
@@ -276,8 +317,18 @@ const Lincksearch = () => {
               <h5>
                 Vrakede blad {namedMonth} {currentYear}
               </h5>
-              <MdKeyboardArrowLeft onClick={monthCountDownHandler} />
-              <MdKeyboardArrowRight onClick={monthCountUpHandler} />
+              <MdKeyboardArrowLeft
+                style={{ fontSize: "1.5rem", color: "red", cursor: "pointer" }}
+                onClick={monthCountDownHandler}
+              />
+              <MdKeyboardArrowRight
+                style={{
+                  fontSize: "1.5rem",
+                  color: "green",
+                  cursor: "pointer",
+                }}
+                onClick={monthCountUpHandler}
+              />
               <p className="waste-list">
                 Antall: {deletedBlades && deletedBlades.length}
               </p>
@@ -286,7 +337,7 @@ const Lincksearch = () => {
                   return (
                     <>
                       <p key={item._id} className="waste-list">
-                        {item.serial}, {item.type}, Omloddinger:{" "}
+                        {item.serial}, {item.type}, Oml:{" "}
                         {item.wasteNumberOfRetip}, dato:{" "}
                         {dateFormat(item.wasteDate, "dd.mm.yyyy HH:MM")}
                       </p>
@@ -385,6 +436,36 @@ const Lincksearch = () => {
             font-size: 0.8rem;
             color: ${wasteListColor};
           }
+          @media (max-width: 1400px) {
+            .container {
+              grid-template-rows: 6rem 12rem 1fr;
+            }
+            .bladesImg-container {
+              width: 30rem;
+            }
+            .image-container {
+              height: 10rem;
+            }
+          }
+          @media (max-width: 1150px) {
+            .container {
+              grid-template-rows: 6rem 12rem 1fr;
+            }
+            .bladesImg-container {
+              width: 40rem;
+            }
+            .image-container {
+              height: 10rem;
+            }
+            .img-text-container {
+              margin: 0rem;
+            }
+            .waste-container {
+              position: relative;
+              top: 0;
+              left: 0;
+            }
+          }
           @media (max-width: 850px) {
             .bladesImg-container {
               width: 100vw;
@@ -396,7 +477,6 @@ const Lincksearch = () => {
               grid-template-rows: 6rem 10rem 1fr;
             }
             .image-container {
-              height: 10rem;
             }
           }
         `}

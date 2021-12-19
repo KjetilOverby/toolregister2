@@ -51,6 +51,7 @@ const Addblades = () => {
       <style jsx>
         {`
           .container {
+            display: relative;
           }
           .header-container {
             width: 100%;
@@ -68,12 +69,15 @@ const Addblades = () => {
             place-items: center;
             grid-area: middle;
           }
+
           .newblades-container {
             height: auto;
           }
           .newblades-main-container {
-            width: 100vw;
+            width: auto;
             padding: 1rem;
+            display: grid;
+            grid-template-columns: 20rem 1fr;
           }
           .newblades-text {
             font-size: 0.8rem;

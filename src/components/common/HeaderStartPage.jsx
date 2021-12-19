@@ -14,6 +14,7 @@ const HeaderComponent = ({ color }) => {
     setHideSidebar(true);
     setOpenSidebar(!openSidebar);
   };
+
   return (
     <>
       <div className="container">

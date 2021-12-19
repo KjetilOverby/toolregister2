@@ -11,6 +11,8 @@ const ModalComponentEdit = ({
   actionHover,
   getSerial,
   actionBtn,
+  commentInput,
+  setGetCommentInput,
 }) => {
   return (
     <>
@@ -18,11 +20,20 @@ const ModalComponentEdit = ({
         <div className={styles.container}>
           <div className={styles.iconContainer}>{icon}</div>
           <div className={styles.modal}>
-            <h1 className={styles.header}>
-              {title} <span style={{ color: "orangered" }}>{getSerial}</span>?
-            </h1>
-
+            <div className={styles.header}>
+              <h1 className={styles.header}>
+                {title} <span style={{ color: "orangered" }}>{getSerial}</span>?
+              </h1>
+              {commentInput && (
+                <input
+                  type="text"
+                  placeholder="Skriv kommentar"
+                  onChange={(e) => setGetCommentInput(e.target.value)}
+                />
+              )}
+            </div>
             <p className={styles.description}>{description}</p>
+
             <button className="btn1" onClick={actionBtn}>
               {actionBtnTxt}
             </button>

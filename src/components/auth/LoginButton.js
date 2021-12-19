@@ -6,6 +6,7 @@ const LoginButton = ({ from }) => {
   const loginHandler = () => {
     loginWithRedirect();
   };
+
   return (
     !isAuthenticated && (
       <p className="tab" onClick={loginHandler}>

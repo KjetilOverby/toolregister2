@@ -15,11 +15,14 @@ const LinckCards = ({
   date,
   setOpenDeleteModal,
   setOpenRetipModal,
+  setOpenCommentModal,
   setGetSerial,
   setLinckID,
   setGetType,
   setGetNumberOfRetip,
   wasteUpdate,
+  comment,
+  commentDate,
 }) => {
   const [color, setColor] = useState("green");
   const [innerColor, setInnerColor] = useState("blue");
@@ -50,6 +53,11 @@ const LinckCards = ({
     setGetSerial(serial);
     setLinckID(keyID);
     setGetType(type);
+  };
+  const openCommentModalHandler = () => {
+    setOpenCommentModal(true);
+    setGetSerial(serial);
+    setLinckID(keyID);
   };
 
   return (
@@ -86,10 +94,37 @@ const LinckCards = ({
             ))}
           </div>
         </div>
+        <div className="comment-input-container">
+          <div>
+            {commentDate &&
+              commentDate.map((item) => {
+                return (
+                  <>
+                    <p
+                      style={{ marginRight: "1rem", width: "8rem" }}
+                      className="comment-text container-text"
+                    >
+                      {item}
+                    </p>
+                  </>
+                );
+              })}
+          </div>
+          <div>
+            {comment &&
+              comment.map((item) => {
+                return (
+                  <>
+                    <p className="comment-text container-text">{item}</p>
+                  </>
+                );
+              })}
+          </div>
+        </div>
         {userID && userID.sub === process.env.USER_SUB && (
           <div className="icon-btn-container">
             <div className="icon-container comment-container">
-              <FaComments />
+              <FaComments onClick={openCommentModalHandler} />
             </div>
             <div
               onClick={openRetipModalHandler}
@@ -115,11 +150,24 @@ const LinckCards = ({
             display: grid;
             border-radius: 5px;
             grid-template-columns: 20rem 15rem 1fr;
-            grid-template-rows: 2rem 2rem 1fr;
+            grid-template-rows: 2rem 2rem auto 1fr;
             grid-template-areas:
               "top button button"
               "middle middle ."
-              "bottom bottom .";
+              "bottom bottom ."
+              "comment comment .";
+          }
+          .container-text {
+            height: auto;
+            flex: 1;
+          }
+          .comment-input-container {
+            grid-area: comment;
+            display: flex;
+          }
+          .comment-text {
+            color: red;
+            font-style: italic;
           }
           .icon-container {
             display: flex;
@@ -205,7 +253,8 @@ const LinckCards = ({
             grid-area: bottom;
           }
           .retip-text {
-            color: #5179ad;
+            color: #1982d8;
+            font-style: italic;
           }
           .serial {
             margin: 0 0.5rem 0 0;
@@ -228,12 +277,12 @@ const LinckCards = ({
           @media (max-width: 800px) {
             .container {
               grid-template-columns: 20rem 15rem;
-              grid-template-rows: 2rem 2rem auto 1fr;
+              grid-template-rows: 2rem 2rem auto auto 1fr;
               grid-template-areas:
                 "top . "
                 "middle  ."
                 "bottom ."
-                ". ."
+                "comment ."
                 "button button";
             }
             .icon-btn-container {
