@@ -49,6 +49,7 @@ const LinckCards = ({
     setOpenRetipModal(true);
     setGetSerial(serial);
     setLinckID(keyID);
+    setGetType(type);
   };
 
   return (

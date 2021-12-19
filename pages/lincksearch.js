@@ -177,6 +177,7 @@ const Lincksearch = () => {
       .post(
         `/api/linck/service/updateretip/?ids=${linckID}&user=${userID.sub}`,
         {
+          type: getType,
           performer: "Stridsbergs",
           date: dateFormat(new Date(), "dd.mm.yyyy HH:MM"),
         }
