@@ -40,11 +40,11 @@ const HeaderComponent = ({ color }) => {
                   <Link href="/oversikt/startpage">
                     <p className="tabs-mobile">Oversikt</p>
                   </Link>
-                  <Link href="/cv">
-                    <p className="tabs-mobile">Datosøk</p>
+                  <Link href="/addblades">
+                    <p className="tabs-mobile">Nye blad</p>
                   </Link>
-                  <Link href="/kurs">
-                    <p className="tabs-mobile">Omlodding</p>
+                  <Link href="/datosok">
+                    <p className="tabs-mobile">Datosøk</p>
                   </Link>
                   <LoginButton />
                 </div>
@@ -71,16 +71,16 @@ const HeaderComponent = ({ color }) => {
               <Link href="/lincksearch">
                 <p className="tabs">Søk i linckblad</p>
               </Link>
+              <Link href="/addblades">
+                <p className="tabs">Nye Blad</p>
+              </Link>
               <Link href="/oversikt/startpage">
                 <p className="tabs">Oversikt</p>
               </Link>
-              <Link href="/cv">
+              <Link href="/datosok">
                 <p className="tabs">Datosøk</p>
               </Link>
 
-              <Link href="/kurs">
-                <p className="tabs">Omlodding</p>
-              </Link>
               <LoginButton />
               <LogoutButton />
             </>

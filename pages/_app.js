@@ -24,7 +24,6 @@ function MyApp({ Component, pageProps }) {
   const [update, setUpdate] = useState();
   const [linckUpdate, setLinckUpdate] = useState(false);
   const toolCardBtnTitle = "REDIGER";
-  console.log(getNumberOfRetip);
   const [toolwasteData, setToolwasteData] = useState();
   const [toolCreateData, setToolCreateData] = useState();
 

@@ -38,6 +38,7 @@ const Lincksearch = () => {
   const [namedMonth, setNamedMonth] = useState();
   const [wasteUpdate, setWasteUpdate] = useState(false);
   const currentYear = new Date().getFullYear();
+  const [wasteListColor, setWasteListColor] = useState("grey");
 
   useEffect(() => {
     switch (wasteMonth) {
@@ -91,7 +92,7 @@ const Lincksearch = () => {
       setWasteMonth(1);
     }
   };
-  console.log(wasteMonth);
+
   useEffect(() => {
     if (linckBlades) {
       setFilteredBlades(
@@ -229,7 +230,7 @@ const Lincksearch = () => {
                 deletedBlades.map((item) => {
                   return (
                     <>
-                      <p className="waste-list">
+                      <p key={item._id} className="waste-list">
                         {item.serial}, {item.type}, Omloddinger:{" "}
                         {item.wasteNumberOfRetip}, dato:{" "}
                         {dateFormat(item.wasteDate, "dd.mm.yyyy HH:MM")}
@@ -310,6 +311,7 @@ const Lincksearch = () => {
             color: grey;
             font-style: italic;
             font-size: 0.8rem;
+            color: ${wasteListColor};
           }
           @media (max-width: 850px) {
             .bladesImg-container {
