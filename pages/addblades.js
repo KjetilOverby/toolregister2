@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import HeaderStartPage from "../src/components/common/HeaderStartPage";
 const axios = require("axios");
 import dateFormat, { masks } from "dateformat";
+import ModalComponentEdit from "../src/components/common/ModalComponentEdit";
+import { FaTrashAlt } from "react-icons/fa";
+import { MyContext } from "../src/contexts/MyContext";
 
 const api = axios.create({
   baseURL: process.env.api,
 });
 
 const Addblades = () => {
+  const { userID, setLinckUpdate, linckUpdate } = useContext(MyContext);
   const [newBlades, setNewBlades] = useState();
+  const [updateNewblades, setUpdateNewblades] = useState(false);
   const [createdMonth, setCreatedMonth] = useState(new Date().getMonth() + 1);
-  console.log(newBlades);
+  const [openDeleteNewbladesModal, setOpenDeleteNewbladesModal] =
+    useState(false);
+  const [bladeInfo, setBladeInfo] = useState({});
+  const [error, setError] = useState();
+
   useEffect(() => {
     api
       .get(`/api/linck/newblades/createdBlades?month=${createdMonth}`)
@@ -24,9 +33,57 @@ const Addblades = () => {
       .then(function () {
         // always executed
       });
-  }, []);
+  }, [updateNewblades]);
+
+  const deleteCreatedBladeHandler = () => {
+    deleteCreatedBladeHandler2();
+    try {
+      api
+        .delete(
+          `/api/linck/deletecreatedblades/?del=${bladeInfo.id}&user=${userID.sub}`
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            setOpenDeleteNewbladesModal(false);
+            setUpdateNewblades(!updateNewblades);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+      setError("Du er ikke innlogget og kan ikke slette bladet. " + error);
+    }
+  };
+  const deleteCreatedBladeHandler2 = () => {
+    try {
+      api
+        .delete(
+          `/api/linck/deletecreatedblades2/?del=${bladeInfo.id}&user=${userID.sub}`
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            setOpenDeleteNewbladesModal(false);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(bladeInfo.id);
   return (
     <>
+      {openDeleteNewbladesModal && (
+        <ModalComponentEdit
+          cancel={setOpenDeleteNewbladesModal}
+          title="Slette "
+          getSerial={bladeInfo.serial}
+          actionBtnTxt="SLETT"
+          icon={<FaTrashAlt style={{ color: "red", fontSize: "1.5rem" }} />}
+          btnBorder="red"
+          actionHover="#dadada"
+          actionBtn={deleteCreatedBladeHandler}
+          error={error}
+        />
+      )}
       <div className="container">
         <div className="header-container">
           <HeaderStartPage />
@@ -34,11 +91,23 @@ const Addblades = () => {
         <div className="image-container"></div>
         <div className="newblades-main-container">
           <div className="newblades-container">
+            <p>Antall: {newBlades && newBlades.length}</p>
             {newBlades &&
               newBlades.map((item) => {
+                const openDeleteNewbladesHandler = () => {
+                  setOpenDeleteNewbladesModal(true);
+                  setBladeInfo({
+                    serial: item.serial,
+                    type: item.type,
+                    id: item.newid,
+                  });
+                };
                 return (
                   <>
-                    <p className="newblades-text">
+                    <p
+                      onClick={openDeleteNewbladesHandler}
+                      className="newblades-text"
+                    >
                       {item.serial}, {item.type},{" "}
                       {dateFormat(item.updated, "dd.mm.yyyy HH:MM")}
                     </p>
@@ -84,6 +153,10 @@ const Addblades = () => {
             margin: 0;
             font-style: italic;
             color: grey;
+          }
+          .newblades-text:hover {
+            cursor: pointer;
+            color: blue;
           }
         `}
       </style>

@@ -13,10 +13,12 @@ const ModalComponentEdit = ({
   actionBtn,
   commentInput,
   setGetCommentInput,
+  error,
 }) => {
   return (
     <>
       <div className={styles.mainContainer}>
+        {error && <h1 className="error">{error}</h1>}
         <div className={styles.container}>
           <div className={styles.iconContainer}>{icon}</div>
           <div className={styles.modal}>
@@ -74,6 +76,11 @@ const ModalComponentEdit = ({
         .btn2:hover {
           background: #dadada;
           cursor: pointer;
+        }
+        .error {
+          color: red;
+          position: absolute;
+          top: 15rem;
         }
       `}</style>
     </>
