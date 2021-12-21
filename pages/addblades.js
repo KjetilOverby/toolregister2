@@ -5,6 +5,8 @@ import dateFormat, { masks } from "dateformat";
 import ModalComponentEdit from "../src/components/common/ModalComponentEdit";
 import { FaTrashAlt } from "react-icons/fa";
 import { MyContext } from "../src/contexts/MyContext";
+import AddBladesInputComponent from "../src/components/addblades/AddBladesInputComponent";
+import { v4 as uuidv4 } from "uuid";
 
 const api = axios.create({
   baseURL: process.env.api,
@@ -19,6 +21,14 @@ const Addblades = () => {
     useState(false);
   const [bladeInfo, setBladeInfo] = useState({});
   const [error, setError] = useState();
+
+  const [selectorValue, setSelectorValue] = useState();
+  const [serialInput, setSerialInput] = useState();
+  const [uuid, setUuid] = useState();
+
+  useEffect(() => {
+    setUuid(uuidv4());
+  }, [updateNewblades]);
 
   useEffect(() => {
     api
@@ -68,7 +78,52 @@ const Addblades = () => {
       console.log(error);
     }
   };
-  console.log(bladeInfo.id);
+
+  const createNewBladeHandler = (e) => {
+    createNewBladeListHandler();
+    if (
+      serialInput === "" ||
+      serialInput === undefined ||
+      selectorValue === "" ||
+      selectorValue === undefined
+    ) {
+      alert("Du må fylle ut bladtype og serienummer!");
+    } else {
+      api
+        .post(`/api/linck/newblades/createNewBlade/?user=${userID.sub}`, {
+          type: selectorValue,
+          serial: serialInput,
+          updated: new Date(),
+          newid: uuid,
+        })
+        .then(function (response) {
+          if (response.status === 200) {
+            setUpdateNewblades(!updateNewblades);
+          }
+        });
+    }
+  };
+
+  const createNewBladeListHandler = () => {
+    api
+      .post(`/api/linck/newblades/createNewBladeList/?user=${userID.sub}`, {
+        type: selectorValue,
+        serial: serialInput,
+        updated: new Date(),
+        newid: uuid,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          setUpdateNewblades(!updateNewblades);
+        }
+      });
+  };
+  const onSubmit = (e) => {
+    if (e.code === "Enter") {
+      createNewBladeHandler();
+    }
+  };
+
   return (
     <>
       {openDeleteNewbladesModal && (
@@ -115,6 +170,14 @@ const Addblades = () => {
                 );
               })}
           </div>
+          {userID && userID.sub === process.env.USER_SUB && (
+            <AddBladesInputComponent
+              setSelectorValue={setSelectorValue}
+              setSerialInput={setSerialInput}
+              createNewBladeHandler={createNewBladeHandler}
+              onSubmit={onSubmit}
+            />
+          )}
         </div>
       </div>
       <style jsx>
@@ -146,7 +209,8 @@ const Addblades = () => {
             width: auto;
             padding: 1rem;
             display: grid;
-            grid-template-columns: 20rem 1fr;
+            display: grid;
+            grid-template-columns: auto 12.5rem 1fr;
           }
           .newblades-text {
             font-size: 0.8rem;
