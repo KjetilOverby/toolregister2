@@ -12,12 +12,14 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaComments } from "react-icons/fa";
 const axios = require("axios");
+import { useAuth0 } from "@auth0/auth0-react";
 
 const api = axios.create({
   baseURL: process.env.api,
 });
 
 const Lincksearch = () => {
+  const { user, isAuthenticated } = useAuth0();
   const {
     linckBlades,
     userID,
@@ -119,7 +121,7 @@ const Lincksearch = () => {
   }, [wasteMonth, wasteUpdate]);
   const createDeletedBladeHandler = () => {
     api
-      .post(`/api/linck/createDeletedBlade/?user=${userID.sub}`, {
+      .post(`/api/linck/createDeletedBlade/?user=${user.sub}`, {
         type: getType,
         serial: getSerial,
         wasteNumberOfRetip: getNumberOfRetip,
@@ -132,7 +134,7 @@ const Lincksearch = () => {
     createDeletedBladeHandler();
     try {
       api
-        .delete(`/api/linck/deleteBlade/?del=${linckID}&user=${userID.sub}`)
+        .delete(`/api/linck/deleteBlade/?del=${linckID}&user=${user.sub}`)
         .then((res) => {
           if (res.status === 200) {
             setOpenDeleteModal(false);
@@ -165,7 +167,7 @@ const Lincksearch = () => {
 
   const createServiceBladeHandler = () => {
     api
-      .post(`/api/linck/service/createserviceBlade/?user=${userID.sub}`, {
+      .post(`/api/linck/service/createserviceBlade/?user=${user.sub}`, {
         type: getType,
         serial: getSerial,
 
@@ -176,14 +178,11 @@ const Lincksearch = () => {
 
   const retipUpdateHandler = () => {
     api
-      .post(
-        `/api/linck/service/updateretip/?ids=${linckID}&user=${userID.sub}`,
-        {
-          type: getType,
-          performer: "Stridsbergs",
-          date: dateFormat(new Date(), "dd.mm.yyyy HH:MM"),
-        }
-      )
+      .post(`/api/linck/service/updateretip/?ids=${linckID}&user=${user.sub}`, {
+        type: getType,
+        performer: "Stridsbergs",
+        date: dateFormat(new Date(), "dd.mm.yyyy HH:MM"),
+      })
       .then(function (res) {
         if (res.status === 200) {
           setOpenRetipModal(false);
@@ -203,7 +202,7 @@ const Lincksearch = () => {
 
   const commentUpdateHandler = () => {
     api
-      .post(`/api/linck/comment/?ids=${linckID}&user=${userID.sub}`, {
+      .post(`/api/linck/comment/?ids=${linckID}&user=${user.sub}`, {
         comment: getCommentInput,
         commentDate: dateFormat(new Date(), "dd.mm.yyyy HH:MM"),
       })

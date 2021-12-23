@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../contexts/MyContext";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const api = axios.create({
   baseURL: process.env.api,
 });
 
 const ModalComponent = ({ linck }) => {
+  const { user, isAuthenticated } = useAuth0();
   const [editMode, setEditMode] = useState(false);
 
   const [antallSum, setAntallSum] = useState();
@@ -63,7 +65,7 @@ const ModalComponent = ({ linck }) => {
 
   const updateAntall = () => {
     api
-      .patch(`/api/tool/editTool?ids=${getID}&user=${userID && userID.sub}`, {
+      .patch(`/api/tool/editTool?ids=${getID}&user=${user && user.sub}`, {
         antallSum: antallSum,
       })
       .then((res) => {
@@ -74,7 +76,7 @@ const ModalComponent = ({ linck }) => {
         }
       });
   };
-  console.log(userID && userID.sub);
+
   useEffect(() => {
     setAntallSum(Number(IdAntall) + Number(antallInputCalc));
   }, [getID, getInputValue]);
@@ -86,7 +88,7 @@ const ModalComponent = ({ linck }) => {
           <img className="img" src={getImgUrl} />
           <h1>{type}</h1>
           <p>Antall: {getAntall}</p>
-          {userID && userID.sub === process.env.USER_SUB && (
+          {user && user.sub === process.env.USER_SUB && (
             <div>
               {!linck && (
                 <div className="edit-container">
@@ -150,7 +152,7 @@ const ModalComponent = ({ linck }) => {
               )}
             </div>
           )}
-          {userID && userID.sub === process.env.USER_SUB && (
+          {user && user.sub === process.env.USER_SUB && (
             <button className="btn-action" onClick={updateAntall}>
               OPPDATER
             </button>

@@ -5,6 +5,7 @@ import dateFormat, { masks } from "dateformat";
 import ModalComponentEdit from "../src/components/common/ModalComponentEdit";
 import { FaTrashAlt } from "react-icons/fa";
 import { MyContext } from "../src/contexts/MyContext";
+import { useAuth0 } from "@auth0/auth0-react";
 import AddBladesInputComponent from "../src/components/addblades/AddBladesInputComponent";
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,7 +14,9 @@ const api = axios.create({
 });
 
 const Addblades = () => {
-  const { userID, setLinckUpdate, linckUpdate } = useContext(MyContext);
+  const { user, isAuthenticated } = useAuth0();
+  const { userID, setUserID, setLinckUpdate, linckUpdate } =
+    useContext(MyContext);
   const [newBlades, setNewBlades] = useState();
   const [updateNewblades, setUpdateNewblades] = useState(false);
   const [createdMonth, setCreatedMonth] = useState(new Date().getMonth() + 1);
@@ -50,7 +53,7 @@ const Addblades = () => {
     try {
       api
         .delete(
-          `/api/linck/deletecreatedblades/?del=${bladeInfo.id}&user=${userID.sub}`
+          `/api/linck/deletecreatedblades/?del=${bladeInfo.id}&user=${user.sub}`
         )
         .then((res) => {
           if (res.status === 200) {
@@ -67,7 +70,7 @@ const Addblades = () => {
     try {
       api
         .delete(
-          `/api/linck/deletecreatedblades2/?del=${bladeInfo.id}&user=${userID.sub}`
+          `/api/linck/deletecreatedblades2/?del=${bladeInfo.id}&user=${user.sub}`
         )
         .then((res) => {
           if (res.status === 200) {
@@ -90,7 +93,7 @@ const Addblades = () => {
       alert("Du må fylle ut bladtype og serienummer!");
     } else {
       api
-        .post(`/api/linck/newblades/createNewBlade/?user=${userID.sub}`, {
+        .post(`/api/linck/newblades/createNewBlade/?user=${user.sub}`, {
           type: selectorValue,
           serial: serialInput,
           updated: new Date(),
@@ -106,7 +109,7 @@ const Addblades = () => {
 
   const createNewBladeListHandler = () => {
     api
-      .post(`/api/linck/newblades/createNewBladeList/?user=${userID.sub}`, {
+      .post(`/api/linck/newblades/createNewBladeList/?user=${user.sub}`, {
         type: selectorValue,
         serial: serialInput,
         updated: new Date(),
@@ -170,7 +173,7 @@ const Addblades = () => {
                 );
               })}
           </div>
-          {userID && userID.sub === process.env.USER_SUB && (
+          {user && user.sub === process.env.USER_SUB && (
             <AddBladesInputComponent
               setSelectorValue={setSelectorValue}
               setSerialInput={setSerialInput}
