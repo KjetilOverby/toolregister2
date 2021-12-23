@@ -3,7 +3,7 @@ import Service from "../../../models/Service";
 
 dbConnect();
 
-const currentYear = new Date().getFullYear();
+// const currentYear = new Date().getFullYear();
 
 export default async (req, res) => {
   const { method } = req;
@@ -14,8 +14,8 @@ export default async (req, res) => {
           {
             $match: {
               serviceDate: {
-                $gte: new Date(`${currentYear}-01-01`),
-                $lte: new Date(`${currentYear}-12-31`),
+                $gte: new Date(`${req.query.year}-01-01`),
+                $lte: new Date(`${req.query.year}-12-31`),
               },
             },
           },

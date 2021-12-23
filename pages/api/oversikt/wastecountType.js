@@ -3,8 +3,6 @@ import Waste from "../../../models/Waste";
 
 dbConnect();
 
-const currentYear = new Date().getFullYear();
-
 export default async (req, res) => {
   const { method } = req;
   switch (method) {
@@ -14,8 +12,8 @@ export default async (req, res) => {
           {
             $match: {
               wasteDate: {
-                $gte: new Date(`${currentYear}-01-01`),
-                $lte: new Date(`${currentYear}-12-31`),
+                $gte: new Date(`${req.query.year}-01-01`),
+                $lte: new Date(`${req.query.year}-12-31`),
               },
             },
           },

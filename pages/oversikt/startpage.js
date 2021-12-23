@@ -5,16 +5,19 @@ import { MyContext } from "../../src/contexts/MyContext";
 import ToolWasteCount from "../../src/components/oversikt/ToolWasteCount";
 import OversiktLinckBlad from "../../src/components/oversikt/OversiktLinckBlad";
 const axios = require("axios");
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const api = axios.create({
   baseURL: process.env.api,
 });
 
-const oversikt = () => {
+const Oversikt = () => {
   const [linckBladesTab, setLinckBladesTab] = useState();
   const [serviceTab, setServiceTab] = useState();
   const [wasteTab, setWasteTab] = useState();
   const [newbladesTab, setNewbladesTab] = useState();
+  const [yearRequest, setYearRequest] = useState(new Date().getFullYear());
 
   useEffect(() => {
     api
@@ -32,7 +35,7 @@ const oversikt = () => {
   }, []);
   useEffect(() => {
     api
-      .get(`/api/oversikt/serviceCountYearType`)
+      .get(`/api/oversikt/serviceCountYearType?year=${yearRequest}`)
       .then(function (response) {
         setServiceTab(response.data.data);
       })
@@ -43,10 +46,10 @@ const oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, []);
+  }, [yearRequest]);
   useEffect(() => {
     api
-      .get(`/api/oversikt/wastecountType`)
+      .get(`/api/oversikt/wastecountType?year=${yearRequest}`)
       .then(function (response) {
         setWasteTab(response.data.data);
       })
@@ -57,10 +60,10 @@ const oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, []);
+  }, [yearRequest]);
   useEffect(() => {
     api
-      .get(`/api/oversikt/newBladesCountType`)
+      .get(`/api/oversikt/newBladesCountType?year=${yearRequest}`)
       .then(function (response) {
         setNewbladesTab(response.data.data);
       })
@@ -71,8 +74,7 @@ const oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, []);
-
+  }, [yearRequest]);
   return (
     <>
       <div className="container">
@@ -87,6 +89,19 @@ const oversikt = () => {
           <Link href="/oversikt/toolinputedit">
             <p>Til input Edit</p>
           </Link>
+          <div>
+            <h5>År {yearRequest}</h5>
+            <div>
+              <MdKeyboardArrowLeft
+                onClick={() => setYearRequest(yearRequest - 1)}
+                style={{ fontSize: "2rem" }}
+              />
+              <MdKeyboardArrowRight
+                onClick={() => setYearRequest(yearRequest + 1)}
+                style={{ fontSize: "2rem" }}
+              />
+            </div>
+          </div>
           <div>
             <ToolWasteCount />
           </div>
@@ -137,4 +152,4 @@ const oversikt = () => {
   );
 };
 
-export default oversikt;
+export default Oversikt;
