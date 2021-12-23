@@ -3,12 +3,82 @@ import Link from "next/link";
 import HeaderStartPage from "../../src/components/common/HeaderStartPage";
 import { MyContext } from "../../src/contexts/MyContext";
 import ToolWasteCount from "../../src/components/oversikt/ToolWasteCount";
+import OversiktLinckBlad from "../../src/components/oversikt/OversiktLinckBlad";
+const axios = require("axios");
+
+const api = axios.create({
+  baseURL: process.env.api,
+});
 
 const oversikt = () => {
+  const [linckBladesTab, setLinckBladesTab] = useState();
+  const [serviceTab, setServiceTab] = useState();
+  const [wasteTab, setWasteTab] = useState();
+  const [newbladesTab, setNewbladesTab] = useState();
+
+  useEffect(() => {
+    api
+      .get(`/api/oversikt/linckBladesTabell`)
+      .then(function (response) {
+        setLinckBladesTab(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+  useEffect(() => {
+    api
+      .get(`/api/oversikt/serviceCountYearType`)
+      .then(function (response) {
+        setServiceTab(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+  useEffect(() => {
+    api
+      .get(`/api/oversikt/wastecountType`)
+      .then(function (response) {
+        setWasteTab(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+  useEffect(() => {
+    api
+      .get(`/api/oversikt/newBladesCountType`)
+      .then(function (response) {
+        setNewbladesTab(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+
   return (
     <>
       <div className="container">
-        <HeaderStartPage color="black" />
+        <div className="header-container">
+          <HeaderStartPage color="black" />
+        </div>
 
         <div className="image-container">
           <h1 className="header">Oversikt over vektøy</h1>
@@ -20,6 +90,14 @@ const oversikt = () => {
           <div>
             <ToolWasteCount />
           </div>
+          <div>
+            <OversiktLinckBlad
+              linckBladesTab={linckBladesTab}
+              serviceTab={serviceTab}
+              wasteTab={wasteTab}
+              newbladesTab={newbladesTab}
+            />
+          </div>
         </div>
       </div>
       <style jsx>
@@ -29,6 +107,10 @@ const oversikt = () => {
           .header {
             color: white;
             font-size: 4rem;
+          }
+          .header-container {
+            display: grid;
+            place-items: center;
           }
           .page-container {
             margin: 2rem 5rem;
