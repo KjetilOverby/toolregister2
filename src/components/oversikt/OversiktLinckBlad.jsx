@@ -6,6 +6,10 @@ const OversiktLinckBlad = ({
   serviceTab,
   wasteTab,
   newbladesTab,
+  retipSum,
+  vrakSum,
+  newBladesSum,
+  linckBladesSum,
 }) => {
   const { linckBlades, toolwasteData, toolCreateData } = useContext(MyContext);
 
@@ -14,7 +18,7 @@ const OversiktLinckBlad = ({
       {linckBlades ? (
         <div className="container">
           <div className="list-container antall-container">
-            <h5>Antall sagblad</h5>
+            <h5>Antall sagblad ({linckBladesSum})</h5>
             {linckBladesTab &&
               linckBladesTab.map((item) => {
                 return (
@@ -28,7 +32,7 @@ const OversiktLinckBlad = ({
               })}
           </div>
           <div className="list-container omlodd-container">
-            <h5>Antall omloddet</h5>
+            <h5>Antall omloddet ({retipSum})</h5>
             {serviceTab &&
               serviceTab.map((item) => {
                 return (
@@ -42,7 +46,7 @@ const OversiktLinckBlad = ({
               })}
           </div>
           <div className="list-container vrak-container">
-            <h5>Antall vrak</h5>
+            <h5>Antall vrak ({vrakSum})</h5>
             {wasteTab &&
               wasteTab.map((item) => {
                 return (
@@ -56,7 +60,7 @@ const OversiktLinckBlad = ({
               })}
           </div>
           <div className="list-container new-container">
-            <h5>Antall nye</h5>
+            <h5>Antall nye ({newBladesSum})</h5>
             {newbladesTab &&
               newbladesTab.map((item) => {
                 return (

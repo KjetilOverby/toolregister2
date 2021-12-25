@@ -23,6 +23,51 @@ const Oversikt = () => {
   const [monthRequest2, setMonthRequest2] = useState(new Date().getMonth() + 1);
   const [nameOfMonth, setNameOfMonth] = useState();
 
+  const [linckBladesSum, setLinckBladesSum] = useState();
+  const [retipSum, setRetipSum] = useState();
+  const [vrakSum, setVrakSum] = useState();
+  const [newBladesSum, setNewBladesSum] = useState();
+
+  console.log(retipSum);
+  console.log(serviceTab);
+
+  useEffect(() => {
+    if (linckBladesTab) {
+      setLinckBladesSum(
+        linckBladesTab.reduce(function (a, b) {
+          return a + b.typeCount;
+        }, 0)
+      );
+    }
+  }, [linckBladesTab, monthRequest, retipSum]);
+  useEffect(() => {
+    if (serviceTab) {
+      setRetipSum(
+        serviceTab.reduce(function (a, b) {
+          return a + b.typeCount;
+        }, 0)
+      );
+    }
+  }, [serviceTab, monthRequest, retipSum]);
+  useEffect(() => {
+    if (wasteTab) {
+      setVrakSum(
+        wasteTab.reduce(function (a, b) {
+          return a + b.typeCount;
+        }, 0)
+      );
+    }
+  }, [wasteTab, monthRequest, retipSum]);
+  useEffect(() => {
+    if (newbladesTab) {
+      setNewBladesSum(
+        newbladesTab.reduce(function (a, b) {
+          return a + b.typeCount;
+        }, 0)
+      );
+    }
+  }, [newbladesTab, monthRequest, retipSum]);
+
   const monthPickerDown = () => {
     setMonthRequest2(monthRequest - 1);
     setMonthRequest(monthRequest2 - 1);
@@ -209,6 +254,10 @@ const Oversikt = () => {
               serviceTab={serviceTab}
               wasteTab={wasteTab}
               newbladesTab={newbladesTab}
+              retipSum={retipSum}
+              vrakSum={vrakSum}
+              newBladesSum={newBladesSum}
+              linckBladesSum={linckBladesSum}
             />
           </div>
         </div>
@@ -234,7 +283,7 @@ const Oversikt = () => {
           .image-container {
             height: 20rem;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-              url("https://images.unsplash.com/photo-1493515694075-fff2d464227d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+              url("https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
