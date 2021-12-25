@@ -6,6 +6,9 @@ dbConnect();
 // const currentYear = new Date().getFullYear();
 
 export default async (req, res) => {
+  const date = new Date();
+  const lastDay = new Date(date.getFullYear(), req.query.month, 0);
+
   const { method } = req;
   switch (method) {
     case "GET":
@@ -14,8 +17,10 @@ export default async (req, res) => {
           {
             $match: {
               serviceDate: {
-                $gte: new Date(`${req.query.year}-01-01`),
-                $lte: new Date(`${req.query.year}-12-31`),
+                $gte: new Date(`${req.query.year}-${req.query.month2}-01`),
+                $lte: new Date(
+                  `${req.query.year}-${req.query.month}-${lastDay.getDate()}`
+                ),
               },
             },
           },

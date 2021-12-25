@@ -44,9 +44,7 @@ const HeaderComponent = ({ color }) => {
                   <Link href="/addblades">
                     <p className="tabs-mobile">Nye blad</p>
                   </Link>
-                  <Link href="/datosok">
-                    <p className="tabs-mobile">Datosøk</p>
-                  </Link>
+
                   <LoginButton />
                 </div>
               )}
@@ -77,9 +75,6 @@ const HeaderComponent = ({ color }) => {
               </Link>
               <Link href="/oversikt/startpage">
                 <p className="tabs">Oversikt</p>
-              </Link>
-              <Link href="/datosok">
-                <p className="tabs">Datosøk</p>
               </Link>
 
               <LoginButton />

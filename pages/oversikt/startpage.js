@@ -17,7 +17,84 @@ const Oversikt = () => {
   const [serviceTab, setServiceTab] = useState();
   const [wasteTab, setWasteTab] = useState();
   const [newbladesTab, setNewbladesTab] = useState();
+
   const [yearRequest, setYearRequest] = useState(new Date().getFullYear());
+  const [monthRequest, setMonthRequest] = useState(new Date().getMonth() + 1);
+  const [monthRequest2, setMonthRequest2] = useState(new Date().getMonth() + 1);
+  const [nameOfMonth, setNameOfMonth] = useState();
+
+  const monthPickerDown = () => {
+    setMonthRequest2(monthRequest - 1);
+    setMonthRequest(monthRequest2 - 1);
+    if (monthRequest2 === 1 && monthRequest === 12) {
+      setMonthRequest(new Date().getMonth() + 1);
+      setMonthRequest2(new Date().getMonth() + 1);
+    }
+  };
+  const monthPickerUp = () => {
+    setMonthRequest2(monthRequest + 1);
+    setMonthRequest(monthRequest2 + 1);
+    if (monthRequest2 === 1 && monthRequest === 12) {
+      setMonthRequest(new Date().getMonth() + 1);
+      setMonthRequest2(new Date().getMonth() + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (monthRequest === 0) {
+      setMonthRequest2(1);
+      setMonthRequest(12);
+    } else if (monthRequest === 13) {
+      setMonthRequest2(1);
+      setMonthRequest(12);
+    }
+  }, [monthRequest]);
+
+  useEffect(() => {
+    switch (monthRequest) {
+      case 1:
+        setNameOfMonth("januar");
+        break;
+      case 2:
+        setNameOfMonth("februar");
+        break;
+      case 3:
+        setNameOfMonth("mars");
+        break;
+      case 4:
+        setNameOfMonth("april");
+        break;
+      case 5:
+        setNameOfMonth("mai");
+        break;
+      case 6:
+        setNameOfMonth("juni");
+        break;
+      case 7:
+        setNameOfMonth("juli");
+        break;
+      case 8:
+        setNameOfMonth("august");
+        break;
+      case 9:
+        setNameOfMonth("september");
+        break;
+      case 10:
+        setNameOfMonth("oktober");
+        break;
+      case 11:
+        setNameOfMonth("november");
+        break;
+      case 12:
+        setNameOfMonth("desember");
+        break;
+    }
+  }, [monthRequest, monthRequest2]);
+  useEffect(() => {
+    if (monthRequest2 === 1 && monthRequest === 12) {
+      setNameOfMonth("januar - desember");
+    }
+  }, [monthRequest]);
 
   useEffect(() => {
     api
@@ -35,7 +112,9 @@ const Oversikt = () => {
   }, []);
   useEffect(() => {
     api
-      .get(`/api/oversikt/serviceCountYearType?year=${yearRequest}`)
+      .get(
+        `/api/oversikt/serviceCountYearType?year=${yearRequest}&month=${monthRequest}&month2=${monthRequest2}`
+      )
       .then(function (response) {
         setServiceTab(response.data.data);
       })
@@ -46,10 +125,12 @@ const Oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, [yearRequest]);
+  }, [yearRequest, monthRequest, monthRequest2]);
   useEffect(() => {
     api
-      .get(`/api/oversikt/wastecountType?year=${yearRequest}`)
+      .get(
+        `/api/oversikt/wastecountType?year=${yearRequest}&month=${monthRequest}&month2=${monthRequest2}`
+      )
       .then(function (response) {
         setWasteTab(response.data.data);
       })
@@ -60,10 +141,12 @@ const Oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, [yearRequest]);
+  }, [yearRequest, monthRequest, monthRequest2]);
   useEffect(() => {
     api
-      .get(`/api/oversikt/newBladesCountType?year=${yearRequest}`)
+      .get(
+        `/api/oversikt/newBladesCountType?year=${yearRequest}&month=${monthRequest}&month2=${monthRequest2}`
+      )
       .then(function (response) {
         setNewbladesTab(response.data.data);
       })
@@ -74,7 +157,7 @@ const Oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, [yearRequest]);
+  }, [yearRequest, monthRequest, monthRequest2]);
   return (
     <>
       <div className="container">
@@ -89,17 +172,32 @@ const Oversikt = () => {
           <Link href="/oversikt/toolinputedit">
             <p>Til input Edit</p>
           </Link>
-          <div>
-            <h5>År {yearRequest}</h5>
+          <div className="arrow-btn-container">
             <div>
-              <MdKeyboardArrowLeft
-                onClick={() => setYearRequest(yearRequest - 1)}
-                style={{ fontSize: "2rem" }}
-              />
-              <MdKeyboardArrowRight
-                onClick={() => setYearRequest(yearRequest + 1)}
-                style={{ fontSize: "2rem" }}
-              />
+              <h5>{yearRequest}</h5>
+              <div>
+                <MdKeyboardArrowLeft
+                  onClick={() => setYearRequest(yearRequest - 1)}
+                  style={{ fontSize: "2rem" }}
+                />
+                <MdKeyboardArrowRight
+                  onClick={() => setYearRequest(yearRequest + 1)}
+                  style={{ fontSize: "2rem" }}
+                />
+              </div>
+            </div>
+            <div>
+              <h5>{nameOfMonth}</h5>
+              <div>
+                <MdKeyboardArrowLeft
+                  onClick={monthPickerDown}
+                  style={{ fontSize: "2rem" }}
+                />
+                <MdKeyboardArrowRight
+                  onClick={monthPickerUp}
+                  style={{ fontSize: "2rem" }}
+                />
+              </div>
             </div>
           </div>
           <div>
@@ -117,6 +215,9 @@ const Oversikt = () => {
       </div>
       <style jsx>
         {`
+          .arrow-btn-container {
+            display: flex;
+          }
           .container {
           }
           .header {
