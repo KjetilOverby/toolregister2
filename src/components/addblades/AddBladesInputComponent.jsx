@@ -53,6 +53,7 @@ const AddBladesInputComponent = ({
             color: #505c4e;
             margin-top: 1rem;
             transition: 0.5s;
+            grid-area: input;
           }
           .btn:hover {
             background: #879b823e;

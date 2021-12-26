@@ -18,7 +18,7 @@ const OversiktLinckBlad = ({
       {linckBlades ? (
         <div className="container">
           <div className="list-container antall-container">
-            <h5>Antall sagblad ({linckBladesSum})</h5>
+            <h5 className="table-header">Antall sagblad ({linckBladesSum})</h5>
             {linckBladesTab &&
               linckBladesTab.map((item) => {
                 return (
@@ -32,7 +32,7 @@ const OversiktLinckBlad = ({
               })}
           </div>
           <div className="list-container omlodd-container">
-            <h5>Antall omloddet ({retipSum})</h5>
+            <h5 className="table-header">Antall omloddet ({retipSum})</h5>
             {serviceTab &&
               serviceTab.map((item) => {
                 return (
@@ -46,7 +46,7 @@ const OversiktLinckBlad = ({
               })}
           </div>
           <div className="list-container vrak-container">
-            <h5>Antall vrak ({vrakSum})</h5>
+            <h5 className="table-header">Antall vrak ({vrakSum})</h5>
             {wasteTab &&
               wasteTab.map((item) => {
                 return (
@@ -60,7 +60,7 @@ const OversiktLinckBlad = ({
               })}
           </div>
           <div className="list-container new-container">
-            <h5>Antall nye ({newBladesSum})</h5>
+            <h5 className="table-header">Antall nye ({newBladesSum})</h5>
             {newbladesTab &&
               newbladesTab.map((item) => {
                 return (
@@ -104,9 +104,13 @@ const OversiktLinckBlad = ({
             justify-content: space-between;
             width: 11rem;
           }
+          .table-header {
+            color: #203e90;
+          }
           p {
             font-size: 0.8rem;
             font-style: italic;
+            color: #707070;
           }
           @media (max-width: 2100px) {
             .container {
@@ -115,13 +119,16 @@ const OversiktLinckBlad = ({
           }
           @media (max-width: 1000px) {
             .container {
-              grid-template-rows: repeat(4, 1fr);
+              grid-template-rows: repeat(4, auto);
               grid-template-areas:
                 "antall"
                 "omlodd"
                 "vrak"
                 "nye";
               margin: 0;
+            }
+            .list-container {
+              margin-bottom: 2rem;
             }
           }
         `}

@@ -207,13 +207,14 @@ const Addblades = () => {
 
           .newblades-container {
             height: auto;
+            grid-area: list;
           }
           .newblades-main-container {
             width: auto;
             padding: 1rem;
             display: grid;
-            display: grid;
             grid-template-columns: auto 12.5rem 1fr;
+            grid-template-areas: "list input .";
           }
           .newblades-text {
             font-size: 0.8rem;
@@ -224,6 +225,20 @@ const Addblades = () => {
           .newblades-text:hover {
             cursor: pointer;
             color: blue;
+          }
+          @media (max-width: 1000px) {
+            .image-container {
+              height: 10rem;
+            }
+            .newblades-main-container {
+              grid-template-rows: auto auto;
+              grid-template-areas:
+                "input input ."
+                "list list .";
+            }
+            .newblades-container {
+              margin-top: 2rem;
+            }
           }
         `}
       </style>

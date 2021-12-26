@@ -218,29 +218,29 @@ const Oversikt = () => {
             <p>Til input Edit</p>
           </Link>
           <div className="arrow-btn-container">
-            <div>
-              <h5>{yearRequest}</h5>
-              <div>
-                <MdKeyboardArrowLeft
-                  onClick={() => setYearRequest(yearRequest - 1)}
-                  style={{ fontSize: "2rem" }}
-                />
-                <MdKeyboardArrowRight
-                  onClick={() => setYearRequest(yearRequest + 1)}
-                  style={{ fontSize: "2rem" }}
-                />
-              </div>
-            </div>
-            <div>
+            <div className="arrow-btn-each-container">
               <h5>{nameOfMonth}</h5>
               <div>
                 <MdKeyboardArrowLeft
                   onClick={monthPickerDown}
-                  style={{ fontSize: "2rem" }}
+                  style={{ fontSize: "2rem", color: "red" }}
                 />
                 <MdKeyboardArrowRight
                   onClick={monthPickerUp}
-                  style={{ fontSize: "2rem" }}
+                  style={{ fontSize: "2rem", color: "seagreen" }}
+                />
+              </div>
+            </div>
+            <div className="arrow-btn-each-container">
+              <h5>{yearRequest}</h5>
+              <div>
+                <MdKeyboardArrowLeft
+                  onClick={() => setYearRequest(yearRequest - 1)}
+                  style={{ fontSize: "2rem", color: "red" }}
+                />
+                <MdKeyboardArrowRight
+                  onClick={() => setYearRequest(yearRequest + 1)}
+                  style={{ fontSize: "2rem", color: "seagreen" }}
                 />
               </div>
             </div>
@@ -266,6 +266,17 @@ const Oversikt = () => {
         {`
           .arrow-btn-container {
             display: flex;
+            justify-content: space-between;
+            width: 16rem;
+            margin: 2rem 0;
+          }
+          .arrow-btn-each-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 5rem;
+            align-items: center;
+            width: 8rem;
           }
           .container {
           }
@@ -295,6 +306,17 @@ const Oversikt = () => {
           }
           p:hover {
             cursor: pointer;
+          }
+          @media (max-width: 1000px) {
+            .header {
+              font-size: 2.3rem;
+            }
+            .page-container {
+              margin: 2rem;
+            }
+            .image-container {
+              height: 10rem;
+            }
           }
         `}
       </style>
