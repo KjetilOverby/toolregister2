@@ -317,12 +317,12 @@ const Lincksearch = () => {
                 Vrakede blad {namedMonth} {currentYear}
               </h5>
               <MdKeyboardArrowLeft
-                style={{ fontSize: "1.5rem", color: "red", cursor: "pointer" }}
+                style={{ fontSize: "2rem", color: "red", cursor: "pointer" }}
                 onClick={monthCountDownHandler}
               />
               <MdKeyboardArrowRight
                 style={{
-                  fontSize: "1.5rem",
+                  fontSize: "2rem",
                   color: "green",
                   cursor: "pointer",
                 }}

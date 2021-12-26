@@ -46,6 +46,11 @@ const InputOverview = ({
           .img-container {
             width: 10rem;
           }
+          @media (max-width: 800px) {
+            .container {
+              width: 100%;
+            }
+          }
         `}
       </style>
     </>

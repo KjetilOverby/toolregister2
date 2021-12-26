@@ -29,6 +29,7 @@ const ButtonComponent = ({ header, link }) => {
           @media (max-width: 1000px) {
             .container {
               padding: 1rem;
+              width: 100%;
             }
           }
         `}

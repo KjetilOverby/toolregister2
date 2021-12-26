@@ -125,6 +125,13 @@ const Toolinputedit = () => {
               grid-template-rows: 1fr 1fr;
             }
           }
+          @media (max-width: 800px) {
+            .container {
+              margin: 2rem 0.5rem;
+              grid-template-columns: 1fr;
+              grid-template-rows: 1fr 1fr;
+            }
+          }
         `}
       </style>
     </>
