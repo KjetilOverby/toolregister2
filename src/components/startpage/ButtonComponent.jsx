@@ -20,7 +20,7 @@ const ButtonComponent = ({ header, link }) => {
             transition: background 0.5s;
             font-family: "Titillium Web", sans-serif;
             border: none;
-            transition: 0.5s;
+            transition: color 0.5s;
           }
           .container:hover {
             cursor: pointer;
