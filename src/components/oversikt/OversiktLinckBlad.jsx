@@ -13,7 +13,61 @@ const OversiktLinckBlad = ({
 }) => {
   const { linckBlades, toolwasteData, toolCreateData } = useContext(MyContext);
 
-  const nom = [20, 20, 60, 60, 30, 60, 25, 25, 25, 25, 25, 25, 25];
+  // const nom = [20, 20, 60, 60, 30, 60, 25, 25, 25, 25, 25, 25, 25];
+  const nom = [
+    {
+      ant: 20,
+      id: 1,
+    },
+    {
+      ant: 20,
+      id: 2,
+    },
+    {
+      ant: 60,
+      id: 3,
+    },
+    {
+      ant: 60,
+      id: 4,
+    },
+    {
+      ant: 30,
+      id: 5,
+    },
+    {
+      ant: 60,
+      id: 6,
+    },
+    {
+      ant: 25,
+      id: 7,
+    },
+    {
+      ant: 25,
+      id: 8,
+    },
+    {
+      ant: 25,
+      id: 9,
+    },
+    {
+      ant: 25,
+      id: 10,
+    },
+    {
+      ant: 25,
+      id: 11,
+    },
+    {
+      ant: 25,
+      id: 12,
+    },
+    {
+      ant: 25,
+      id: 13,
+    },
+  ];
 
   return (
     <>
@@ -26,18 +80,20 @@ const OversiktLinckBlad = ({
                 {linckBladesTab &&
                   linckBladesTab.map((item) => {
                     return (
-                      <>
+                      <div key={item._id.type}>
                         <div className="oversikt-container">
                           <p>{item._id.type}</p>
                           <p>{item.typeCount}</p>
                         </div>
-                      </>
+                      </div>
                     );
                   })}
               </div>
               <div>
                 {nom.map((item) => (
-                  <p className="nom">{item}</p>
+                  <p key={item.id} className="nom">
+                    {item.ant}
+                  </p>
                 ))}
               </div>
             </div>
@@ -47,12 +103,12 @@ const OversiktLinckBlad = ({
             {serviceTab &&
               serviceTab.map((item) => {
                 return (
-                  <>
+                  <div key={item._id.type}>
                     <div className="oversikt-container">
                       <p>{item._id.type}</p>
                       <p>{item.typeCount}</p>
                     </div>
-                  </>
+                  </div>
                 );
               })}
           </div>
@@ -61,12 +117,12 @@ const OversiktLinckBlad = ({
             {wasteTab &&
               wasteTab.map((item) => {
                 return (
-                  <>
+                  <div key={item._id.type}>
                     <div className="oversikt-container">
                       <p>{item._id.type}</p>
                       <p>{item.typeCount}</p>
                     </div>
-                  </>
+                  </div>
                 );
               })}
           </div>
@@ -75,12 +131,12 @@ const OversiktLinckBlad = ({
             {newbladesTab &&
               newbladesTab.map((item) => {
                 return (
-                  <>
+                  <div key={item._id.type}>
                     <div className="oversikt-container">
                       <p>{item._id.type}</p>
                       <p>{item.typeCount}</p>
                     </div>
-                  </>
+                  </div>
                 );
               })}
           </div>

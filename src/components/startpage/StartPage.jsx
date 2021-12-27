@@ -36,7 +36,7 @@ const StartPage = () => {
             width: 50rem;
           }
           .header {
-            color: #e9cf97;
+            color: #63adcf;
             margin: 5rem 0;
             font-weight: bold;
             font-size: 4rem;
