@@ -53,13 +53,13 @@ const ModalComponent = ({ linck }) => {
     }
   };
 
-  useEffect(() => {
-    if (antallInputCalc >= 0) {
-      setEditMode(true);
-    } else {
-      setEditMode(false);
-    }
-  }, [getInputValue]);
+  // useEffect(() => {
+  //   if (antallInputCalc > -5) {
+  //     setEditMode(true);
+  //   } else {
+  //     setEditMode(false);
+  //   }
+  // }, [getInputValue]);
 
   useEffect(() => {}, [getInputValue]);
 
@@ -75,6 +75,11 @@ const ModalComponent = ({ linck }) => {
           createDeletedData();
         }
       });
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
+    setAntallInputCalc(0);
   };
 
   useEffect(() => {
@@ -158,7 +163,7 @@ const ModalComponent = ({ linck }) => {
             </button>
           )}
 
-          <button className="btn-action" onClick={() => setOpenModal(false)}>
+          <button className="btn-action" onClick={closeModalHandler}>
             LUKK
           </button>
         </div>

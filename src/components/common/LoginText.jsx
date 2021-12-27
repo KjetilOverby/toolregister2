@@ -1,10 +1,14 @@
 import React from "react";
+import { FaRegCopyright } from "react-icons/fa";
 
 const LoginText = () => {
   return (
     <>
       <div className="container">
-        <p>inlogged som Moelven Sliperi * © copyright 2022</p>
+        <p>
+          Innlogged som Moelven Sliperi *{" "}
+          <FaRegCopyright style={{ fontSize: ".8rem" }} /> copyright 2022
+        </p>
       </div>
       <style jsx>
         {`
@@ -15,6 +19,7 @@ const LoginText = () => {
             color: grey;
             animation: move 3s forwards;
             -webkit-animation-timing-function: linear;
+            margin-left: 1rem;
           }
           @keyframes move {
             0% {
