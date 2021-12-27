@@ -13,23 +13,34 @@ const OversiktLinckBlad = ({
 }) => {
   const { linckBlades, toolwasteData, toolCreateData } = useContext(MyContext);
 
+  const nom = [20, 20, 60, 60, 30, 60, 25, 25, 25, 25, 25, 25, 25];
+
   return (
     <>
       {linckBlades ? (
         <div className="container">
           <div className="list-container antall-container">
             <h5 className="table-header">Antall sagblad ({linckBladesSum})</h5>
-            {linckBladesTab &&
-              linckBladesTab.map((item) => {
-                return (
-                  <>
-                    <div className="oversikt-container">
-                      <p>{item._id.type}</p>
-                      <p>{item.typeCount}</p>
-                    </div>
-                  </>
-                );
-              })}
+            <div className="table-ant-nom-container">
+              <div>
+                {linckBladesTab &&
+                  linckBladesTab.map((item) => {
+                    return (
+                      <>
+                        <div className="oversikt-container">
+                          <p>{item._id.type}</p>
+                          <p>{item.typeCount}</p>
+                        </div>
+                      </>
+                    );
+                  })}
+              </div>
+              <div>
+                {nom.map((item) => (
+                  <p className="nom">{item}</p>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="list-container omlodd-container">
             <h5 className="table-header">Antall omloddet ({retipSum})</h5>
@@ -88,6 +99,13 @@ const OversiktLinckBlad = ({
           .antall-container {
             grid-area: antall;
           }
+          .table-ant-nom-container {
+            display: flex;
+          }
+          .nom {
+            margin-left: 1.5rem;
+            color: blue;
+          }
           .omlodd-container {
             grid-area: omlodd;
           }
@@ -115,6 +133,11 @@ const OversiktLinckBlad = ({
           @media (max-width: 2100px) {
             .container {
               margin: 0 10rem;
+            }
+          }
+          @media (max-width: 1400px) {
+            .container {
+              margin: 0 1rem;
             }
           }
           @media (max-width: 1000px) {
