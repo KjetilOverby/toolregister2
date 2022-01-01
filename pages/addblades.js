@@ -83,7 +83,6 @@ const Addblades = () => {
   };
 
   const createNewBladeHandler = (e) => {
-    createNewBladeListHandler();
     if (
       serialInput === "" ||
       serialInput === undefined ||
@@ -101,7 +100,10 @@ const Addblades = () => {
         })
         .then(function (response) {
           if (response.status === 200) {
-            setUpdateNewblades(!updateNewblades);
+            createNewBladeListHandler();
+            setTimeout(() => {
+              setUpdateNewblades(!updateNewblades);
+            }, 1000);
           }
         });
     }
@@ -208,6 +210,7 @@ const Addblades = () => {
           .newblades-container {
             height: auto;
             grid-area: list;
+            min-width: 10rem;
           }
           .newblades-main-container {
             width: auto;
@@ -215,6 +218,7 @@ const Addblades = () => {
             display: grid;
             grid-template-columns: auto 12.5rem 1fr;
             grid-template-areas: "list input .";
+            grid-column-gap: 2rem;
           }
           .newblades-text {
             font-size: 0.8rem;
