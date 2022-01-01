@@ -28,8 +28,7 @@ const Oversikt = () => {
   const [vrakSum, setVrakSum] = useState();
   const [newBladesSum, setNewBladesSum] = useState();
 
-  console.log(retipSum);
-  console.log(serviceTab);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     if (linckBladesTab) {
@@ -170,7 +169,7 @@ const Oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, [yearRequest, monthRequest, monthRequest2]);
+  }, [yearRequest, monthRequest, monthRequest2, reload]);
   useEffect(() => {
     api
       .get(
@@ -186,6 +185,11 @@ const Oversikt = () => {
       .then(function () {
         // always executed
       });
+  }, [yearRequest, monthRequest, monthRequest2, reload]);
+  useEffect(() => {
+    setTimeout(() => {
+      setReload(!reload);
+    }, 1000);
   }, [yearRequest, monthRequest, monthRequest2]);
   useEffect(() => {
     api
@@ -202,7 +206,7 @@ const Oversikt = () => {
       .then(function () {
         // always executed
       });
-  }, [yearRequest, monthRequest, monthRequest2]);
+  }, [yearRequest, monthRequest, monthRequest2, reload]);
   return (
     <>
       <div className="container">
@@ -217,6 +221,7 @@ const Oversikt = () => {
           <Link href="/oversikt/toolinputedit">
             <p>Til input Edit</p>
           </Link>
+          <button onClick={() => setReload(!reload)}>Reload</button>
           <div className="arrow-btn-container">
             <div className="arrow-btn-each-container">
               <h5>{nameOfMonth}</h5>
