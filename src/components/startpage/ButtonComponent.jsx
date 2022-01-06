@@ -1,11 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
-const ButtonComponent = ({ header, link }) => {
+const ButtonComponent = ({ header, link, img }) => {
   return (
     <>
       <Link href={`${link}`}>
-        <button className="container">{header}</button>
+        <div className="container">
+          <p>{header}</p>
+
+          <img src={img} alt="" className="img" />
+        </div>
       </Link>
       <style jsx>
         {`
@@ -14,22 +18,30 @@ const ButtonComponent = ({ header, link }) => {
             background: transparent;
             padding: 1rem;
             margin-bottom: 0.5rem;
-            color: #fff;
+            color: #6b6b6b;
             font-size: 1.3rem;
             font-weight: 100;
             transition: background 0.5s;
             font-family: "Titillium Web", sans-serif;
-            border: none;
             transition: color 0.5s;
+            border: 1px solid #a3a3a3;
+            min-width: 20rem;
+            height: 10rem;
+            border-radius: 10px;
+            transition: 0.5s;
           }
           .container:hover {
             cursor: pointer;
-            color: #3a93bd;
+            color: blue;
+            border-color: blue;
+          }
+          .img {
+            height: 100%;
           }
           @media (max-width: 1000px) {
             .container {
               padding: 1rem;
-              width: 100%;
+              margin-bottom: 3rem;
             }
           }
         `}
