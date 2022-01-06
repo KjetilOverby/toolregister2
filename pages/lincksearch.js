@@ -127,20 +127,24 @@ const Lincksearch = () => {
         wasteNumberOfRetip: getNumberOfRetip,
         wasteDate: new Date(),
       })
-      .then(function (response) {});
+      .then(function (response) {
+        console.log(response);
+      });
   };
 
   const deleteBladeHandler = () => {
-    createDeletedBladeHandler();
     try {
       api
         .delete(`/api/linck/deleteBlade/?del=${linckID}&user=${user.sub}`)
         .then((res) => {
           if (res.status === 200) {
+            createDeletedBladeHandler();
             setOpenDeleteModal(false);
             setLinckUpdate(!linckUpdate);
             setSearchInput("");
-            setWasteUpdate(!wasteUpdate);
+            setTimeout(() => {
+              setWasteUpdate(!wasteUpdate);
+            }, 1000);
           }
         });
     } catch (error) {
@@ -335,7 +339,7 @@ const Lincksearch = () => {
                 deletedBlades.map((item) => {
                   return (
                     <>
-                      <p key={item._id} className="waste-list">
+                      <p key={item._id} className={`waste-list`}>
                         {item.serial}, {item.type}, Oml:{" "}
                         {item.wasteNumberOfRetip}, dato:{" "}
                         {dateFormat(item.wasteDate, "dd.mm.yyyy HH:MM")}
@@ -351,6 +355,7 @@ const Lincksearch = () => {
               </p>
               {retipBlades &&
                 retipBlades.map((item) => {
+                  console.log(item.wasteDate);
                   return (
                     <>
                       <p key={item._id} className="waste-list">
