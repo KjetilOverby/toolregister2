@@ -3,6 +3,8 @@ import LoginButton from "../auth/LoginButton";
 import LogoutButton from "../auth/LogoutButton";
 import ButtonComponent from "./ButtonComponent";
 import HeaderStartPage from "../../components/common/HeaderStartPage";
+import ArticleCard from "../common/ArticleCard";
+import Link from "next/link";
 
 const StartPage = () => {
   return (
@@ -14,6 +16,15 @@ const StartPage = () => {
           </div>
           <div className="header-container">
             <h1 className="header">Verktøyregister</h1>
+            <div className="text-container">
+              <p className="text">
+                Registrering av sagblader, kniver og segmenter for Moelven
+                Våler.
+              </p>
+            </div>
+            <Link href="/lincksearch">
+              <button className="btn-search">Søk i Linckblad</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -30,14 +41,14 @@ const StartPage = () => {
             link="/segmenter"
             header="Segmenter"
             img={
-              "https://www.forezienne.com/images/k2/big/segment-canter-slabber-LINCK.jpg"
+              "https://lh3.googleusercontent.com/pw/AM-JKLV4wxsxB2iKcCPzRSmNtDmWTNoHJF_26durwkNx-58zgjbnVN-tIfh3uw10VHfprS7hGqMcTPrUWSVF-YmQI2QbIwf5pUZAFEkSXbmnyrCUbRtWwnDfmyDuAf2AHZjU9dSQjcXbs7OtOnhsB51Gr791=w536-h438-no?authuser=0"
             }
           />
           <ButtonComponent
             link="/kniver"
             header="Kniver"
             img={
-              "https://image.made-in-china.com/43f34j00EbVzdSRlspuY/Factory-Price-Cutting-Chipper-Knives-for-Wood-Working-Machine.jpg"
+              "https://shop.leuco.com/medias/?context=bWFzdGVyfHRlYW1jZW50ZXJJbXBvcnR8NDUyOXxpbWFnZS9qcGVnfGg4NC9oMDUvODg3Nzg3MzkyMjA3OHw1OGY1N2E4MmVkODg1M2E4MjljMTBkMDNiMTlkMmY0NjY5OWViMzg1NGEyYWQ3MTRjN2E1MDkwOWUyZDY4OWQ5"
             }
           />
           <ButtonComponent
@@ -48,10 +59,38 @@ const StartPage = () => {
             }
           />
         </div>
+        <div className="section-container">
+          <ArticleCard
+            header="Statistikk omlodding"
+            img="https://static.spreadsheetweb.com/ssweb/wp-content/uploads/2019/04/pie-chart-excel-1080x675.jpg"
+            text="Statistikk på omlodding av blader som er i bruk. Man kan også se omloddingsstatistikk av blader som har blitt vraket."
+            link="/omlodding"
+          />
+          <ArticleCard
+            header="Rediger innlagte data"
+            img="https://icon-library.com/images/edit-icon-image/edit-icon-image-26.jpg"
+            text="Hvis feil data har blitt lagt inn så er det på noen steder mulighet for å rette opp."
+            link="/edit"
+          />
+          <ArticleCard
+            header="Utgifter verktøyhold"
+            img="https://image.freepik.com/free-vector/global-economy_24877-49255.jpg"
+            text="Se utgifter på omlodding av sagblader og kostnader på innkjøp av nytt verktøy"
+            link="/utgifter"
+          />
+        </div>
       </div>
 
       <style jsx>
         {`
+          .btn-search {
+            background: #154c50;
+            padding: 1rem;
+            width: 10rem;
+            margin-top: 2rem;
+            color: #fff;
+            border: none;
+          }
           .container {
             padding-top: 2rem;
             display: flex;
@@ -61,9 +100,9 @@ const StartPage = () => {
           }
           .image-container {
             background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)),
-              url("https://images.unsplash.com/photo-1560090535-922ec7b32bb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1484&q=80");
+              url("https://images.unsplash.com/photo-1605778336817-121ba9819b96?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1582&q=80");
             background-size: cover;
-            height: 40rem;
+            height: 30rem;
             background-position: center;
           }
           .btn-container {
@@ -72,13 +111,17 @@ const StartPage = () => {
             width: 50rem;
           }
           .header {
-            color: #f7ddb8;
-            margin: 5rem 0;
-            font-weight: bold;
+            color: #dfdfdf;
+            margin: 3rem 0 0 0;
+            font-weight: 100;
             font-size: 4rem;
           }
           .header-container {
             display: grid;
+            place-items: center;
+            width: 45rem;
+            color: white;
+            text-align: center;
           }
           .menu-header {
             display: flex;
@@ -88,13 +131,24 @@ const StartPage = () => {
           }
           .page-container {
             margin: 8rem 15rem;
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-rows: auto 11.5rem auto;
+            grid-template-areas:
+              "btn"
+              "."
+              "section";
           }
           .btn-container {
             display: flex;
             width: 100%;
             flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            grid-area: btn;
+          }
+          .section-container {
+            grid-area: section;
+            display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
           }
@@ -105,14 +159,30 @@ const StartPage = () => {
           .tab:hover {
             cursor: pointer;
           }
+          .text {
+            font-size: 0.9rem;
+            font-weight: 100;
+          }
+
           @media (max-width: 2100px) {
             .image-container {
               height: 30rem;
+            }
+            .page-container {
+              grid-template-rows: auto 4rem auto;
+            }
+          }
+          @media (max-width: 1800px) {
+            .page-container {
+              margin: 8rem 5rem;
             }
           }
           @media (max-width: 1500px) {
             .header {
               margin: 0 0 1rem 0;
+            }
+            .page-container {
+              margin: 8rem 0.5rem;
             }
           }
           @media (max-width: 1000px) {
@@ -126,18 +196,27 @@ const StartPage = () => {
               margin: 0 0 1rem 0;
             }
             .image-container {
-              height: 15rem;
+              height: 22rem;
+            }
+            .header-container {
+              width: 100%;
             }
           }
           @media (max-width: 850px) {
             .btn-container {
-              width: 85%;
+              width: 100%;
             }
             .header {
               font-size: 2rem;
             }
+            .header-container {
+              margin-top: -2rem;
+            }
             .page-container {
               margin: 2rem 0rem;
+            }
+            .text-container {
+              width: 60%;
             }
           }
         `}

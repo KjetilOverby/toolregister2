@@ -215,12 +215,9 @@ const Oversikt = () => {
         </div>
 
         <div className="image-container">
-          <h1 className="header">Oversikt over vektøy</h1>
+          <h1 className="header">Oversikt over Linckblad</h1>
         </div>
         <div className="page-container">
-          <Link href="/oversikt/toolinputedit">
-            <p>Til input Edit</p>
-          </Link>
           <button onClick={() => setReload(!reload)}>Reload</button>
           <div className="arrow-btn-container">
             <div className="arrow-btn-each-container">
@@ -288,6 +285,7 @@ const Oversikt = () => {
           .header {
             color: white;
             font-size: 4rem;
+            font-weight: 100;
           }
           .header-container {
             display: grid;
