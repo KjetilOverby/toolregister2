@@ -68,7 +68,7 @@ const StartPage = () => {
           />
           <ArticleCard
             header="Rediger innlagte data"
-            img="https://icon-library.com/images/edit-icon-image/edit-icon-image-26.jpg"
+            img="https://www.gimp.org/images/frontpage/200px-Scribus_logo.svg.png"
             text="Hvis feil data har blitt lagt inn så er det på noen steder mulighet for å rette opp."
             link="/edit"
           />
@@ -90,6 +90,11 @@ const StartPage = () => {
             margin-top: 2rem;
             color: #fff;
             border: none;
+            transition: background 0.5s;
+          }
+          .btn-search:hover {
+            cursor: pointer;
+            background: #0d3033;
           }
           .container {
             padding-top: 2rem;
@@ -111,7 +116,7 @@ const StartPage = () => {
             width: 50rem;
           }
           .header {
-            color: #dfdfdf;
+            color: #388f92;
             margin: 3rem 0 0 0;
             font-weight: 100;
             font-size: 4rem;
@@ -132,7 +137,7 @@ const StartPage = () => {
           .page-container {
             margin: 8rem 15rem;
             display: grid;
-            grid-template-rows: auto 11.5rem auto;
+            grid-template-rows: auto 6rem auto;
             grid-template-areas:
               "btn"
               "."
@@ -162,6 +167,7 @@ const StartPage = () => {
           .text {
             font-size: 0.9rem;
             font-weight: 100;
+            color: #388f92;
           }
 
           @media (max-width: 2100px) {
@@ -170,6 +176,7 @@ const StartPage = () => {
             }
             .page-container {
               grid-template-rows: auto 4rem auto;
+              margin: 8rem 10rem;
             }
           }
           @media (max-width: 1800px) {

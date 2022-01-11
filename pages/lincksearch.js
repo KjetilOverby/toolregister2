@@ -44,6 +44,8 @@ const Lincksearch = () => {
   const currentYear = new Date().getFullYear();
   const [wasteListColor, setWasteListColor] = useState("grey");
 
+  const [yearRequest, setYearRequest] = useState(new Date().getFullYear());
+
   useEffect(() => {
     switch (wasteMonth) {
       case 1:
@@ -107,7 +109,9 @@ const Lincksearch = () => {
 
   useEffect(() => {
     api
-      .get(`/api/linck/deletedBlades?month=${wasteMonth}`)
+      .get(
+        `/api/linck/deletedBlades?month=${wasteMonth}&month2=${wasteMonth}&yearRequest=${yearRequest}`
+      )
       .then(function (response) {
         setDeletedBlades(response.data.data);
       })
