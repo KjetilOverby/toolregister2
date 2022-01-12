@@ -4,6 +4,7 @@ import PieChartsWaste from "../src/components/omloddinger/PieChartsWaste";
 const axios = require("axios");
 import Colors from "../config/Colors";
 import CalendarPicker from "../src/components/common/CalendarPicker";
+import ChartRetip from "../src/components/omloddinger/ChartRetip";
 
 const api = axios.create({
   baseURL: process.env.api,
@@ -11,6 +12,10 @@ const api = axios.create({
 
 const Omlodding = () => {
   const [deletedBlades, setDeletedBlades] = useState();
+
+  const currentYear = new Date().getFullYear();
+  const firstDate = 1;
+  const lastDate = 12;
 
   const [yearRequest, setYearRequest] = useState(new Date().getFullYear());
   const [monthRequest, setMonthRequest] = useState(new Date().getMonth() + 1);
@@ -28,7 +33,40 @@ const Omlodding = () => {
     setTimeout(() => {
       setUpdate(!update);
     }, 2200);
-  });
+  }, []);
+
+  const [allBladesRetip, setAllBladesRetip] = useState();
+
+  useEffect(() => {
+    api
+      .get(`/api/linck/linckblades`)
+      .then(function (response) {
+        setAllBladesRetip(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+  const [zeroA, setZeroA] = useState();
+  const [oneA, setOneA] = useState();
+  const [twoA, setTwoA] = useState();
+  const [threeA, setThreeA] = useState();
+  const [fourA, setFourA] = useState();
+  const [moreA, setMoreA] = useState();
+  useEffect(() => {
+    if (allBladesRetip) {
+      setZeroA(allBladesRetip.filter((item) => item.performer.length == "0"));
+      setOneA(allBladesRetip.filter((item) => item.performer.length == "1"));
+      setTwoA(allBladesRetip.filter((item) => item.performer.length == "2"));
+      setThreeA(allBladesRetip.filter((item) => item.performer.length == "3"));
+      setFourA(allBladesRetip.filter((item) => item.performer.length == "4"));
+      setMoreA(allBladesRetip.filter((item) => item.performer.length > 4));
+    }
+  }, [allBladesRetip]);
 
   useEffect(() => {
     api
@@ -58,6 +96,33 @@ const Omlodding = () => {
     }
   }, [update]);
 
+  const zeroM = zero.length / 4;
+  const oneM = one.length / 3;
+  const twoM = two.length / 2;
+  const threeM = three.length;
+  const fourM = four.length;
+  const moreM = more.length;
+
+  const [retipCount, setRetipCount] = useState();
+  const [percentage, setPercentage] = useState();
+
+  useEffect(() => {
+    if (deletedBlades) {
+      const allBlades = deletedBlades.length;
+      setRetipCount(zeroM + oneM + twoM + threeM + fourM + moreM);
+
+      setPercentage((retipCount / allBlades) * 100);
+    }
+  });
+
+  // const percentCalc = () => {
+  //   if (deletedBlades) {
+  //     const allBlades = deletedBlades.length;
+  //     setRetipCount(zeroM + oneM + twoM + threeM + fourM + moreM);
+  //     setPercentage((retipCount / allBlades) * 100);
+  //   }
+  // };
+
   return (
     <>
       <div className="container">
@@ -80,54 +145,99 @@ const Omlodding = () => {
             />
           </div>
 
-          <div className="chart-container">
-            <div className="text-container">
-              <h3 className="header mb">
-                Omlodding vrakede blad ({deletedBlades && deletedBlades.length})
-              </h3>
-              <p className="text">
-                lorem ipsum dolor sit amet, consectetur adip, lorem ipsum dolor
-                sit amet, lorem ipsum dolor sit amet, consectetur adip lorem
-                ipsum dolor sit ar adip lorem ipsum dolor sit amet, consectetur
-                adip, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet,
-                consectetur adip
-              </p>
-            </div>
-            <div className="piechart-waste-container">
-              <PieChartsWaste
-                zero={zero.length}
-                one={one.length}
-                two={two.length}
-                three={three.length}
-                four={four.length}
-                more={more.length}
-              />
-              <div className="description-container">
-                <div className="box-description-container">
-                  <div className="color-box box1"></div>
-                  <p className="waste-description">Nye blad</p>
-                </div>
-                <div className="box-description-container">
-                  <div className="color-box box2"></div>
-                  <p className="waste-description">1 omlodding</p>
-                </div>
-                <div className="box-description-container">
-                  <div className="color-box box3"></div>
-                  <p className="waste-description">2 omloddinger</p>
-                </div>
-                <div className="box-description-container">
-                  <div className="color-box box4"></div>
-                  <p className="waste-description">3 omloddinger</p>
-                </div>
-                <div className="box-description-container">
-                  <div className="color-box box5"></div>
-                  <p className="waste-description">4 omloddinger</p>
-                </div>
-                <div className="box-description-container">
-                  <div className="color-box box6"></div>
-                  <p className="waste-description">5 eller fler</p>
+          <div className="main-chart-container">
+            <div className="chart-container">
+              <div className="text-container">
+                <h3 className="header mb">
+                  Omlodding vrakede blad (
+                  {deletedBlades && deletedBlades.length})
+                </h3>
+                <p className="text text-box">
+                  Her ser man statistikk på hvor mange omloddinger som var gjort
+                  når sagbladet ble vraket. Et sagblad som har blitt omloddet 3
+                  eller fler ganger får 100% score. Under det gir det gradvis
+                  dårligere score.
+                </p>
+                <h3 className="text">
+                  Sagbladutnyttelse: {percentage && percentage.toFixed()}%
+                </h3>
+              </div>
+              <div className="piechart-waste-container">
+                <PieChartsWaste
+                  zero={zero.length}
+                  one={one.length}
+                  two={two.length}
+                  three={three.length}
+                  four={four.length}
+                  more={more.length}
+                  color1={Colors.zero}
+                  color2={Colors.one}
+                  color3={Colors.two}
+                  color4={Colors.three}
+                  color5={Colors.four}
+                  color6={Colors.more}
+                />
+                <div className="description-container">
+                  <div className="box-description-container">
+                    <p className="number">{zero.length}</p>
+                    <div className="color-box box1"></div>
+                    <p className="waste-description">Nye blad</p>
+                  </div>
+                  <div className="box-description-container">
+                    <p className="number">{one.length}</p>
+                    <div className="color-box box2"></div>
+                    <p className="waste-description">1 omlodding</p>
+                  </div>
+                  <div className="box-description-container">
+                    <p className="number">{two.length}</p>
+                    <div className="color-box box3"></div>
+                    <p className="waste-description">2 omloddinger</p>
+                  </div>
+                  <div className="box-description-container">
+                    <p className="number">{three.length}</p>
+                    <div className="color-box box4"></div>
+                    <p className="waste-description">3 omloddinger</p>
+                  </div>
+                  <div className="box-description-container">
+                    <p className="number">{four.length}</p>
+                    <div className="color-box box5"></div>
+                    <p className="waste-description">4 omloddinger</p>
+                  </div>
+                  <div className="box-description-container">
+                    <p className="number">{more.length}</p>
+                    <div className="color-box box6"></div>
+                    <p className="waste-description">5 eller fler</p>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div>
+              <ChartRetip
+                allBladesRetip={allBladesRetip}
+                zeroA={zeroA && zeroA.length}
+                oneA={oneA && oneA.length}
+                twoA={twoA && twoA.length}
+                threeA={threeA && threeA.length}
+                fourA={fourA && fourA.length}
+                moreA={moreA && moreA.length}
+                title="Omloddinger på alle blad i bruk"
+                text="Her er oversikt over hvor mange omloddinger som er gjort på alle blad. Her kan man få en indikasjon på hvor mange blader som snart skal vrakes."
+              />
+            </div>
+            <div>
+              <ChartRetip
+                deletedBlades={deletedBlades}
+                title="Omloddinger på individuelle blad"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris "
+                allBladesRetip={allBladesRetip}
+                zeroA={zeroA && zeroA.length}
+                oneA={oneA && oneA.length}
+                twoA={twoA && twoA.length}
+                threeA={threeA && threeA.length}
+                fourA={fourA && fourA.length}
+                moreA={moreA && moreA.length}
+                input={true}
+              />
             </div>
           </div>
         </div>
@@ -159,11 +269,12 @@ const Omlodding = () => {
           .box-description-container {
             display: flex;
             align-items: center;
+            width: 10rem;
           }
           .chart-container {
             display: grid;
             place-items: center;
-            width: 30rem;
+            width: 28rem;
           }
           .container {
           }
@@ -173,8 +284,7 @@ const Omlodding = () => {
           .date-picker-container {
             margin-bottom: 5rem;
           }
-          .description-container {
-          }
+
           .header {
             color: ${Colors.textColor};
           }
@@ -200,26 +310,46 @@ const Omlodding = () => {
             color: white;
             font-weight: 100;
           }
+          .main-chart-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 4rem;
+          }
+          .number {
+            width: 2rem;
+          }
           .piechart-waste-container {
             display: grid;
-            grid-template-columns: 22rem 1fr;
-            width: 30rem;
+            grid-template-columns: 14rem 1fr;
+            width: 25rem;
             place-items: center;
           }
           .text {
             color: ${Colors.textColor};
             text-align: center;
           }
+          .text-box {
+            height: 8rem;
+          }
           .text-container {
             display: grid;
             place-items: center;
+            width: 24rem;
           }
           .waste-description {
             margin-left: 0.5rem;
           }
           @media (max-width: 2100px) {
             .content-container {
-              margin: 2rem 15rem;
+              margin: 2rem 10rem;
+            }
+          }
+          @media (max-width: 1855px) {
+            .main-chart-container {
+              grid-template-columns: 1fr 1fr;
+              grid-template-rows: 1fr 1fr;
+              grid-column-gap: 0;
+              grid-row-gap: 4rem;
             }
           }
           @media (max-width: 1000px) {
@@ -229,9 +359,18 @@ const Omlodding = () => {
             .content-container {
               margin: 5rem 0;
             }
+            .main-chart-container {
+              grid-template-columns: 1fr;
+              grid-template-rows: 1fr 1fr 1fr;
+              grid-column-gap: 0;
+              grid-row-gap: 4rem;
+            }
             .piechart-waste-container {
               grid-template-columns: auto;
               grid-template-rows: 22rem 1fr;
+              width: 100%;
+            }
+            .chart-container {
               width: 100%;
             }
           }

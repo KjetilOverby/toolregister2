@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
-import Colors from "../../../config/Colors";
 
-const PieChartsWaste = ({ zero, one, two, three, four, more }) => {
+import { useMediaQuery } from "react-responsive";
+
+const PieChartsWaste = ({
+  zero,
+  one,
+  two,
+  three,
+  four,
+  more,
+  color1,
+  color2,
+  color3,
+  color4,
+  color5,
+  color6,
+}) => {
   const data01 = [
-    { name: "Group A", value: zero, fill: Colors.zero },
-    { name: "Group B", value: one, fill: Colors.one },
-    { name: "Group C", value: two, fill: Colors.two },
-    { name: "Group D", value: three, fill: Colors.three },
-    { name: "Group D", value: four, fill: Colors.four },
-    { name: "Group D", value: more, fill: Colors.more },
+    { name: "Group A", value: zero, fill: color1 },
+    { name: "Group B", value: one, fill: color2 },
+    { name: "Group C", value: two, fill: color3 },
+    { name: "Group D", value: three, fill: color4 },
+    { name: "Group D", value: four, fill: color5 },
+    { name: "Group D", value: more, fill: color6 },
   ];
 
+  const isHD = useMediaQuery({ query: `(max-width: 2100px)` });
+  const [resize, setResize] = useState(90);
+  useEffect(() => {
+    if (isHD) {
+      setResize(75);
+      //   setResizeInner(80);
+      //   setResizeOuter(130);
+    }
+  }, []);
   return (
     <>
       <div className="container">
@@ -22,15 +45,14 @@ const PieChartsWaste = ({ zero, one, two, three, four, more }) => {
               dataKey="value"
               cx="50%"
               cy="50%"
-              outerRadius={110}
-              innerRadius={70}
-              label={true}
+              outerRadius={resize}
+              label={false}
               paddingAngle={2}
             />
             <Pie
               data={data01}
               outerRadius={68}
-              innerRadius={20}
+              innerRadius={40}
               paddingAngle={2}
             />
           </PieChart>
