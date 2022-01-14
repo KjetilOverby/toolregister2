@@ -1,5 +1,6 @@
 import React from "react";
 import dateFormat, { masks } from "dateformat";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const InputOverview = ({
   type,
@@ -11,6 +12,7 @@ const InputOverview = ({
   color,
   delBtn,
 }) => {
+  const { user, isAuthenticated } = useAuth0();
   return (
     <>
       <div className="container">
@@ -24,7 +26,7 @@ const InputOverview = ({
             {inputText}: {input}
           </p>
           <p>Dato: {dateFormat(date, "dd.mm.yyyy HH:MM:ss")}</p>
-          <button onClick={delBtn}>Slett</button>
+          {user && <button onClick={delBtn}>Slett</button>}
         </div>
       </div>
       <style jsx>

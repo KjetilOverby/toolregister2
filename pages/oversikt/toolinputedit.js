@@ -18,17 +18,74 @@ const Toolinputedit = () => {
   const [waste, setWaste] = useState(true);
   const [openModal, setOpenModal] = useState();
   const [getID, setGetID] = useState();
+  const [tools, setTools] = useState();
+  const [toolID, setToolID] = useState();
+
+  const [toolType, setToolType] = useState("");
+
+  const [getToolNumber, setGetToolNumber] = useState();
+  const [addDeleteAndSum, setAddDeleteAndSum] = useState();
+  const [antallSlett, setAntallSlett] = useState();
+
+  const [delay, setDelay] = useState(false);
+
   const api = axios.create({
     baseURL: process.env.api,
   });
+
+  useEffect(() => {
+    setToolType(type);
+    setDelay(!delay);
+  }, [getID]);
+
+  useEffect(() => {
+    if (tools) {
+      setTimeout(() => {
+        setGetToolNumber(tools.map((item) => item.antall));
+        setToolID(tools.map((item) => item._id));
+      }, 1000);
+    }
+  }, [tools, delay]);
+
+  useEffect(() => {
+    setAddDeleteAndSum(Number(getToolNumber) + Number(antallSlett));
+  }, [getToolNumber]);
+
   useEffect(() => {
     if (toolwasteData) {
       setTypeList(toolwasteData.filter((item) => item.type === optionValue));
     }
   }, [toolwasteData, optionValue]);
 
+  useEffect(() => {
+    api
+      .get(`/api/tool/toolRegistType?tooltype=${toolType}`)
+      .then(function (response) {
+        setTools(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, [getID, delay]);
+
   const handleChange = (e) => {
     setOptionValue(e.target.value);
+  };
+  const setBackNumberTools = () => {
+    api
+      .patch(`/api/tool/editToolNew?user=${user.sub}&ids=${toolID}`, {
+        antallSum: addDeleteAndSum,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setUpdate(Math.random());
+        }
+        console.log(res.status);
+      });
   };
 
   const deleteToolWasteCardHandler = () => {
@@ -39,12 +96,19 @@ const Toolinputedit = () => {
           if (res.status === 200) {
             setOpenModal(false);
             setUpdate(Math.random());
+            setTimeout(() => {
+              setBackNumberTools();
+            }, 200);
           }
         });
     } catch (error) {
       console.log(error);
     }
   };
+
+  console.log(addDeleteAndSum);
+  console.log(getID);
+  console.log(toolID);
 
   return (
     <>
@@ -78,9 +142,12 @@ const Toolinputedit = () => {
               ? typeList.map((item) => {
                   console.log(item._id);
                   const openModalHandle = () => {
-                    setOpenModal(true);
+                    setTimeout(() => {
+                      setOpenModal(true);
+                    }, 800);
                     setType(item.type);
                     setGetID(item._id);
+                    setAntallSlett(Math.abs(item.input));
                   };
                   return (
                     <ToolInputCard
@@ -100,9 +167,12 @@ const Toolinputedit = () => {
                 toolwasteData &&
                 toolwasteData.map((item) => {
                   const openModalHandle = () => {
-                    setOpenModal(true);
+                    setTimeout(() => {
+                      setOpenModal(true);
+                    }, 800);
                     setType(item.type);
                     setGetID(item._id);
+                    setAntallSlett(Math.abs(item.input));
                   };
                   return (
                     <ToolInputCard
@@ -124,9 +194,12 @@ const Toolinputedit = () => {
             {optionValue !== "a"
               ? typeList.map((item) => {
                   const openModalHandle = () => {
-                    setOpenModal(true);
+                    setTimeout(() => {
+                      setOpenModal(true);
+                    }, 800);
                     setType(item.type);
                     setGetID(item._id);
+                    setAntallSlett(Math.abs(item.input));
                   };
                   return (
                     <ToolInputCard
@@ -146,9 +219,12 @@ const Toolinputedit = () => {
                 toolCreateData &&
                 toolCreateData.map((item) => {
                   const openModalHandle = () => {
-                    setOpenModal(true);
+                    setTimeout(() => {
+                      setOpenModal(true);
+                    }, 800);
                     setType(item.type);
                     setGetID(item._id);
+                    setAntallSlett(Math.abs(item.input));
                   };
                   return (
                     <ToolInputCard

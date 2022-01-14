@@ -59,7 +59,10 @@ function MyApp({ Component, pageProps }) {
   const [endekapp, setEndekapp] = useState();
   const [trimmerBord, setTrimmerBord] = useState();
 
-  //Linckblades
+  // Tools
+
+  const [antallInputSum, setAntallInputSum] = useState();
+
   useEffect(() => {
     api
       .get("/api/linck/linckblades")
@@ -76,6 +79,8 @@ function MyApp({ Component, pageProps }) {
   }, [linckUpdate]);
 
   // Tools
+
+  console.log(userID);
 
   useEffect(() => {
     api
@@ -234,6 +239,9 @@ function MyApp({ Component, pageProps }) {
           setGetType,
           getNumberOfRetip,
           setGetNumberOfRetip,
+          //tools
+          antallInputSum,
+          setAntallInputSum,
         }}
       >
         <Component {...pageProps} />

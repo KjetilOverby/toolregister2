@@ -12,9 +12,9 @@ const Edit_types_tools = () => {
   const [type, setType] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [openModal, setOpenModal] = useState(false);
-  const [inputValue, setInputValue] = useState();
 
-  const { setUpdate, update } = useContext(MyContext);
+  const { setUpdate, update, antallInputSum, setAntallInputSum } =
+    useContext(MyContext);
   const api = axios.create({
     baseURL: process.env.api,
   });
@@ -37,7 +37,7 @@ const Edit_types_tools = () => {
   const editToolNumberHandler = () => {
     api
       .patch(`/api/tool/editTool?user=${user.sub}&ids=${getID}`, {
-        antallSum: inputValue,
+        antallSum: antallInputSum,
       })
       .then((res) => {
         if (res.status === 200) {
@@ -59,7 +59,7 @@ const Edit_types_tools = () => {
 
           <div>
             <p>Sett inn nytt antall.</p>
-            <input onChange={(e) => setInputValue(e.target.value)} />
+            <input onChange={(e) => setAntallInputSum(e.target.value)} />
             <button onClick={editToolNumberHandler}>Submit</button>
           </div>
           <button onClick={() => setOpenModal(false)}>Avbryt</button>
