@@ -20,9 +20,15 @@ const ToolOptions = ({ handleChange }) => {
           <option value="Fres 2/3 segment venstre">
             Fres 2/3 segment venstre
           </option>
-          <option value="Fres 3 segment høyre">Fres 3 segment høyre</option>
-          <option value="Fres 3 segment venstre">Fres 3 segment venstre</option>
-          <option value="Fres 3 segment venstre">Fres 3 segment venstre</option>
+          <option value="Fres 3 segment høyre vertical">
+            Fres 3 segment høyre vertical
+          </option>
+          <option value="Fres 3 segment venstre">
+            Fres 3 segment venstrevertical{" "}
+          </option>
+          <option value="Fres 3 segment venstre ">
+            Fres 3 segment venstre vertical{" "}
+          </option>
           <option value="Reduserer kniv">Reduserer kniv</option>
           <option value="Reduserer motstål rekke 1">
             Reduserer motstål rekke 1

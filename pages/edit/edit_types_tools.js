@@ -15,6 +15,9 @@ const Edit_types_tools = () => {
   const [inputValue, setInputValue] = useState();
 
   const { setUpdate, update } = useContext(MyContext);
+  const api = axios.create({
+    baseURL: process.env.api,
+  });
 
   useEffect(() => {
     api
@@ -45,9 +48,6 @@ const Edit_types_tools = () => {
     setOpenModal(false);
   };
 
-  const api = axios.create({
-    baseURL: process.env.api,
-  });
   return (
     <>
       {openModal && (
@@ -103,6 +103,7 @@ const Edit_types_tools = () => {
           .container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+            place-items: center;
           }
           .header-container {
             width: 100%;
@@ -159,6 +160,11 @@ const Edit_types_tools = () => {
           @media (max-width: 1000px) {
             .image-container {
               height: 10rem;
+            }
+          }
+          @media (max-width: 756px) {
+            .tool-container {
+              width: 20rem;
             }
           }
         `}

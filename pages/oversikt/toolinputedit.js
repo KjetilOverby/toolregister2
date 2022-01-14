@@ -3,16 +3,27 @@ import ToolInputCard from "../../src/components/oversikt/ToolInputCard";
 import { MyContext } from "../../src/contexts/MyContext";
 import HeaderStartPage from "../../src/components/common/HeaderStartPage";
 import ToolOptions from "../../src/components/common/ToolOptions";
+import HeaderComponent from "../../src/components/common/HeaderStartPage";
+import ModalComponentEdit from "../../src/components/common/ModalComponentEdit";
+const axios = require("axios");
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Toolinputedit = () => {
-  const { toolwasteData, toolCreateData } = useContext(MyContext);
+  const { user, isAuthenticated } = useAuth0();
+  const { toolwasteData, toolCreateData, setUpdate } = useContext(MyContext);
 
+  const [typeList, setTypeList] = useState();
   const [type, setType] = useState();
   const [optionValue, setOptionValue] = useState("a");
-
+  const [waste, setWaste] = useState(true);
+  const [openModal, setOpenModal] = useState();
+  const [getID, setGetID] = useState();
+  const api = axios.create({
+    baseURL: process.env.api,
+  });
   useEffect(() => {
     if (toolwasteData) {
-      setType(toolwasteData.filter((item) => item.type === optionValue));
+      setTypeList(toolwasteData.filter((item) => item.type === optionValue));
     }
   }, [toolwasteData, optionValue]);
 
@@ -20,92 +31,178 @@ const Toolinputedit = () => {
     setOptionValue(e.target.value);
   };
 
+  const deleteToolWasteCardHandler = () => {
+    try {
+      api
+        .delete(`/api/tool/deleteToolCards/?del=${getID}&user=${user.sub}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setOpenModal(false);
+            setUpdate(Math.random());
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      <HeaderStartPage />
+      {openModal && (
+        <ModalComponentEdit
+          title={`Slette ${type}`}
+          description="Sletting kan ikke angres."
+          cancel={setOpenModal}
+          actionBtnTxt="SLETT"
+          btnBorder="red"
+          actionBtn={deleteToolWasteCardHandler}
+        />
+      )}
+      <div className="header-container">
+        <HeaderComponent editHeader={true} />
+      </div>
+      <div className="image-container">
+        <h1 className="image-header">Rediger Data</h1>
+      </div>
+      <div>
+        <button onClick={() => setWaste(!waste)}>
+          {waste ? "Nye" : "vrak"}
+        </button>
+      </div>
       <div className="container">
-        <div>
-          <h1>Vraket</h1>
-          <ToolOptions handleChange={handleChange} />
-          {optionValue !== "a"
-            ? type.map((item) => {
-                return (
-                  <ToolInputCard
-                    type={item.type}
-                    antall={item.antall}
-                    inputText="Antall slettet"
-                    input={item.input}
-                    date={item.date}
-                    img={item.img}
-                    color="linear-gradient(to top, #fff1f1 0%, #f8e2e2 100%)"
-                    key={item._id}
-                  />
-                );
-              })
-            : optionValue === "a" &&
-              toolwasteData &&
-              toolwasteData.map((item) => {
-                return (
-                  <ToolInputCard
-                    type={item.type}
-                    antall={item.antall}
-                    inputText="Antall slettet"
-                    input={item.input}
-                    date={item.date}
-                    img={item.img}
-                    color="linear-gradient(to top, #fff1f1 0%, #f8e2e2 100%)"
-                    key={item._id}
-                  />
-                );
-              })}
-        </div>
-
-        <div>
-          <h1>Nye</h1>
-
-          {optionValue !== "a"
-            ? type.map((item) => {
-                return (
-                  <ToolInputCard
-                    type={item.type}
-                    antall={item.antall}
-                    inputText="Antall nye"
-                    input={item.input}
-                    date={item.date}
-                    img={item.img}
-                    color="linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);"
-                    key={item._id}
-                  />
-                );
-              })
-            : optionValue === "a" &&
-              toolCreateData &&
-              toolCreateData.map((item) => {
-                return (
-                  <ToolInputCard
-                    type={item.type}
-                    antall={item.antall}
-                    inputText="Antall nye"
-                    input={item.input}
-                    date={item.date}
-                    img={item.img}
-                    color="linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);"
-                    key={item._id}
-                  />
-                );
-              })}
-        </div>
+        <h1>{waste ? "Vraket" : "Nye"}</h1>
+        <ToolOptions handleChange={handleChange} />
+        {waste ? (
+          <div className="card-container">
+            {optionValue !== "a"
+              ? typeList.map((item) => {
+                  console.log(item._id);
+                  const openModalHandle = () => {
+                    setOpenModal(true);
+                    setType(item.type);
+                    setGetID(item._id);
+                  };
+                  return (
+                    <ToolInputCard
+                      type={item.type}
+                      antall={item.antall}
+                      inputText="Antall slettet"
+                      input={item.input}
+                      date={item.date}
+                      img={item.img}
+                      color="linear-gradient(to top, #09203f 0%, #537895 100%);"
+                      key={item._id}
+                      delBtn={openModalHandle}
+                    />
+                  );
+                })
+              : optionValue === "a" &&
+                toolwasteData &&
+                toolwasteData.map((item) => {
+                  const openModalHandle = () => {
+                    setOpenModal(true);
+                    setType(item.type);
+                    setGetID(item._id);
+                  };
+                  return (
+                    <ToolInputCard
+                      type={item.type}
+                      antall={item.antall}
+                      inputText="Antall slettet"
+                      input={item.input}
+                      date={item.date}
+                      img={item.img}
+                      color="linear-gradient(to top, #09203f 0%, #537895 100%);"
+                      key={item._id}
+                      delBtn={openModalHandle}
+                    />
+                  );
+                })}
+          </div>
+        ) : (
+          <div className="card-container">
+            {optionValue !== "a"
+              ? typeList.map((item) => {
+                  const openModalHandle = () => {
+                    setOpenModal(true);
+                    setType(item.type);
+                    setGetID(item._id);
+                  };
+                  return (
+                    <ToolInputCard
+                      type={item.type}
+                      antall={item.antall}
+                      inputText="Antall nye"
+                      input={item.input}
+                      date={item.date}
+                      img={item.img}
+                      color="linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%);"
+                      key={item._id}
+                      delBtn={openModalHandle}
+                    />
+                  );
+                })
+              : optionValue === "a" &&
+                toolCreateData &&
+                toolCreateData.map((item) => {
+                  const openModalHandle = () => {
+                    setOpenModal(true);
+                    setType(item.type);
+                    setGetID(item._id);
+                  };
+                  return (
+                    <ToolInputCard
+                      type={item.type}
+                      antall={item.antall}
+                      inputText="Antall nye"
+                      input={item.input}
+                      date={item.date}
+                      img={item.img}
+                      color="linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%);"
+                      key={item._id}
+                      delBtn={openModalHandle}
+                    />
+                  );
+                })}
+          </div>
+        )}
       </div>
       <style jsx>
         {`
+          .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+          }
+          .header-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            grid-area: top;
+          }
+          .image-container {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url("https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+            height: 20rem;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: grid;
+            place-items: center;
+            grid-area: middle;
+          }
+          .image-header {
+            color: white;
+            font-size: 3rem;
+          }
+
           .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin: 2rem 35rem;
+            grid-template-columns: 1fr;
+            margin: 2rem 2rem;
           }
           @media (max-width: 2100px) {
             .container {
-              margin: 2rem 20rem;
+              margin: 2rem 3rem;
             }
           }
           @media (max-width: 1800px) {
@@ -123,6 +220,11 @@ const Toolinputedit = () => {
               margin: 2rem 5rem;
               grid-template-columns: 1fr;
               grid-template-rows: 1fr 1fr;
+            }
+          }
+          @media (max-width: 1000px) {
+            .image-container {
+              height: 10rem;
             }
           }
           @media (max-width: 800px) {

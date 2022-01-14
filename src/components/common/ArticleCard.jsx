@@ -42,7 +42,7 @@ const ArticleCard = ({ img, header, text, link }) => {
           }
           .image {
             filter: grayscale(50%);
-            width: 50%;
+            width: 55%;
           }
           .text {
             text-align: center;
