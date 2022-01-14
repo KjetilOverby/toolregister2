@@ -7,7 +7,7 @@ export default async (req, res) => {
   const { method } = req;
   switch (method) {
     case "DELETE":
-      if (req.query.user === "auth0|5f27b78668033f003d618d38") {
+      if (req.query.user === process.env.USER_SUB) {
         try {
           const blade = await Blades.deleteOne({ _id: req.query.del });
           if (!blade) return res.status(404).send();

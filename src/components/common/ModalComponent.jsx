@@ -6,7 +6,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 const api = axios.create({
   baseURL: process.env.api,
 });
-
 const ModalComponent = ({ linck }) => {
   const { user, isAuthenticated } = useAuth0();
   const [editMode, setEditMode] = useState(false);
@@ -52,14 +51,6 @@ const ModalComponent = ({ linck }) => {
       setAntallInputCalc(antallInputCalc - 12);
     }
   };
-
-  // useEffect(() => {
-  //   if (antallInputCalc > -5) {
-  //     setEditMode(true);
-  //   } else {
-  //     setEditMode(false);
-  //   }
-  // }, [getInputValue]);
 
   useEffect(() => {}, [getInputValue]);
 

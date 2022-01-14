@@ -6,7 +6,7 @@ import Link from "next/link";
 import LoginButton from "../auth/LoginButton";
 import LogoutButton from "../auth/LogoutButton";
 
-const HeaderComponent = ({ color }) => {
+const HeaderComponent = ({ color, editHeader }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [hideSidebar, setHideSidebar] = useState(false);
   const isMobile = useMediaQuery({ query: `(max-width: 1000px)` });
@@ -35,6 +35,11 @@ const HeaderComponent = ({ color }) => {
                   <Link href="/">
                     <p className="tabs-mobile">Hjem</p>
                   </Link>
+                  {editHeader && (
+                    <Link href="/edit/edit">
+                      <p className="tabs-mobile">Rediger</p>
+                    </Link>
+                  )}
                   <Link href="/lincksearch">
                     <p className="tabs-mobile">Søk i linckblad</p>
                   </Link>
@@ -67,6 +72,11 @@ const HeaderComponent = ({ color }) => {
               <Link href="/">
                 <p className="tabs">Hjem</p>
               </Link>
+              {editHeader && (
+                <Link href="/edit/edit">
+                  <p className="tabs">Rediger</p>
+                </Link>
+              )}
               <Link href="/lincksearch">
                 <p className="tabs">Søk i linckblad</p>
               </Link>

@@ -20,6 +20,7 @@ const api = axios.create({
 
 const Lincksearch = () => {
   const { user, isAuthenticated } = useAuth0();
+
   const {
     linckBlades,
     userID,
@@ -123,6 +124,10 @@ const Lincksearch = () => {
         // always executed
       });
   }, [wasteMonth, wasteUpdate]);
+
+  const [createDeletedBladeConfirm, setCreateDeletedBladeConfirm] = useState();
+  console.log(createDeletedBladeConfirm);
+
   const createDeletedBladeHandler = () => {
     api
       .post(`/api/linck/createDeletedBlade/?user=${user.sub}`, {
@@ -133,6 +138,7 @@ const Lincksearch = () => {
       })
       .then(function (response) {
         console.log(response);
+        setCreateDeletedBladeConfirm(response);
       });
   };
 
@@ -229,6 +235,27 @@ const Lincksearch = () => {
 
   return (
     <>
+      {createDeletedBladeConfirm ? (
+        <h4
+          style={{
+            position: "absolute",
+            left: 0,
+            bottom: 0,
+            background: "seagreen",
+            color: "white",
+            zIndex: 100,
+            padding: ".3rem",
+            fontWeight: 100,
+          }}
+        >
+          status: {createDeletedBladeConfirm.status}.{" "}
+          {createDeletedBladeConfirm.headers.connection}, status text:
+          {createDeletedBladeConfirm.statusText},{" "}
+          {createDeletedBladeConfirm.status === 200
+            ? "create deleted blade success."
+            : "creating a deleted blade not succeed."}
+        </h4>
+      ) : null}
       {openDeleteModal && (
         <ModalComponentEdit
           title="Slette"

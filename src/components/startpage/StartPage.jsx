@@ -67,10 +67,10 @@ const StartPage = () => {
             link="/omlodding"
           />
           <ArticleCard
-            header="Rediger innlagte data"
+            header="Rediger data"
             img="https://www.gimp.org/images/frontpage/200px-Scribus_logo.svg.png"
             text="Hvis feil data har blitt lagt inn så er det på noen steder mulighet for å rette opp."
-            link="/edit"
+            link="/edit/edit"
           />
           <ArticleCard
             header="Utgifter verktøyhold"

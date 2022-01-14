@@ -5,9 +5,10 @@ dbConnect();
 
 export default async (req, res) => {
   const { method } = req;
+
   switch (method) {
     case "POST":
-      if (req.query.user === "auth0|5f27b78668033f003d618d38") {
+      if (req.query.user === process.env.USER_SUB) {
         try {
           const waste = new Waste(req.body);
           waste.save().then(() => {

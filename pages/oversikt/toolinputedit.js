@@ -19,7 +19,7 @@ const Toolinputedit = () => {
   const handleChange = (e) => {
     setOptionValue(e.target.value);
   };
-  console.log(type);
+
   return (
     <>
       <HeaderStartPage />
