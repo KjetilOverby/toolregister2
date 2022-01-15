@@ -17,6 +17,11 @@ const Addblades = () => {
   const { user, isAuthenticated } = useAuth0();
   const { userID, setUserID, setLinckUpdate, linckUpdate } =
     useContext(MyContext);
+
+  useEffect(() => {
+    setUserID(user);
+  });
+
   const [newBlades, setNewBlades] = useState();
   const [updateNewblades, setUpdateNewblades] = useState(false);
   const [createdMonth, setCreatedMonth] = useState(new Date().getMonth() + 1);

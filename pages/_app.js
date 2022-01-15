@@ -79,8 +79,9 @@ function MyApp({ Component, pageProps }) {
   }, [linckUpdate]);
 
   // Tools
-
+  console.log("***Startpage***");
   console.log(userID);
+  console.log("***Startpage***");
 
   useEffect(() => {
     api

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MyContext } from "../../contexts/MyContext";
 import ToolCard from "../common/ToolCard";
 import BoltCard from "../common/BoltCard";
@@ -15,6 +15,7 @@ import vp48segmentH from "../../../assets/segmenter/vp48segmentH.jpg";
 import vp48segmentV from "../../../assets/segmenter/vp48segmentV.jpg";
 import ModalComponent from "../common/ModalComponent";
 import ToolWasteCount from "../oversikt/ToolWasteCount";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SegmenterStartPage = () => {
   const {
@@ -31,10 +32,14 @@ const SegmenterStartPage = () => {
     vp34SegV,
     vp48segH,
     vp48segV,
+    setUserID,
 
     setUpdate,
   } = useContext(MyContext);
-
+  const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    setUserID(user);
+  });
   return (
     <>
       <ToolWasteCount />

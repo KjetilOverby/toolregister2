@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import KniverStartpage from "../src/components/kniver/KniverStartpage";
 import red from "../assets/kniver/red.jpeg";

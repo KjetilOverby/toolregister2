@@ -21,9 +21,14 @@ const api = axios.create({
 const Lincksearch = () => {
   const { user, isAuthenticated } = useAuth0();
 
+  useEffect(() => {
+    setUserID(user);
+  });
+
   const {
     linckBlades,
     userID,
+    setUserID,
     setLinckUpdate,
     linckUpdate,
     getType,
@@ -126,7 +131,6 @@ const Lincksearch = () => {
   }, [wasteMonth, wasteUpdate]);
 
   const [createDeletedBladeConfirm, setCreateDeletedBladeConfirm] = useState();
-  console.log(createDeletedBladeConfirm);
 
   const createDeletedBladeHandler = () => {
     api
@@ -238,7 +242,7 @@ const Lincksearch = () => {
       {createDeletedBladeConfirm ? (
         <h4
           style={{
-            position: "absolute",
+            position: "fixed",
             left: 0,
             bottom: 0,
             background: "seagreen",

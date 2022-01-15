@@ -13,10 +13,14 @@ const Edit_types_tools = () => {
   const [imgUrl, setImgUrl] = useState();
   const [openModal, setOpenModal] = useState(false);
 
-  const { setUpdate, update, antallInputSum, setAntallInputSum } =
+  const { setUpdate, update, antallInputSum, setAntallInputSum, setUserID } =
     useContext(MyContext);
   const api = axios.create({
     baseURL: process.env.api,
+  });
+
+  useEffect(() => {
+    setUserID(user);
   });
 
   useEffect(() => {

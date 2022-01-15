@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import fres2 from "../../../assets/kniver/vp34kniv.jpg";
 import fres3 from "../../../assets/kniver/vp48kniv.jpg";
 import noImage from "../../../assets/no_image.png";
@@ -28,6 +28,8 @@ import { MyContext } from "../../contexts/MyContext";
 import ModalComponent from "../common/ModalComponent";
 import ToolWasteCount from "../oversikt/ToolWasteCount";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 const KniverStartpage = () => {
   const {
     openModal,
@@ -46,7 +48,12 @@ const KniverStartpage = () => {
     vp48motstH,
     vp48motstV,
     bruksKniv,
+    setUserID,
   } = useContext(MyContext);
+  const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    setUserID(user);
+  });
   return (
     <>
       <ToolWasteCount />

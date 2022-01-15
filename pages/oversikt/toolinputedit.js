@@ -10,7 +10,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Toolinputedit = () => {
   const { user, isAuthenticated } = useAuth0();
-  const { toolwasteData, toolCreateData, setUpdate } = useContext(MyContext);
+  const { toolwasteData, toolCreateData, setUpdate, setUserID } =
+    useContext(MyContext);
 
   const [typeList, setTypeList] = useState();
   const [type, setType] = useState();
@@ -31,6 +32,9 @@ const Toolinputedit = () => {
 
   const api = axios.create({
     baseURL: process.env.api,
+  });
+  useEffect(() => {
+    setUserID(user);
   });
 
   useEffect(() => {
@@ -140,7 +144,6 @@ const Toolinputedit = () => {
           <div className="card-container">
             {optionValue !== "a"
               ? typeList.map((item) => {
-                  console.log(item._id);
                   const openModalHandle = () => {
                     setTimeout(() => {
                       setOpenModal(true);

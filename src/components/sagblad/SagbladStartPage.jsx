@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MyContext } from "../../contexts/MyContext";
 import ToolCard from "../common/ToolCard";
 import trimmerBordImg from "../../../assets/sagblad/trimmerBord.jpg";
@@ -7,6 +7,7 @@ import eksaktKappe from "../../../assets/sagblad/eksaktKappe.jpg";
 import endekappImg from "../../../assets/sagblad/endekapp.jpg";
 import ModalComponent from "../common/ModalComponent";
 import ToolWasteCount from "../oversikt/ToolWasteCount";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SagbladStartPage = () => {
   const {
@@ -17,8 +18,12 @@ const SagbladStartPage = () => {
     eksaktKapp,
     endekapp,
     trimmerBord,
+    setUserID,
   } = useContext(MyContext);
-  console.log(endekapp);
+  const { user, isAuthenticated } = useAuth0();
+  useEffect(() => {
+    setUserID(user);
+  });
   return (
     <>
       <ToolWasteCount />
