@@ -202,9 +202,10 @@ const Addblades = () => {
             grid-area: top;
           }
           .image-container {
-            background: url("https://images.unsplash.com/photo-1636874541533-809577b9f9ea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80");
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+              url("https://images.unsplash.com/photo-1568832359672-e36cf5d74f54?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
             height: 20rem;
-            background-position: center;
+            background-position: bottom;
             background-repeat: no-repeat;
             background-size: cover;
             display: grid;

@@ -19,6 +19,7 @@ export default async (req, res) => {
         }
       } else {
         res.send("Uautorisert forespørsel");
+        res.status(400).json({ success: false });
       }
       break;
   }

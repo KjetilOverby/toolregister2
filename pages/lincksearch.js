@@ -21,10 +21,6 @@ const api = axios.create({
 const Lincksearch = () => {
   const { user, isAuthenticated } = useAuth0();
 
-  useEffect(() => {
-    setUserID(user);
-  });
-
   const {
     linckBlades,
     userID,
@@ -36,6 +32,9 @@ const Lincksearch = () => {
     getNumberOfRetip,
     setGetNumberOfRetip,
   } = useContext(MyContext);
+  useEffect(() => {
+    setUserID(user);
+  });
   const [filteredBlades, setFilteredBlades] = useState();
   const [searchInput, setSearchInput] = useState();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -132,6 +131,8 @@ const Lincksearch = () => {
 
   const [createDeletedBladeConfirm, setCreateDeletedBladeConfirm] = useState();
 
+  const [confirmCreateDeletedBlade, setConfirmCreateDeletedBlade] = useState();
+
   const createDeletedBladeHandler = () => {
     api
       .post(`/api/linck/createDeletedBlade/?user=${user.sub}`, {
@@ -143,16 +144,17 @@ const Lincksearch = () => {
       .then(function (response) {
         console.log(response);
         setCreateDeletedBladeConfirm(response);
+
+        setConfirmCreateDeletedBlade(response.status);
       });
   };
 
-  const deleteBladeHandler = () => {
+  const deleteBladeCurrentBladeHandler = () => {
     try {
       api
         .delete(`/api/linck/deleteBlade/?del=${linckID}&user=${user.sub}`)
         .then((res) => {
           if (res.status === 200) {
-            createDeletedBladeHandler();
             setOpenDeleteModal(false);
             setLinckUpdate(!linckUpdate);
             setSearchInput("");
@@ -165,6 +167,20 @@ const Lincksearch = () => {
       console.log(error);
     }
   };
+
+  const deleteBladeHandler = () => {
+    createDeletedBladeHandler();
+  };
+
+  useEffect(() => {
+    if (confirmCreateDeletedBlade === 200) {
+      deleteBladeCurrentBladeHandler();
+      setConfirmCreateDeletedBlade();
+    } else if (confirmCreateDeletedBlade === undefined) {
+    } else {
+      alert("Noe gikk galt");
+    }
+  }, [confirmCreateDeletedBlade]);
 
   // SERVICE
   const [retipBlades, setRetipBlades] = useState();
@@ -430,7 +446,8 @@ const Lincksearch = () => {
             max-width: 100vw;
           }
           .image-container {
-            background: url("https://images.unsplash.com/photo-1567095751004-aa51a2690368?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
+              url("https://images.unsplash.com/photo-1559006321-0edcc6981d06?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1517&q=80");
             height: 20rem;
             background-position: center;
             background-repeat: no-repeat;
