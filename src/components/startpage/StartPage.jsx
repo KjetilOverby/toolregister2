@@ -5,6 +5,10 @@ import ButtonComponent from "./ButtonComponent";
 import HeaderStartPage from "../../components/common/HeaderStartPage";
 import ArticleCard from "../common/ArticleCard";
 import Link from "next/link";
+import kniv from "../../../assets/startpage/kniv.jpeg";
+import linckblad from "../../../assets/startpage/linckblad.jpeg";
+import segment from "../../../assets/startpage/segmentT.png";
+import trimmerBlade from "../../../assets/startpage/trimmerBlade.png";
 
 const StartPage = () => {
   return (
@@ -36,6 +40,7 @@ const StartPage = () => {
             img={
               "https://www.leuco.com/EN/US/media/PIC_PRO_KSN_80337192_ING.jpg"
             }
+            image={linckblad}
           />
           <ButtonComponent
             link="/segmenter"
@@ -43,6 +48,7 @@ const StartPage = () => {
             img={
               "https://lh3.googleusercontent.com/pw/AM-JKLV4wxsxB2iKcCPzRSmNtDmWTNoHJF_26durwkNx-58zgjbnVN-tIfh3uw10VHfprS7hGqMcTPrUWSVF-YmQI2QbIwf5pUZAFEkSXbmnyrCUbRtWwnDfmyDuAf2AHZjU9dSQjcXbs7OtOnhsB51Gr791=w536-h438-no?authuser=0"
             }
+            image={segment}
           />
           <ButtonComponent
             link="/kniver"
@@ -50,6 +56,7 @@ const StartPage = () => {
             img={
               "https://shop.leuco.com/medias/?context=bWFzdGVyfHRlYW1jZW50ZXJJbXBvcnR8NDUyOXxpbWFnZS9qcGVnfGg4NC9oMDUvODg3Nzg3MzkyMjA3OHw1OGY1N2E4MmVkODg1M2E4MjljMTBkMDNiMTlkMmY0NjY5OWViMzg1NGEyYWQ3MTRjN2E1MDkwOWUyZDY4OWQ5"
             }
+            image={kniv}
           />
           <ButtonComponent
             link="/sagblad"
@@ -57,6 +64,7 @@ const StartPage = () => {
             img={
               "https://5.imimg.com/data5/FL/UZ/ZT/SELLER-1201415/tct-circular-saw-blades-500x500.jpg"
             }
+            image={trimmerBlade}
           />
         </div>
         <div className="section-container">

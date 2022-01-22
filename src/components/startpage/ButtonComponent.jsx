@@ -1,14 +1,17 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
-const ButtonComponent = ({ header, link, img }) => {
+const ButtonComponent = ({ header, link, img, image }) => {
   return (
     <>
       <Link href={`${link}`}>
         <div className="container">
           <p>{header}</p>
 
-          <img src={img} alt="" className="img" />
+          <div className="image-container">
+            <Image src={image} />
+          </div>
         </div>
       </Link>
       <style jsx>
@@ -40,6 +43,12 @@ const ButtonComponent = ({ header, link, img }) => {
           }
           .img {
             height: 100%;
+          }
+          .image-container {
+            width: 8rem;
+            margin-top: 2rem;
+            height: 8rem;
+            background-color: #fff;
           }
           @media (max-width: 1000px) {
             .container {
