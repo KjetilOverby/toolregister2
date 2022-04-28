@@ -22,8 +22,7 @@ const StartPage = () => {
             <h1 className="header">Verktøyregister</h1>
             <div className="text-container">
               <p className="text">
-                Registrering av sagblader, kniver og segmenter for Moelven
-                Våler.
+                Registrering av sagblader, kniver og segmenter.
               </p>
             </div>
             <Link href="/lincksearch">

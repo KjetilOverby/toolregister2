@@ -36,4 +36,5 @@ export default async (req, res) => {
       }
       break;
   }
+  console.log(lastDay.getDate());
 };
