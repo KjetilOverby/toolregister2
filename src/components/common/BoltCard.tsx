@@ -1,13 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-interface Props {
-  img: StaticImageData;
-  type: string;
-  antallImaskin: string;
-}
 
-const BoltCard: React.FC<Props> = ({ img, type, antallImaskin }) => {
+
+const BoltCard = ({ img, type, antallImaskin }) => {
   return (
     <>
       <div className="container">
