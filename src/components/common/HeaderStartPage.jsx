@@ -86,6 +86,9 @@ const HeaderComponent = ({ color, editHeader }) => {
               <Link href="/oversikt/startpage">
                 <p className="tabs">Oversikt</p>
               </Link>
+              <Link href="/oversikt/startpage">
+                <p className="tabs">test</p>
+              </Link>
 
               <LoginButton />
               <LogoutButton />
