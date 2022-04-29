@@ -74,7 +74,7 @@ const HeaderComponent = ({ color, editHeader }) => {
               </Link>
               {editHeader && (
                 <Link href="/edit/edit">
-                  <p className="tabs">Rediger</p>
+                  <p className="tabs">Rediger.</p>
                 </Link>
               )}
               <Link href="/lincksearch">
